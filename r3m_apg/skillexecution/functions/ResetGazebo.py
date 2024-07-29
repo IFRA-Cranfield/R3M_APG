@@ -148,7 +148,7 @@ class EntityClient(Node):
     def __init__(self):
 
         # Initialise ROS2 Node:
-        super().__init__('r3mcell_EntityClient')
+        super().__init__('r3m_EntityClient')
 
         # Create ROS2 Service Clients:
         self.cli_SPAWN = self.create_client(SpawnEntity, "/spawn_entity")  

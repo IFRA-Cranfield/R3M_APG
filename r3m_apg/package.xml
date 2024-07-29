@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>r3mcell_execution</name>
+  <name>r3m_apg</name>
   <version>0.0.0</version>
   <description>IFRA-Cranfield (Cranfield University, UK). Package: R3M Cell (Humble) - Execution</description>
   <maintainer email="Mikel.Bueno-Viso@cranfield.ac.uk">mikel</maintainer>
@@ -22,7 +22,7 @@
   <depend>std_msgs</depend>
   <depend>geometry_msgs</depend>
 
-  <depend>r3mcell_data</depend>
+  <depend>r3m_data</depend>
   <build_depend>linkattacher_msgs</build_depend>
   <build_depend>objectpose_msgs</build_depend>
   <build_depend>linkpose_msgs</build_depend>

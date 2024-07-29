@@ -19,9 +19,9 @@ from rclpy.node import Node
 from ament_index_python.packages import get_package_share_directory
 
 # CUSTOM ROS2 MSG/SRV/ACTION:
-from r3mcell_data.srv import SkillExecution
-from r3mcell_data.msg import Product
-from r3mcell_data.msg import Pose
+from r3m_data.srv import SkillExecution
+from r3m_data.msg import Product
+from r3m_data.msg import Pose
 
 # Import -> CalculateRP function:
 from CalculateRP import CALCULATE_RobPose
@@ -44,7 +44,7 @@ from parallelGripper import parallelGR
 from vacuumGripper import vacuumGR
 
 # Import CLASSES/Functions:
-PATH_F = os.path.join(get_package_share_directory("r3mcell_execution"), 'skillexecution', 'functions')
+PATH_F = os.path.join(get_package_share_directory("r3m_apg"), 'skillexecution', 'functions')
 sys.path.append(PATH_F)
 from ObjectState import OBJECT
 from ResetGazebo import GzRESET
@@ -65,7 +65,7 @@ def GetIC_YAML(NAME):
 
     RESULT = {"UseCaseInfo": None, "Robot": None, "ObjectList": None, "Liaison": None, "Success": True}
     
-    PATH = os.path.join(get_package_share_directory('r3mcell_execution'), 'apg', 'initialconditions')
+    PATH = os.path.join(get_package_share_directory('r3m_apg'), 'apg', 'initialconditions')
     YAML_PATH = PATH + "/" + NAME + ".yaml"
     
     if not os.path.exists(YAML_PATH):
@@ -137,7 +137,7 @@ def GetRecipe(FOLDER, RECIPE_ID):
     
     RECIPE = {"Exists": True}
     
-    PATH = os.path.join(get_package_share_directory('r3mcell_execution'), 'apg', 'recipes', FOLDER)
+    PATH = os.path.join(get_package_share_directory('r3m_apg'), 'apg', 'recipes', FOLDER)
     RECIPE_PATH = PATH + "/" + str(RECIPE_ID) + ".yaml"
     
     if not os.path.exists(RECIPE_PATH):
@@ -281,7 +281,7 @@ class ExecuteSkill_SERVER(Node):
             self.ObjectList = self.OBJECTS.GetObjectPose() 
 
         # Initialise SERVICE SERVER:
-        super().__init__('r3mcell_SkillExecution_ServiceServer')                                              
+        super().__init__('r3m_SkillExecution_ServiceServer')                                              
         self.srv = self.create_service(SkillExecution, "/r3m_SkillExecution", self.EXECUTE)
     
     def EXECUTE(self, request, response):

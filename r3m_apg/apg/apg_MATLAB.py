@@ -21,7 +21,7 @@ from ament_index_python.packages import get_package_share_directory
 
 # CUSTOM ROS2 MSG/SRV/ACTION:
 from ros2srrc_data.msg import Robpose
-from r3mcell_data.srv import SkillExecution
+from r3m_data.srv import SkillExecution
 
 # Required for MATLAB AGENT EXECUTION:
 import numpy as np
@@ -34,7 +34,7 @@ class R3MSkillClient(Node):
     def __init__(self):
 
         # Initialise ROS2 Node:
-        super().__init__('r3mcell_APGMatlab_SkillClient')
+        super().__init__('r3m_APGMatlab_SkillClient')
 
         # Create ROS2 Service Client:
         self.cli_SKILL = self.create_client(SkillExecution, "/r3m_SkillExecution")  
@@ -76,7 +76,7 @@ class MatlabAgent():
         super().__init__()
         self.MATLAB = matlab.engine.start_matlab()
         
-        self.PATH = os.path.join(get_package_share_directory('r3mcell_execution'), 'apg', 'agents')
+        self.PATH = os.path.join(get_package_share_directory('r3m_apg'), 'apg', 'agents')
         self.AGENT = UseCase + ".mat"
         
     def Execute(self, ID, RobState, EEState, ObjState, ObjectNO):

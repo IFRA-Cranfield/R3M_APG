@@ -1,7 +1,7 @@
 clear,clc
 
 node = ros2node("R3M_SkillExecution_CLIENT")
-client = ros2svcclient(node, "/r3m_SkillExecution", "r3mcell_data/SkillExecution")
+client = ros2svcclient(node, "/r3m_SkillExecution", "r3m_data/SkillExecution")
 
 waitForServer(client, "Timeout", 3);
 

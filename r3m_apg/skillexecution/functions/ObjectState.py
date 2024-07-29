@@ -38,7 +38,7 @@ class OBJECT(Node):
                 
         # "ObjectList": [{Name - Link - CADFile - Package - InitialPose - CurrentPose - PreviousPose}, ..]
 
-        super().__init__("r3mcell_ObjectPose_Subscriber")
+        super().__init__("r3m_ObjectPose_Subscriber")
         self.SUBList = []
         
         for x in ObjectList:

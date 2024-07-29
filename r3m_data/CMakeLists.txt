@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(r3mcell_data)
+project(r3m_data)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)

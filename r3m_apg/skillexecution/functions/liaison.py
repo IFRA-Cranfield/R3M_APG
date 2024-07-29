@@ -14,8 +14,8 @@
 import math
 
 # CUSTOM ROS2 MSG/SRV/ACTION:
-from r3mcell_data.msg import Liaison
-from r3mcell_data.msg import Pose
+from r3m_data.msg import Liaison
+from r3m_data.msg import Pose
 
 # ========================================================================================= #
 # =================================== CLASSES/FUNCTIONS =================================== #

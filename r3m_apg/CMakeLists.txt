@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(r3mcell_execution)
+project(r3m_apg)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -27,19 +27,21 @@ endif()
 # REQUIRED TO EXECUTE .py scripts:
 install(
   DIRECTORY 
-    python
+    skillexecution
     apg
   DESTINATION 
     share/${PROJECT_NAME}
 )
 install(PROGRAMS
   
-  python/r3m_APG.py
+  skillexecution/r3m_SkillExecution_Gazebo.py
+  skillexecution/r3m_SkillExecution_Gz_Perception.py
+  skillexecution/r3m_SkillExecution_RealRobot.py
 
-  python/ObjectState.py
-  python/CalculateRP.py
-  python/ResetGazebo.py
-  python/liaison.py
+  skillexecution/functions/ObjectState.py
+  skillexecution/functions/CalculateRP.py
+  skillexecution/functions/ResetGazebo.py
+  skillexecution/functions/liaison.py
 
   apg/apg_MATLAB.py
 
