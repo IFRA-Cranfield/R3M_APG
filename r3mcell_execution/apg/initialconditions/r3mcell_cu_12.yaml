@@ -1,0 +1,51 @@
+# R3M Project - Initial Conditions for the R3M Cell Environment Launch:
+
+# Use-Case Information:
+Information:
+  UseCase: "R3M Cell (Cranfield University): Can Pick-and-Place Use-Case."
+  Name: "CanPP"
+
+# Robot Information:
+Robot:
+  Model: "irb120"
+  Link: "EE_egp64"
+  EEType: "ParallelGripper"
+  Package: "r3mcell_cu_gazebo"
+  HomePose:
+    x: 0.577
+    y: 0.525
+    z: 1.228
+    qx: 0.0
+    qy: 1.0
+    qz: 0.0
+    qw: 0.0
+
+# Object List:
+ObjectList:
+  - Name: "can"
+    Link: "can"
+    CADFile: "can"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose: 
+      x: 0.6
+      y: 0.8
+      z: 1.15
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+
+# Liaison:
+Liaison:
+  - Name: "Can is correctly placed inside the slot."
+    Parent: "GLOBAL"
+    Child: "can"
+    Transform:
+      diffMax: 0.1
+      position: True
+      orientation: False
+      x: 0.5
+      y: 0.1
+      z: 0.95

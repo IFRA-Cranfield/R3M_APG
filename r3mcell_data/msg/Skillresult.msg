@@ -1,0 +1,9 @@
+int32 id
+float64 exectime
+float64 error
+Rob robstate
+Product[] product 
+Liaison[] liaison
+int32 finish
+string message
+bool success

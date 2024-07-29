@@ -1,0 +1,70 @@
+R3M: Automatic Program Generation - RECIPE EXECUTION - GAZEBO
+
+0. GLOBAL VARIABLES:
+
+    - EEState
+    - RobStep
+    - ProdStep
+
+1. GET INITIAL CONDITIONS:
+
+    From IC.yaml file, get:
+
+        - Use-case name.
+        - Robot information: Model, EE, HomePose.
+        - Object information: Initial pose, model, link, CADFile.
+        - Liaison information.
+
+    Fill in -> ProdStep variable (GLOBAL VAR) w/ Objects.
+
+2. Initialise ExecuteSkill_SERVER class:
+
+    a. Initialise following classes:
+
+        - OBJECTS: Used to retrieve OBJECT POSES in Gazebo.
+        - ROBOT: ROS 2 Client to CONTROL THE ROBOT.
+        - END EFFECTOR: ROS 2 Client to CONTROL THE END EFFECTOR.
+
+    b. Initialise GAZEBO ENVIRONMENT:
+
+        - Initialise -> GzRESET CLASS.
+        - Launch OBJECTS to Gazebo Environment.
+
+    c. Initialise:
+
+        - Liaison VARIABLE.
+        - ObjectList VARIABLE.
+
+    d. Initialise -> ROS 2 SERVICE.
+
+3. RECIPE EXECUTION -> LOOP:
+
+    a. Get RECIPE ID.
+
+    b1. If RECIPE = 0 -> RESET:
+
+        1. Initialise End-Effector.
+        2. Remove objects from Gazebo Environment.
+        3. Move ROBOT to HomePosition.
+        4. Spawn objects back to their initial positions.
+        
+        5. Information back: 
+
+            - id=0
+            - EEState=0
+            - ProdStep=[]
+            - ObjectState
+
+    b2. If RECIPE EXISTS:
+
+        0. if ROBOT -> Check GOAL POSE -> CALCULATE_RobPose.
+        1. EXECUTE MOVEMENT.
+        2. COMPUTE RESULT:
+
+            - ID
+            - SUCCESS
+            - MESSAGE
+            - EXECUTION TIME
+            - RobStep, EEState
+            - ObjectList, ProdStep -> NOT NEEDED ANYMORE!
+            - Liaison

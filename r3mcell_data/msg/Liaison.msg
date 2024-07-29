@@ -1,0 +1,10 @@
+string name
+string parent
+string child
+LiTr transform
+Pose parentpose
+Pose childpose
+Pose childpose_goal
+float32 diff_max
+float64 diff
+int32 liaison_met

@@ -1,0 +1,29 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (Cranfield University): Can Pick-and-Place Use-Case."
+  Recipe: "Place (safe distance): CAN (1)"
+
+# Recipe ID:
+id: 41
+
+# Recipe TYPE:
+type: "PTP"
+
+# Recipe VALUE:
+speed: 1.0
+pose:
+  position:
+    type: "STATIC"
+    pose:
+      x: 0.5
+      y: 0.1
+      z: 1.20
+  orientation:
+    type: "STATIC"
+    pose:
+      qx: 0.5
+      qy: 0.5
+      qz: -0.5
+      qw: 0.5

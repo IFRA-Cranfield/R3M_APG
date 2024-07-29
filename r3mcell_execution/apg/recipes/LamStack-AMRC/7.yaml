@@ -1,0 +1,16 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (Cranfield University): Lamination Sheet Pick-and-Place use-case."
+  Recipe: "VACUUM: DEACTIVATE"
+
+# Recipe ID:
+id: 7
+
+# Recipe TYPE:
+type: "VACUUM"
+
+# Recipe VALUE:
+action: "DEACTIVATE"
+speed: 0.0

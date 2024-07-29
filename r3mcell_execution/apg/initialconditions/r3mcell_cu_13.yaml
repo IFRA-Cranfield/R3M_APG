@@ -1,0 +1,51 @@
+# R3M Project - Initial Conditions for the R3M Cell Environment Launch:
+
+# Use-Case Information:
+Information:
+  UseCase: "R3M Cell (Cranfield University): Lamination Sheet Pick-and-Place use-case."
+  Name: "LamStack"
+
+# Robot Information:
+Robot:
+  Model: "irb120"
+  Link: "EE_ls_vgr"
+  EEType: "VacuumGripper"
+  Package: "r3mcell_cu_gazebo"
+  HomePose:
+    x: 0.677
+    y: 0.525
+    z: 1.353
+    qx: 0.0
+    qy: 0.707
+    qz: 0.0
+    qw: 0.707
+
+# Object List:
+ObjectList:
+  - Name: "LamSheet"
+    Link: "LamSheet"
+    CADFile: "LamSheet"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose: 
+      x: 0.6
+      y: 0.8
+      z: 0.90
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+
+# Liaison:
+Liaison:
+  - Name: "Lamination Sheet is correctly stacked onto the designated fixture."
+    Parent: "GLOBAL"
+    Child: "LamSheet"
+    Transform:
+      diffMax: 0.01
+      position: True
+      orientation: False
+      x: 0.3
+      y: 0.1
+      z: 0.875
