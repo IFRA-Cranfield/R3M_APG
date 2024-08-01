@@ -27,6 +27,16 @@ from gazebo_msgs.srv import DeleteEntity
 
 # CUSTOM ROS2 MSG/SRV/ACTION:
 from ros2srrc_data.msg import Robpose
+from ros2srrc_data.msg import Action
+from ros2srrc_data.msg import Xyz
+
+# VARIABLE for HomePos recovery:
+ACTION = Action()
+ACTION.action = "MoveL"
+ACTION.speed = 0.1
+INPUT = Xyz()
+INPUT.z = 0.05
+ACTION.movel = INPUT
 
 # ========================================================================================= #
 # =================================== CLASSES/FUNCTIONS =================================== #
@@ -118,7 +128,23 @@ class GzRESET():
             self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - Robot moved back to HOME POSITION. Ready to start again!")
         else:
             self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - ERROR moving the Robot back to HOME POSITION.")
-            return(False)
+            
+            global ACTION
+            while True:
+                REC_RES = self.ROBOT_CLIENT.Move_EXECUTE(ACTION)
+                
+                if REC_RES["Success"]:
+                    HP_RES = self.ROBOT_CLIENT.RobMove_EXECUTE("PTP", 1.0, HomePose)
+                    
+                    if HP_RES["Success"]:
+                        self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - Robot moved back to HOME POSITION. Ready to start again!")
+                        break
+                    else:
+                        None # Try again.
+                    
+                else:
+                    return(False)
+                    
         
         if self.OLCheck:
         
