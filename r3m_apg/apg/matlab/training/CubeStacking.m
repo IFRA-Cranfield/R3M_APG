@@ -7,8 +7,8 @@ mdl='CubeStacking';
 open_system(mdl)
 
 obsInfo = rlNumericSpec([5 1],...
-    LowerLimit=[1 1 0 0 0]',...
-    UpperLimit=[15 15 1 5 5]');
+    LowerLimit=[0 1 0 0 0]',...
+    UpperLimit=[100 15 1 1 1]');
 obsInfo.Name = "Observations";
 
 actInfo = rlFiniteSetSpec([01 02 03 04 05 06 07 12 13 14 15]);
@@ -19,9 +19,9 @@ env = rlSimulinkEnv(mdl, [mdl '/RL Agent'],...
 
 %% Create DQN Agent
 
-nI = obsInfo.Dimension(1);           % number of inputs (6)
-nL = 500;                            % number of neurons
-nO = numel(actInfo.Elements);        % number of outputs (31)
+nI = obsInfo.Dimension(1);  % number of inputs (6)
+nL = 300;                            % number of neurons
+nO = numel(actInfo.Elements);    % number of outputs (31)
 
 dnn = [
     featureInputLayer(nI,'Normalization','none','Name','state')
@@ -40,8 +40,6 @@ agentOptions = rlDQNAgentOptions(...
     'UseDoubleDQN',true,...
     'CriticOptimizerOptions',criticOptions,...
     'ExperienceBufferLength',1e4,...
-    'ResetExperienceBufferBeforeTraining', false, ...
-    'SaveExperienceBufferWithAgent', true, ...
     'MiniBatchSize',64,...
     'TargetSmoothFactor',1e-3,...
     'TargetUpdateFrequency',1,...
@@ -51,13 +49,10 @@ agentOptions.EpsilonGreedyExploration.Epsilon = 1;
 agentOptions.EpsilonGreedyExploration.EpsilonDecay = 0.001;
 agentOptions.EpsilonGreedyExploration.EpsilonMin = 0.01;
 
-
-
-
 agent = rlDQNAgent(critic,agentOptions);
 
-maxepisodes = 10000;
-maxsteps = 15;
+maxepisodes = 5000;
+maxsteps = 20;
 trainOpts = rlTrainingOptions(...
     'MaxEpisodes',maxepisodes, ...
     'MaxStepsPerEpisode',maxsteps, ...
@@ -65,7 +60,7 @@ trainOpts = rlTrainingOptions(...
     'Verbose',false, ...
     'Plots','training-progress',...
     'StopTrainingCriteria','AverageReward',...
-    'StopTrainingValue',11000);
+    'StopTrainingValue',1700);
 
 doTraining = true;
 
@@ -73,7 +68,7 @@ if doTraining
     % Train the agent.
     %saveDir = 'savedAgents';
     %cd(saveDir);
-    %load(['agent.mat'],'agent');
+    %load('Tt02.mat','agent');
     %cd ..
     trainingStats = train(agent,env,trainOpts);
 else
@@ -86,14 +81,14 @@ end
 %reset(agent); % Clears the experience buffer
 saveDir = 'savedAgents';
 cd(saveDir)
-save('CubeStacking','agent');
+save('Tt02','agent');
 cd ..
 
 %% Generate Code
 
 saveDir = 'savedAgents';
 cd(saveDir)
-load('csagent.mat','agent')
+load('Agent01.mat','agent')
 %cd ..\
 
 generatePolicyFunction(agent)
@@ -102,6 +97,6 @@ cfg = coder.gpuConfig('mex');
 cfg.TargetLang = 'C++';
 cfg.DeepLearningConfig = coder.DeepLearningConfig('cudnn');
 
-argstr = '{ones(5,1)}';
+argstr = '{ones(14,1)}';
 
 codegen('-config','cfg','evaluatePolicy','-args',argstr,'-report');
