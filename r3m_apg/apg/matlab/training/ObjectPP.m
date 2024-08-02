@@ -3,7 +3,7 @@ clc
 clear
 close all
 
-mdl='Case01';
+mdl='ObjectPP';
 open_system(mdl)
 
 obsInfo = rlNumericSpec([4 1],...

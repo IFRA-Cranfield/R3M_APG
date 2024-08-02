@@ -127,24 +127,35 @@ class GzRESET():
         if HP_RES["Success"]:
             self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - Robot moved back to HOME POSITION. Ready to start again!")
         else:
-            self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - ERROR moving the Robot back to HOME POSITION.")
+            self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - ERROR moving the Robot directly back to HOME POSITION. Trying SafePose...")
             
-            global ACTION
-            while True:
-                REC_RES = self.ROBOT_CLIENT.Move_EXECUTE(ACTION)
+            RECOVERED = False
+            for x in self.ResetCond["Robot"]["SafePose"]:
                 
-                if REC_RES["Success"]:
-                    HP_RES = self.ROBOT_CLIENT.RobMove_EXECUTE("PTP", 1.0, HomePose)
+                SafePose = Robpose()
+                SafePose.x = x["x"]
+                SafePose.y = x["y"]
+                SafePose.z = x["z"]
+                SafePose.qx = x["qx"]
+                SafePose.qy = x["qy"]
+                SafePose.qz = x["qz"]
+                SafePose.qw = x["qw"]
+                
+                SP_RES = self.ROBOT_CLIENT.RobMove_EXECUTE("LIN", 0.1, SafePose)
+                if SP_RES["Success"]:
                     
+                    HP_RES = self.ROBOT_CLIENT.RobMove_EXECUTE("PTP", 1.0, HomePose)
                     if HP_RES["Success"]:
                         self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - Robot moved back to HOME POSITION. Ready to start again!")
+                        
+                        RECOVERED = True
                         break
                     else:
                         None # Try again.
-                    
-                else:
-                    return(False)
-                    
+                        
+            if RECOVERED == False:
+                self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - ERROR moving the Robot back to HOME POSITION in RESET.")   
+                return(False)
         
         if self.OLCheck:
         
