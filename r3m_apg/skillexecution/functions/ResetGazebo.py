@@ -11,7 +11,7 @@
 # ========================================================================================= #
 
 # System:
-import os, sys
+import os, subprocess, time
 import xacro
 import ast
 import random
@@ -19,6 +19,7 @@ import random
 # ROS2:
 import rclpy
 from rclpy.node import Node
+from rcl_interfaces.msg import Log
 from ament_index_python.packages import get_package_share_directory
 
 # ROS2 MSG/SRV/ACTION:
@@ -37,6 +38,9 @@ ACTION.speed = 0.1
 INPUT = Xyz()
 INPUT.z = 0.05
 ACTION.movel = INPUT
+
+# Global variable -> LAUNCH_COMPLETE:
+GzLAUNCH_COMPLETE = False
 
 # ========================================================================================= #
 # =================================== CLASSES/FUNCTIONS =================================== #
@@ -272,3 +276,77 @@ class EntityClient(Node):
         elif ELEMENT == "OBJECT":
             self.req_DELETE.name = INFORMATION["Name"]
             self.future_DELETE = self.cli_DELETE.call_async(self.req_DELETE)
+
+
+# ========================================================================================= #
+# ================================== RESET for TRAINING =================================== #
+# ========================================================================================= #
+
+class LaunchSUB(Node):
+
+    def __init__(self):
+        
+        # Declare NODE:
+        super().__init__("R3MAPG_LaunchSUB")
+
+        # Declare SUBSCRIBER:
+        self.subscription = self.create_subscription(
+            Log,                                                                                              
+            "rosout",                                                        
+            self.sub_callback,                                          
+            10)                                                               
+        self.subscription 
+    
+    def sub_callback(self, MSG):
+
+        global GzLAUNCH_COMPLETE
+    
+        ROSout_msg = str(MSG.msg)
+        
+        if "Service response received for initialization" in ROSout_msg:
+            GzLAUNCH_COMPLETE = True
+
+def GAZEBO_start(PKG, CNF):
+
+    SUBNode = LaunchSUB()
+
+    global GzLAUNCH_COMPLETE
+
+    PKG_ = PKG.replace("_gazebo", "")
+    CMD = "gnome-terminal -- ros2 launch ros2srrc_launch moveit2.launch.py package:=" + PKG_ + " config:=" + CNF
+    
+    PROCESS = subprocess.Popen(CMD, shell=True)
+    GzLAUNCH_COMPLETE = False
+
+    T = time.time()
+
+    while (time.time() < T + 30.0):
+        rclpy.spin_once(SUBNode)
+        if GzLAUNCH_COMPLETE:
+            SUBNode.destroy_node()
+            del SUBNode
+            return(True)
+
+    SUBNode.destroy_node()
+    del SUBNode
+    return(False)
+
+def GAZEBO_close():
+
+    os.system("pkill -f gzclient")  
+    os.system("pkill -f gzserver")  
+    os.system("pkill -f robot_state_publisher")  
+    os.system("pkill -f static_transform_publisher") 
+    os.system("pkill -f move_group") 
+    os.system("pkill -f move") 
+    os.system("pkill -f robmove") 
+    os.system("pkill -f sequence") 
+    os.system("pkill -f rviz2") 
+
+def GAZEBO_REstart(PKG, CNF):
+
+    GAZEBO_close()
+    time.sleep(1.0)
+    RES = GAZEBO_start(PKG, CNF)
+    
+    return(RES)

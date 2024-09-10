@@ -47,13 +47,17 @@ from vacuumGripper import vacuumGR
 PATH_F = os.path.join(get_package_share_directory("r3m_apg"), 'skillexecution', 'functions')
 sys.path.append(PATH_F)
 from ObjectState import OBJECT
-from ResetGazebo import GzRESET
+from ResetGazebo import GzRESET, GAZEBO_start, GAZEBO_REstart
 from liaison import LiaisonCheck
 
 # Global VAR: 
 EEState = 1
 RobStep = 0
 ProdStep = []
+TRAIN = None
+PKG = None
+CNF = None
+i = 0
 
 # ========================================================================================= #
 # ================================ ROS2 - INPUT PARAMETERS ================================ #
@@ -286,13 +290,25 @@ class ExecuteSkill_SERVER(Node):
     
     def EXECUTE(self, request, response):
         
-        global EEState, RobStep, ProdStep
-        
+        global EEState, RobStep, ProdStep, TRAIN, PKG, CNF, i
+
         # Get RECIPE ID:
         ID = request.id
 
         # EXECUTE RECIPE:
         if (ID == 0):
+
+            # CALCULATE -> Episode N. for training. IF 500, RESET Gazebo completely to free memory!
+            if TRAIN:
+                i = i+1
+        
+                if i == 500:
+                    RES = GAZEBO_REstart(PKG, CNF)
+                    if RES == False:
+                        print("")
+                        print("ERROR: Gazebo Environment reSTART failed.")
+                        print("Closing... BYE!")
+                        exit()
 
             RES = self.RESET.RESET()
             response.result.id = 0
@@ -514,6 +530,30 @@ def main(args=None):
 
     # Get InitialConditions from yaml file:
     IC = GetIC_YAML(CONFIG)
+
+    # === TRAINING (?) === #
+    # Get ROS2 Parameter value:
+    global TRAIN, PKG, CNF
+    TRAIN = AssignArgument("train")
+    if (TRAIN == "True") or (TRAIN == "False"):
+        None
+    else:
+        print("")
+        print("ERROR: train INPUT ARGUMENT has not been defined (True/False). Please try again.")
+        print("Closing... BYE!")
+        exit()
+
+    if TRAIN:
+
+        PKG = IC["Robot"]["Package"]
+        CNF = CONFIG
+
+        RES = GAZEBO_start(PKG,CNF)
+        if RES == False:
+            print("")
+            print("ERROR: Gazebo Environment START failed.")
+            print("Closing... BYE!")
+            exit()
 
     # Initialise NODE:
     if IC["Success"]:
