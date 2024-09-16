@@ -11,7 +11,7 @@
 # ========================================================================================= #
 
 # System:
-import os, sys, time, yaml
+import os, sys, time, yaml, threading
 
 # ROS2:
 import rclpy
@@ -287,201 +287,126 @@ class ExecuteSkill_SERVER(Node):
         # Initialise SERVICE SERVER:
         super().__init__('r3m_SkillExecution_ServiceServer')                                              
         self.srv = self.create_service(SkillExecution, "/r3m_SkillExecution", self.EXECUTE)
+        
+    def timeout_handler(self, request, response):
+        
+        global PKG, CNF, i
+        
+        RES = GAZEBO_REstart(PKG, CNF)
+        i = 0
+        
+        time.sleep(10.0)
+        
+        if RES == False:
+            print("")
+            print("ERROR: Gazebo Environment reSTART failed.")
+            print("Closing... BYE!")
+            exit()
+                        
+        RES = self.RESET.RESET()
+        response.result.id = 0
+        
+        if self.OLCheck:
+            self.OBJECTS.ResetObjectList()
+        
+        EEState = 1
+        response.result.robstate.endeffector = EEState
+        response.result.robstate.step = 0
+
+        if self.OLCheck:
+            ProdStep = []
+            for x in self.ObjectList:
+                ProdStep.append({"Name": x["Name"], "Step": 0})
+
+            self.ObjectList = self.OBJECTS.GetObjectPose()
+
+        if RES == True:
+            response.result.message = "ROS2 Environment RESET successful."
+            response.result.success = True
+            return(response)
+        else:
+            response.result.message = "ROS2 Environment RESET failed."
+            response.result.success = False
+            return(response)
     
     def EXECUTE(self, request, response):
         
         global EEState, RobStep, ProdStep, TRAIN, PKG, CNF, i
-
-        # Get RECIPE ID:
-        ID = request.id
-
-        # EXECUTE RECIPE:
-        if (ID == 0):
-
-            # CALCULATE -> Episode N. for training. IF 500, RESET Gazebo completely to free memory!
-            if TRAIN:
-                i = i+1
         
-                if i == 500:
-                    RES = GAZEBO_REstart(PKG, CNF)
-                    if RES == False:
-                        print("")
-                        print("ERROR: Gazebo Environment reSTART failed.")
-                        print("Closing... BYE!")
-                        exit()
+        # TIMER:
+        timeout = 60.0
+        timer = threading.Timer(timeout, self.timeout_handler, [request,response])
+        
+        try:
 
-            RES = self.RESET.RESET()
-            response.result.id = 0
+            # Get RECIPE ID:
+            ID = request.id
+
+            # EXECUTE RECIPE:
+            if (ID == 0):
+
+                # CALCULATE -> Episode N. for training. IF 250, RESET Gazebo completely to free memory!
+                if TRAIN:
+                    i = i+1
             
-            if self.OLCheck:
-                self.OBJECTS.ResetObjectList()
-            
-            EEState = 1
-            response.result.robstate.endeffector = EEState
-            response.result.robstate.step = 0
-
-            if self.OLCheck:
-                ProdStep = []
-                for x in self.ObjectList:
-                    ProdStep.append({"Name": x["Name"], "Step": 0})
-
-                self.ObjectList = self.OBJECTS.GetObjectPose()
-
-            if RES == True:
-                response.result.message = "ROS2 Environment RESET successful."
-                response.result.success = True
-                return(response)
-            else:
-                response.result.message = "ROS2 Environment RESET failed."
-                response.result.success = False
-                return(response)
-            
-        elif (ID == 100):
-
-            # RESULT -> ID, exectime, error, message and success:
-            response.result.id = 100
-            response.result.success = True
-            response.result.message = "R3M Perception ACTIVE SKILL executed. Liaison UPDATED."
-            response.result.exectime = 0.0
-
-            # RESULT -> Robot + EndEffector:
-            #response.result.robstate.robpose = TBD
-            response.result.robstate.step = RobStep
-            response.result.robstate.endeffector = EEState
-
-            # PRODUCT:
-            # No need to update ObjectPose values.
-
-            # LIAISON:
-            if self.LICheck:
-                    
-                # GET LIAISON VECTOR:
-                liRES = self.Liaison.CHECK(self.ObjectList)
-                response.result.liaison = liRES["LiaisonVector"]
-            
-                # GET -> TASK FINISHED?
-                if liRES["allMET"] and (ID == 1):
-                    response.result.finish = 1
-                else:
-                    None
-
-            return(response)
-            
-        else:
-
-            # Get RECIPE VALUES:
-            RECIPE = GetRecipe(self.RecipeFolder, ID)
-
-            if RECIPE["Exists"] == True:
-
-                # Robot -> Check MOVEMENT TYPE and EXECUTE ACCORDINGLY:
-                if (RECIPE["type"] == "PTP" or RECIPE["type"] == "LIN"):
-
-                    RES = CALCULATE_RobPose(RECIPE["pose"], self.ObjectList)
-                    if RES["Success"]:
-                        RES = self.ROBOT.RobMove_EXECUTE(RECIPE["type"], RECIPE["speed"], RES["Pose"])
-
-                    # If movement is successful:
-                    if RES["Success"]:
-                        RobStep = ID
-
-                # ParallelGripper:
-                elif (RECIPE["type"] == "GRIP"):
-
-                    if RECIPE["action"] == "CLOSE":
-                        RES = self.GRIPPER.CLOSE(RECIPE["value"])
+                    if i == 100:
                         
-                        if RES["Success"]:
-                            EEState = 0
+                        RES = GAZEBO_REstart(PKG, CNF)
+                        i = 0
                         
-                    else:
-                        RES = self.GRIPPER.OPEN()
+                        time.sleep(10.0)
                         
-                        if RES["Success"]:
-                            EEState = 1
+                        if RES == False:
+                            print("")
+                            print("ERROR: Gazebo Environment reSTART failed.")
+                            print("Closing... BYE!")
+                            exit()
+
+                RES = self.RESET.RESET()
+                response.result.id = 0
                 
-                # VacuumGripper:
-                elif (RECIPE["type"] == "VACUUM"):
-                    
-                    if RECIPE["action"] == "ACTIVATE":
-                        RES = self.GRIPPER.ACTIVATE()
-                        
-                        if RES["Success"]:
-                            EEState = 0
-                        
-                    elif RECIPE["action"] == "DEACTIVATE":
-                        RES = self.GRIPPER.DEACTIVATE()
-                        
-                        if RES["Success"]:
-                            EEState = 1
+                if self.OLCheck:
+                    self.OBJECTS.ResetObjectList()
+                
+                EEState = 1
+                response.result.robstate.endeffector = EEState
+                response.result.robstate.step = 0
 
-                # ============================================ #
-                # ========== SKILL EXECUTION RESULT ========== #
+                if self.OLCheck:
+                    ProdStep = []
+                    for x in self.ObjectList:
+                        ProdStep.append({"Name": x["Name"], "Step": 0})
+
+                    self.ObjectList = self.OBJECTS.GetObjectPose()
+
+                if RES == True:
+                    response.result.message = "ROS2 Environment RESET successful."
+                    response.result.success = True
+                    return(response)
+                else:
+                    response.result.message = "ROS2 Environment RESET failed."
+                    response.result.success = False
+                    return(response)
+                
+            elif (ID == 100):
 
                 # RESULT -> ID, exectime, error, message and success:
-                response.result.id = ID
-                response.result.success = RES["Success"]
-                response.result.message = RES["Message"]
-                response.result.exectime = RES["ExecTime"]
+                response.result.id = 100
+                response.result.success = True
+                response.result.message = "R3M Perception ACTIVE SKILL executed. Liaison UPDATED."
+                response.result.exectime = 0.0
 
                 # RESULT -> Robot + EndEffector:
                 #response.result.robstate.robpose = TBD
                 response.result.robstate.step = RobStep
                 response.result.robstate.endeffector = EEState
 
-                if self.OLCheck:
-                    # GET ObjectList -> OBJECT POSES:
-                    OL = self.OBJECTS.GetObjectPose()
-                    self.ObjectList = OL
-                    PRODUCTS = []
+                # PRODUCT:
+                # No need to update ObjectPose values.
 
-                    for x in OL:
-
-                        P = Product()
-                        P.name = x["Name"]
-
-                        P.currentpose = Pose()
-                        P.currentpose.x = x["CurrentPose"].x
-                        P.currentpose.y = x["CurrentPose"].y
-                        P.currentpose.z = x["CurrentPose"].z
-                        P.currentpose.qx = x["CurrentPose"].qx
-                        P.currentpose.qy = x["CurrentPose"].qy
-                        P.currentpose.qz = x["CurrentPose"].qz
-                        P.currentpose.qw = x["CurrentPose"].qw
-
-                        P.previouspose = Pose()
-                        P.previouspose.x = x["PreviousPose"].x
-                        P.previouspose.y = x["PreviousPose"].y
-                        P.previouspose.z = x["PreviousPose"].z
-                        P.previouspose.qx = x["PreviousPose"].qx
-                        P.previouspose.qy = x["PreviousPose"].qy
-                        P.previouspose.qz = x["PreviousPose"].qz
-                        P.previouspose.qw = x["PreviousPose"].qw
-
-                        P.error = 0.0 # Error when retrieving from Gazebo is null.
-
-                        DIF = CalculateDif_PROD(P.currentpose,P.previouspose)
-                        if (DIF == True):
-
-                            for y in ProdStep:
-                                if P.name == y["Name"]:
-                                    y["Step"] = y["Step"] + 1
-                                    P.step = y["Step"]
-                                    break
-
-                        else:
-                            
-                            for y in ProdStep:
-                                if P.name == y["Name"]:
-                                    P.step = y["Step"]
-                                    break
-
-                        PRODUCTS.append(P)
-
-                    response.result.product = PRODUCTS
-
+                # LIAISON:
                 if self.LICheck:
-                    
+                        
                     # GET LIAISON VECTOR:
                     liRES = self.Liaison.CHECK(self.ObjectList)
                     response.result.liaison = liRES["LiaisonVector"]
@@ -493,13 +418,143 @@ class ExecuteSkill_SERVER(Node):
                         None
 
                 return(response)
-
+                
             else:
 
-                response.result.id = ID
-                response.result.message = "ERROR. Recipe N -> " + str(ID) + " does not exist."
-                response.result.success = False
-                return(response)
+                # Get RECIPE VALUES:
+                RECIPE = GetRecipe(self.RecipeFolder, ID)
+
+                if RECIPE["Exists"] == True:
+
+                    # Robot -> Check MOVEMENT TYPE and EXECUTE ACCORDINGLY:
+                    if (RECIPE["type"] == "PTP" or RECIPE["type"] == "LIN"):
+
+                        RES = CALCULATE_RobPose(RECIPE["pose"], self.ObjectList)
+                        if RES["Success"]:
+                            RES = self.ROBOT.RobMove_EXECUTE(RECIPE["type"], RECIPE["speed"], RES["Pose"])
+
+                        # If movement is successful:
+                        if RES["Success"]:
+                            RobStep = ID
+
+                    # ParallelGripper:
+                    elif (RECIPE["type"] == "GRIP"):
+
+                        if RECIPE["action"] == "CLOSE":
+                            RES = self.GRIPPER.CLOSE(RECIPE["value"])
+                            
+                            if RES["Success"]:
+                                EEState = 0
+                            
+                        else:
+                            RES = self.GRIPPER.OPEN()
+                            
+                            if RES["Success"]:
+                                EEState = 1
+                    
+                    # VacuumGripper:
+                    elif (RECIPE["type"] == "VACUUM"):
+                        
+                        if RECIPE["action"] == "ACTIVATE":
+                            RES = self.GRIPPER.ACTIVATE()
+                            
+                            if RES["Success"]:
+                                EEState = 0
+                            
+                        elif RECIPE["action"] == "DEACTIVATE":
+                            RES = self.GRIPPER.DEACTIVATE()
+                            
+                            if RES["Success"]:
+                                EEState = 1
+
+                    # ============================================ #
+                    # ========== SKILL EXECUTION RESULT ========== #
+
+                    # RESULT -> ID, exectime, error, message and success:
+                    response.result.id = ID
+                    response.result.success = RES["Success"]
+                    response.result.message = RES["Message"]
+                    response.result.exectime = RES["ExecTime"]
+
+                    # RESULT -> Robot + EndEffector:
+                    #response.result.robstate.robpose = TBD
+                    response.result.robstate.step = RobStep
+                    response.result.robstate.endeffector = EEState
+
+                    if self.OLCheck:
+                        # GET ObjectList -> OBJECT POSES:
+                        OL = self.OBJECTS.GetObjectPose()
+                        self.ObjectList = OL
+                        PRODUCTS = []
+
+                        for x in OL:
+
+                            P = Product()
+                            P.name = x["Name"]
+
+                            P.currentpose = Pose()
+                            P.currentpose.x = x["CurrentPose"].x
+                            P.currentpose.y = x["CurrentPose"].y
+                            P.currentpose.z = x["CurrentPose"].z
+                            P.currentpose.qx = x["CurrentPose"].qx
+                            P.currentpose.qy = x["CurrentPose"].qy
+                            P.currentpose.qz = x["CurrentPose"].qz
+                            P.currentpose.qw = x["CurrentPose"].qw
+
+                            P.previouspose = Pose()
+                            P.previouspose.x = x["PreviousPose"].x
+                            P.previouspose.y = x["PreviousPose"].y
+                            P.previouspose.z = x["PreviousPose"].z
+                            P.previouspose.qx = x["PreviousPose"].qx
+                            P.previouspose.qy = x["PreviousPose"].qy
+                            P.previouspose.qz = x["PreviousPose"].qz
+                            P.previouspose.qw = x["PreviousPose"].qw
+
+                            P.error = 0.0 # Error when retrieving from Gazebo is null.
+
+                            DIF = CalculateDif_PROD(P.currentpose,P.previouspose)
+                            if (DIF == True):
+
+                                for y in ProdStep:
+                                    if P.name == y["Name"]:
+                                        y["Step"] = y["Step"] + 1
+                                        P.step = y["Step"]
+                                        break
+
+                            else:
+                                
+                                for y in ProdStep:
+                                    if P.name == y["Name"]:
+                                        P.step = y["Step"]
+                                        break
+
+                            PRODUCTS.append(P)
+
+                        response.result.product = PRODUCTS
+
+                    if self.LICheck:
+                        
+                        # GET LIAISON VECTOR:
+                        liRES = self.Liaison.CHECK(self.ObjectList)
+                        response.result.liaison = liRES["LiaisonVector"]
+                    
+                        # GET -> TASK FINISHED?
+                        if liRES["allMET"] and (ID == 1):
+                            response.result.finish = 1
+                        else:
+                            None
+
+                    return(response)
+
+                else:
+
+                    response.result.id = ID
+                    response.result.message = "ERROR. Recipe N -> " + str(ID) + " does not exist."
+                    response.result.success = False
+                    return(response)
+                
+        finally:
+            timer.cancel()
             
 # ========================================================================================= #           
 # EVALUATE INPUT ARGUMENTS:

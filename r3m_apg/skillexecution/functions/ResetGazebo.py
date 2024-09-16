@@ -340,13 +340,14 @@ def GAZEBO_close():
     os.system("pkill -f move_group") 
     os.system("pkill -f move") 
     os.system("pkill -f robmove") 
+    os.system("pkill -f robpose")
     os.system("pkill -f sequence") 
     os.system("pkill -f rviz2") 
 
 def GAZEBO_REstart(PKG, CNF):
 
     GAZEBO_close()
-    time.sleep(1.0)
+    time.sleep(10.0)
     RES = GAZEBO_start(PKG, CNF)
     
     return(RES)
