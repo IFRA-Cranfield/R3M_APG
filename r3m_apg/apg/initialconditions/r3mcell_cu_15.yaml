@@ -1,0 +1,75 @@
+# R3M Project - Initial Conditions for the R3M Cell Environment Launch:
+
+# Use-Case Information:
+Information:
+  UseCase: "R3M Cell (Cranfield University): Cylinder Stacking Use-Case."
+  Name: "CylinderStacking"
+
+# Robot Information:
+Robot:
+  Model: "irb120"
+  Link: "EE_egp64"
+  EEType: "ParallelGripper"
+  Package: "r3mcell_cu_gazebo"
+  HomePose:
+    x: 0.577
+    y: 0.525
+    z: 1.228
+    qx: 0.0
+    qy: 1.0
+    qz: 0.0
+    qw: 0.0
+
+# Object List:
+ObjectList:
+  - Name: "BaseCylinder"
+    Link: "BaseCylinder"
+    CADFile: "cylinder"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose: 
+      x: "{'min': 0.45, 'max': 0.70}"
+      y: "{'min': 0.10, 'max': 0.95}"
+      z: 0.88
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "TopCylinder"
+    Link: "TopCylinder"
+    CADFile: "cylinder"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose:   
+      x: "{'min': 0.4, 'max': 0.75}"
+      y: "{'min': 0.0, 'max': 0.8}"
+      z: 0.88
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+
+# Liaison:
+Liaison:
+  - Name: "Base Cylinder is placed on top of the fixture."
+    Parent: "GLOBAL"
+    Child: "BaseCylinder"
+    Transform:
+      diffMax: 0.01
+      position: True
+      orientation: False
+      x: 0.45
+      y: 1.00
+      z: 0.89
+  - Name: "Top Cylinder is placed on top of the Base Cylinder."
+    Parent: "BaseCylinder"
+    Child: "TopCylinder"
+    Transform:
+      diffMax: 0.01
+      position: True
+      orientation: False
+      x: 0.0
+      y: 0.0
+      z: 0.035
