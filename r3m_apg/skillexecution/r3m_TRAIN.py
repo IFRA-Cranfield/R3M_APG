@@ -98,7 +98,7 @@ class TrainingENVReset(Node):
         
     def LaunchAPG(self, CONFIG):
 
-        CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_Gazebo.py config:=" + CONFIG
+        CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_Gazebo.py train:=True config:=" + CONFIG
         
         print("[APG NODE LAUNCH]: Executing command -> " + CMD)
         

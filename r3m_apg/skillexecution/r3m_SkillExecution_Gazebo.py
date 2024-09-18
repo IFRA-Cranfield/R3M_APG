@@ -56,6 +56,7 @@ from liaison import LiaisonCheck
 EEState = 1
 RobStep = 0
 ProdStep = []
+TRAIN = False
 
 # ========================================================================================= #
 # ================================ ROS2 - INPUT PARAMETERS ================================ #
@@ -289,6 +290,8 @@ class ExecuteSkill_SERVER(Node):
         # Initialise -> RESET SRV CLIENT:
         self.cli = self.create_client(Empty, "/r3m_ResetTraining")
         self.req = Empty.Request()
+
+        self.i = 0
         
     def timeout_handler(self):
         self.future = self.cli.call_async(self.req)
@@ -296,7 +299,7 @@ class ExecuteSkill_SERVER(Node):
     
     def EXECUTE(self, request, response):
         
-        global EEState, RobStep, ProdStep, PKG, CNF, i
+        global EEState, RobStep, ProdStep, TRAIN
         
         # TIMER:
         TIMEOUT = 30.0
@@ -311,6 +314,14 @@ class ExecuteSkill_SERVER(Node):
 
             # EXECUTE RECIPE:
             if (ID == 0):
+
+                # CHECK if -> i=100, then RESET:
+                if TRAIN:
+
+                    self.i = self.i + 1
+                    if self.i == 100:
+                        self.timeout_handler() # The timeout handler does the ROS 2 service request to r3m_TRAIN for the environment reset.
+                        self.i = 0 # Not required, since this script will close anyway...
 
                 RES = self.RESET.RESET()
                 response.result.id = 0
@@ -535,6 +546,15 @@ def main(args=None):
         print("ERROR: config INPUT ARGUMENT has not been defined. Please try again.")
         print("Closing... BYE!")
         exit()
+
+    # === TRAINING identifier === #
+    # Get ROS2 Parameter value:
+    global TRAIN
+    TRAIN = AssignArgument("train")
+    if TRAIN == "True" or TRAIN == "true":
+        TRAIN = True
+    else:
+        TRAIN = False 
 
     # Get InitialConditions from yaml file:
     IC = GetIC_YAML(CONFIG)
