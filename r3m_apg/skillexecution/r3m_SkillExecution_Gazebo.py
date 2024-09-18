@@ -17,8 +17,10 @@ import os, sys, time, yaml, threading
 import rclpy
 from rclpy.node import Node
 from ament_index_python.packages import get_package_share_directory
+from rclpy.executors import MultiThreadedExecutor
 
 # CUSTOM ROS2 MSG/SRV/ACTION:
+from std_srvs.srv import Empty
 from r3m_data.srv import SkillExecution
 from r3m_data.msg import Product
 from r3m_data.msg import Pose
@@ -47,17 +49,13 @@ from vacuumGripper import vacuumGR
 PATH_F = os.path.join(get_package_share_directory("r3m_apg"), 'skillexecution', 'functions')
 sys.path.append(PATH_F)
 from ObjectState import OBJECT
-from ResetGazebo import GzRESET, GAZEBO_start, GAZEBO_REstart
+from ResetGazebo import GzRESET
 from liaison import LiaisonCheck
 
 # Global VAR: 
 EEState = 1
 RobStep = 0
 ProdStep = []
-TRAIN = None
-PKG = None
-CNF = None
-i = 0
 
 # ========================================================================================= #
 # ================================ ROS2 - INPUT PARAMETERS ================================ #
@@ -288,79 +286,31 @@ class ExecuteSkill_SERVER(Node):
         super().__init__('r3m_SkillExecution_ServiceServer')                                              
         self.srv = self.create_service(SkillExecution, "/r3m_SkillExecution", self.EXECUTE)
         
-    def timeout_handler(self, request, response):
+        # Initialise -> RESET SRV CLIENT:
+        self.cli = self.create_client(Empty, "/r3m_ResetTraining")
+        self.req = Empty.Request()
         
-        global PKG, CNF, i
-        
-        RES = GAZEBO_REstart(PKG, CNF)
-        i = 0
-        
-        time.sleep(10.0)
-        
-        if RES == False:
-            print("")
-            print("ERROR: Gazebo Environment reSTART failed.")
-            print("Closing... BYE!")
-            exit()
-                        
-        RES = self.RESET.RESET()
-        response.result.id = 0
-        
-        if self.OLCheck:
-            self.OBJECTS.ResetObjectList()
-        
-        EEState = 1
-        response.result.robstate.endeffector = EEState
-        response.result.robstate.step = 0
-
-        if self.OLCheck:
-            ProdStep = []
-            for x in self.ObjectList:
-                ProdStep.append({"Name": x["Name"], "Step": 0})
-
-            self.ObjectList = self.OBJECTS.GetObjectPose()
-
-        if RES == True:
-            response.result.message = "ROS2 Environment RESET successful."
-            response.result.success = True
-            return(response)
-        else:
-            response.result.message = "ROS2 Environment RESET failed."
-            response.result.success = False
-            return(response)
+    def timeout_handler(self):
+        self.future = self.cli.call_async(self.req)
+        rclpy.spin_until_future_complete(self, self.future)
     
     def EXECUTE(self, request, response):
         
-        global EEState, RobStep, ProdStep, TRAIN, PKG, CNF, i
+        global EEState, RobStep, ProdStep, PKG, CNF, i
         
         # TIMER:
-        timeout = 60.0
-        timer = threading.Timer(timeout, self.timeout_handler, [request,response])
-        
+        TIMEOUT = 30.0
+        TIMER = threading.Timer(TIMEOUT, self.timeout_handler)
+
         try:
+
+            TIMER.start()
 
             # Get RECIPE ID:
             ID = request.id
 
             # EXECUTE RECIPE:
             if (ID == 0):
-
-                # CALCULATE -> Episode N. for training. IF 250, RESET Gazebo completely to free memory!
-                if TRAIN:
-                    i = i+1
-            
-                    if i == 100:
-                        
-                        RES = GAZEBO_REstart(PKG, CNF)
-                        i = 0
-                        
-                        time.sleep(10.0)
-                        
-                        if RES == False:
-                            print("")
-                            print("ERROR: Gazebo Environment reSTART failed.")
-                            print("Closing... BYE!")
-                            exit()
 
                 RES = self.RESET.RESET()
                 response.result.id = 0
@@ -554,7 +504,7 @@ class ExecuteSkill_SERVER(Node):
                     return(response)
                 
         finally:
-            timer.cancel()
+            TIMER.cancel()
             
 # ========================================================================================= #           
 # EVALUATE INPUT ARGUMENTS:
@@ -571,6 +521,9 @@ def AssignArgument(ARGUMENT):
 def main(args=None):
     
     rclpy.init(args=args)
+    
+    # Multi-Threaded EXECUTOR:
+    EXECUTOR = MultiThreadedExecutor()
 
     # === INITIAL CONDITIONS === #
     # Get ROS2 Parameter value:
@@ -586,41 +539,30 @@ def main(args=None):
     # Get InitialConditions from yaml file:
     IC = GetIC_YAML(CONFIG)
 
-    # === TRAINING (?) === #
-    # Get ROS2 Parameter value:
-    global TRAIN, PKG, CNF
-    TRAIN = AssignArgument("train")
-    if (TRAIN == "True") or (TRAIN == "False"):
-        None
-    else:
-        print("")
-        print("ERROR: train INPUT ARGUMENT has not been defined (True/False). Please try again.")
-        print("Closing... BYE!")
-        exit()
-
-    if TRAIN:
-
-        PKG = IC["Robot"]["Package"]
-        CNF = CONFIG
-
-        RES = GAZEBO_start(PKG,CNF)
-        if RES == False:
-            print("")
-            print("ERROR: Gazebo Environment START failed.")
-            print("Closing... BYE!")
-            exit()
-
     # Initialise NODE:
     if IC["Success"]:
         r3mNode = ExecuteSkill_SERVER(IC["UseCaseInfo"], IC["Robot"], IC["ObjectList"], IC["Liaison"])
         r3mNode.get_logger().info("[R3M Cell] - /ExecuteSkill ROS2 Service Server running, ROS2 node generated.")
-        rclpy.spin(r3mNode)        
+        
+        EXECUTOR.add_node(r3mNode)
+
+        try:
+            # Spin the executor to process callbacks
+            EXECUTOR.spin()
+        except KeyboardInterrupt:
+            r3mNode.get_logger().info("[R3M Cell] - Shutting down due to keyboard interrupt.")
+        finally:
+            # Clean up when shutting down
+            r3mNode.destroy_node()
+            rclpy.shutdown()
+
     else:
         r3mNode = rclpy.create_node('R3M_RecipeExecution_Node')
-        r3mNode.get_logger().info("[R3M Cell] - InitialConditions file not existing for the ROBOT CONFIGURATION selected. Closing r3m_RecipeExecution node.")                                                          
-
-    r3mNode.destroy_node
-    rclpy.shutdown()
+        r3mNode.get_logger().info("[R3M Cell] - InitialConditions file not existing for the ROBOT CONFIGURATION selected. Closing r3m_RecipeExecution node.")
+        
+        # Clean up
+        r3mNode.destroy_node()
+        rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
