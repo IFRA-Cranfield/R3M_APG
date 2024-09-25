@@ -33,17 +33,20 @@ install(
     share/${PROJECT_NAME}
 )
 install(PROGRAMS
-  
-  skillexecution/r3m_SkillExecution_Gazebo.py
-  skillexecution/r3m_SkillExecution_Gz_Perception.py
-  skillexecution/r3m_SkillExecution_RealRobot.py
+
   skillexecution/r3m_TRAIN.py
+  skillexecution/r3m_EXECUTE.py
+  
+  skillexecution/wrappers/r3m_SkillExecution_Gazebo.py
+  skillexecution/wrappers/r3m_SkillExecution_Gz_Perception.py
+  skillexecution/wrappers/r3m_SkillExecution_RealRobot.py
 
   skillexecution/functions/ObjectState.py
   skillexecution/functions/CalculateRP.py
   skillexecution/functions/ResetGazebo.py
   skillexecution/functions/RestartGazebo.py
   skillexecution/functions/liaison.py
+  skillexecution/functions/perception.py
 
   apg/apg_MATLAB.py
 

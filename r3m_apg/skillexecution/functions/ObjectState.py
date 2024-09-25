@@ -28,7 +28,9 @@ from objectpose_msgs.msg import ObjectPose
 # OBJECT CLASS:
 class OBJECT(Node):
 
-    def __init__(self, ObjectList):
+    def __init__(self, ObjectList, R3MPerception=False):
+        
+        self.R3MP = R3MPerception
         
         self.CurrentPose = []
         self.PreviousPose = []
@@ -43,7 +45,11 @@ class OBJECT(Node):
         
         for x in ObjectList:
             
-            TopicName = "/" + x["Name"] + "/ObjectPose"
+            if self.R3MP:
+                TopicName = "/" + x["Name"] + "/ObjectPose/R3MPerception"
+            else:
+                TopicName = "/" + x["Name"] + "/ObjectPose"
+            
             self.SUBList.append(self.create_subscription(ObjectPose, TopicName, self.CALLBACK_FN, 10))
             
             EmptyPose = ObjectPose()
@@ -104,12 +110,19 @@ class OBJECT(Node):
             
             x["CurrentPose"] = EmptyPose
             x["PreviousPose"] = EmptyPose
-
+            
+        for x in self.DET:
+            x["Detected"] = False
         
     def GetObjectPose(self):
         
+        if self.R3MP:
+            Td = 2.0
+        else:
+            Td = 0.25
+        
         # 1. Spin node:
-        T = time.time() + 0.25
+        T = time.time() + Td
         while time.time() < T:
             rclpy.spin_once(self)
 
@@ -119,3 +132,17 @@ class OBJECT(Node):
         
         # 3. RETURN:
         return(self.ObjectList)
+    
+    def CheckObjectPose(self):
+        
+        SUBDetected = False
+        while SUBDetected == False:
+            
+            SUBDetected = True
+            rclpy.spin_once(self)
+            
+            for x in self.DET:
+                if x["Detected"] == False:
+                    SUBDetected = False
+                    
+        return()
