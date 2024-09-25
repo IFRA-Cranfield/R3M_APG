@@ -21,7 +21,35 @@ Robot:
     qw: 0.0
 
 # Object List:
-ObjectList: None 
+ObjectList:
+  - Name: "adapter_plate_triangular"
+    Link: "adapter_plate_triangular"
+    CADFile: "R3MPerceptionOBJ"
+    Package: "r3m_perception"
+    InitialPose: 
+      x: 0.6
+      y: 0.4
+      z: 0.95
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "adapter_plate_square"
+    Link: "adapter_plate_square"
+    CADFile: "R3MPerceptionOBJ"
+    Package: "r3m_perception"
+    InitialPose: 
+      x: 0.6
+      y: 0.6
+      z: 0.95
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
 
 # Liaison:
 Liaison: None
