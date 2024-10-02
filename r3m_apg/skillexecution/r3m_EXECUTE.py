@@ -151,13 +151,14 @@ def main(args=None):
             print("Closing... BYE!")
             exit()
         
-        # 2. LAUNCH GAZEBO ENVIRONMENT:
-        RES2 = LaunchR3MPerception()
-        if RES2 == False:
-            print("")
-            print("ERROR: R3M Perception (OSD+M6D Nodes) START failed.")
-            print("Closing... BYE!")
-            exit()
+        # 2. LAUNCH PERCEPTION:
+        if PERCEPTION:
+            RES2 = LaunchR3MPerception()
+            if RES2 == False:
+                print("")
+                print("ERROR: R3M Perception (OSD+M6D Nodes) START failed.")
+                print("Closing... BYE!")
+                exit()
             
         # 3. LAUNCH R3M-APG ENVIRONMENT:
         RES3 = LaunchAPG(CONFIG,PERCEPTION)
@@ -181,6 +182,7 @@ def main(args=None):
         GAZEBO_close()
         
         # Close ROS 2 Nodes:
+        os.system("pkill -f r3m_SkillExecution_Gazebo.py")  
         os.system("pkill -f r3m_SkillExecution_Gz_Perception.py")  
         os.system("pkill -f OSD_server.py")  
         os.system("pkill -f M6D_server.py")  
