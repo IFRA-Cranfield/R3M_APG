@@ -57,6 +57,7 @@ EEState = 1
 RobStep = 0
 ProdStep = []
 TRAIN = False
+PERCEPTION = False
 
 # ========================================================================================= #
 # ================================ ROS2 - INPUT PARAMETERS ================================ #
@@ -230,6 +231,8 @@ def GetRecipe(FOLDER, RECIPE_ID):
 class ExecuteSkill_SERVER(Node):
     
     def __init__(self, INFO, ROB, OL, LI):
+
+        global PERCEPTION
         
         # CHECK if Object and Liaison arrays are not NULL:
         self.OLCheck = False
@@ -246,7 +249,7 @@ class ExecuteSkill_SERVER(Node):
         
         # ===== OBJECTS (R3M_Perception) ===== #
         if self.OLCheck:
-            self.OBJECTS = OBJECT(OL)
+            self.OBJECTS = OBJECT(OL, R3MPerception=PERCEPTION)
         
         # ===== ROBOT CLASS ===== #
         self.ROBOT = RBT()
@@ -556,6 +559,15 @@ def main(args=None):
         TRAIN = True
     else:
         TRAIN = False 
+
+    # === PERCEPTION (external) identifier === #
+    # Get ROS2 Parameter value:
+    global PERCEPTION
+    PERCEPTION = AssignArgument("perception")
+    if PERCEPTION == "True" or PERCEPTION == "true":
+        PERCEPTION = True
+    else:
+        PERCEPTION = False 
 
     # Get InitialConditions from yaml file:
     IC = GetIC_YAML(CONFIG)

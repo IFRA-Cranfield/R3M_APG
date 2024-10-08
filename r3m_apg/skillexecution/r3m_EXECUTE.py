@@ -33,7 +33,9 @@ def LaunchAPG(CONFIG, PERCEPTION):
 
     if PERCEPTION == False:
         CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_Gazebo.py train:=False config:=" + CONFIG
-    if PERCEPTION == True:
+    if PERCEPTION == "external":
+        CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_Gazebo.py train:=False perception:=True config:=" + CONFIG
+    if PERCEPTION == "r3m":
         CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_Gz_Perception.py config:=" + CONFIG
     
     print("[APG NODE LAUNCH]: Executing command -> " + CMD)
@@ -131,13 +133,13 @@ def main(args=None):
         exit()
     # Get ROS2 Parameter value -> perception:
     PERCEPTION = AssignArgument("perception")
-    if PERCEPTION == "True" or PERCEPTION == "true":
-        PERCEPTION = True
-    elif PERCEPTION == "False" or "false":
+    if PERCEPTION == "r3m" or PERCEPTION == "external":
+        None
+    elif PERCEPTION == None:
         PERCEPTION = False
     else:
         print("")
-        print("ERROR: perception INPUT ARGUMENT has not been defined. Please try again.")
+        print("ERROR: perception INPUT ARGUMENT has not been correctly defined. Please try again.")
         print("Closing... BYE!")
         exit()
 
@@ -150,9 +152,9 @@ def main(args=None):
             print("ERROR: Gazebo Environment START failed.")
             print("Closing... BYE!")
             exit()
-        
+        0
         # 2. LAUNCH PERCEPTION:
-        if PERCEPTION:
+        if PERCEPTION == "r3m":
             RES2 = LaunchR3MPerception()
             if RES2 == False:
                 print("")

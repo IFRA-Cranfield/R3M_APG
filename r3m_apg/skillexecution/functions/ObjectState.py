@@ -46,7 +46,7 @@ class OBJECT(Node):
         for x in ObjectList:
             
             if self.R3MP:
-                TopicName = "/" + x["Name"] + "/ObjectPose/R3MPerception"
+                TopicName = "/" + x["Name"] + "/ObjectPoseEstimation"
             else:
                 TopicName = "/" + x["Name"] + "/ObjectPose"
             
@@ -124,7 +124,7 @@ class OBJECT(Node):
         # 1. Spin node:
         T = time.time() + Td
         while time.time() < T:
-            rclpy.spin_once(self)
+            rclpy.spin_once(self, timeout_sec=1.0)
 
         # 2. Reset self.DET:
         for x in self.DET:
