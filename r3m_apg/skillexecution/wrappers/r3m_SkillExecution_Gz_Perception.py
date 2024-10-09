@@ -276,7 +276,7 @@ class ExecuteSkill_SERVER(Node):
         self.RESET = GzRESET(self.ResetCond, self.ROBOT, self.GRIPPER)
             
         # Launch -> R3M Perception OSD+M6D request:
-        self.CAMERA = "lenovoFHD_gazebo"
+        self.CAMERA = ROB["Camera"]["Gazebo"]
         
         if self.OLCheck:
             time.sleep(1.0)
