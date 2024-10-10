@@ -49,6 +49,7 @@ install(PROGRAMS
   skillexecution/functions/perception.py
 
   apg/apg_MATLAB.py
+  apg/apg_SEQUENCE.py
 
   DESTINATION lib/${PROJECT_NAME} 
 )
