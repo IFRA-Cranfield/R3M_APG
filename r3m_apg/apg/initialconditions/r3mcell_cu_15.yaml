@@ -60,19 +60,19 @@ Liaison:
     Parent: "GLOBAL"
     Child: "BaseCylinder"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.03
       position: True
       orientation: False
       x: 0.45
       y: 1.00
       z: 0.89
   - Name: "Top Cylinder is placed on top of the Base Cylinder."
-    Parent: "BaseCylinder"
+    Parent: "GLOBAL"
     Child: "TopCylinder"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.03
       position: True
       orientation: False
-      x: 0.0
-      y: 0.0
-      z: 0.035
+      x: 0.45
+      y: 1.00
+      z: 0.86
