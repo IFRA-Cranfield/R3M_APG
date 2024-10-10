@@ -268,9 +268,16 @@ class ExecuteSkill_SERVER(Node):
         
         # ===== END-EFFECTOR CLASS ===== #
         if ROB["EEType"] == "ParallelGripper":
-            self.GRIPPER = parallelGR(self.OBJ, ROB["Model"], ROB["Link"])
+
+            if ROB["Link"] == "EE_egp64":
+                self.GRIPPER = SchunkGRIPPER()
+            elif ROB["EEType"] == "EE_robotiq_hande":
+                self.GRIPPER = RobotiqGRIPPER()
+        
         elif ROB["EEType"] == "VacuumGripper":
-            self.GRIPPER = vacuumGR(self.OBJ, ROB["Model"], ROB["Link"])
+            
+            None # No VG tested on robot yet.
+
         else:
             self.GRIPPER = None
  
@@ -420,31 +427,21 @@ class ExecuteSkill_SERVER(Node):
                 elif (RECIPE["type"] == "GRIP"):
 
                     if RECIPE["action"] == "CLOSE":
-                        RES = self.GRIPPER.CLOSE(RECIPE["value"])
+                        RES = self.GRIPPER.CLOSE()
+                        RES["ExecTime"] = 0.0
                         
                         if RES["Success"]:
                             EEState = 0
                         
                     else:
                         RES = self.GRIPPER.OPEN()
+                        RES["ExecTime"] = 0.0
                         
                         if RES["Success"]:
                             EEState = 1
                 
                 # VacuumGripper:
-                elif (RECIPE["type"] == "VACUUM"):
-                    
-                    if RECIPE["action"] == "ACTIVATE":
-                        RES = self.GRIPPER.ACTIVATE()
-                        
-                        if RES["Success"]:
-                            EEState = 0
-                        
-                    elif RECIPE["action"] == "DEACTIVATE":
-                        RES = self.GRIPPER.DEACTIVATE()
-                        
-                        if RES["Success"]:
-                            EEState = 1
+                # No VG tested on RRobot yet.
 
                 # ============================================ #
                 # ========== SKILL EXECUTION RESULT ========== #
