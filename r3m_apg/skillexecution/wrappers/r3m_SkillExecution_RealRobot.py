@@ -417,7 +417,7 @@ class ExecuteSkill_SERVER(Node):
 
                     RES = CALCULATE_RobPose(RECIPE["pose"], self.ObjectList)
                     if RES["Success"]:
-                        RES = self.ROBOT.RobMove_EXECUTE(RECIPE["type"], RECIPE["speed"], RES["Pose"])
+                        RES = self.ROBOT.RobMove_EXECUTE(RECIPE["type"], RECIPE["speed"]*0.25, RES["Pose"])
 
                     # If movement is successful:
                     if RES["Success"]:

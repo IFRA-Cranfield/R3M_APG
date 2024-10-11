@@ -117,7 +117,7 @@ class OBJECT(Node):
     def GetObjectPose(self):
         
         if self.R3MP:
-            Td = 2.0
+            Td = 0.5
         else:
             Td = 0.25
         
