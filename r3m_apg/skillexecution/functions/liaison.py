@@ -62,6 +62,19 @@ class LiaisonCheck():
 
             self.LiaisonVECTOR.append(self.LiaisonRESULT) 
 
+    def RETURN(self):
+
+        allMET = True
+        for x in self.LiaisonVECTOR:
+            if x.liaison_met == 0:
+                allMET = False
+            
+        RES = {}
+        RES["LiaisonVector"] = self.LiaisonVECTOR
+        RES["allMET"] = allMET
+
+        return(RES)
+
     def CHECK(self, ObjectList):
 
         # Flag to check if ALL LIAISONS are met:

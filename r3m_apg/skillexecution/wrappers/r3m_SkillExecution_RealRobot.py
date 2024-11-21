@@ -396,9 +396,9 @@ class ExecuteSkill_SERVER(Node):
                 # GET LIAISON VECTOR:
                 liRES = self.Liaison.CHECK(self.ObjectList)
                 response.result.liaison = liRES["LiaisonVector"]
-            
+
                 # GET -> TASK FINISHED?
-                if liRES["allMET"] and (ID == 1):
+                if liRES["allMET"]:
                     response.result.finish = 1
                 else:
                     None
@@ -511,14 +511,8 @@ class ExecuteSkill_SERVER(Node):
                 if self.LICheck:
                     
                     # GET LIAISON VECTOR:
-                    liRES = self.Liaison.CHECK(self.ObjectList)
+                    liRES = self.Liaison.RETURN()
                     response.result.liaison = liRES["LiaisonVector"]
-                
-                    # GET -> TASK FINISHED?
-                    if liRES["allMET"] and (ID == 1):
-                        response.result.finish = 1
-                    else:
-                        None
 
                 return(response)
 
