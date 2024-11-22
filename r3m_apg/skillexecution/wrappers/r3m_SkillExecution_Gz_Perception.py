@@ -68,7 +68,7 @@ def GetIC_YAML(NAME):
 
     RESULT = {"UseCaseInfo": None, "Robot": None, "ObjectList": None, "Liaison": None, "Success": True}
     
-    PATH = os.path.join(get_package_share_directory('r3m_apg'), 'apg', 'initialconditions')
+    PATH = os.path.join(get_package_share_directory('r3m_apg'), 'apg', 'usecase')
     YAML_PATH = PATH + "/" + NAME + ".yaml"
     
     if not os.path.exists(YAML_PATH):
@@ -594,7 +594,7 @@ def main(args=None):
         print("Closing... BYE!")
         exit()
 
-    # Get InitialConditions from yaml file:
+    # Get UseCase from yaml file:
     IC = GetIC_YAML(CONFIG)
 
     # Initialise NODE:
@@ -616,7 +616,7 @@ def main(args=None):
 
     else:
         r3mNode = rclpy.create_node('R3M_RecipeExecution_Node')
-        r3mNode.get_logger().info("[R3M Cell] - InitialConditions file not existing for the ROBOT CONFIGURATION selected. Closing r3m_RecipeExecution node.")
+        r3mNode.get_logger().info("[R3M Cell] - UseCase file not existing for the ROBOT CONFIGURATION selected. Closing r3m_RecipeExecution node.")
         
         # Clean up
         r3mNode.destroy_node()
