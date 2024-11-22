@@ -319,6 +319,8 @@ class ExecuteSkill_SERVER(Node):
             # EXECUTE RECIPE:
             if (ID == 0):
 
+                self.Liaison.RESET()
+
                 # CHECK if -> i=100, then RESET:
                 if TRAIN:
 

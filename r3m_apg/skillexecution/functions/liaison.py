@@ -62,6 +62,13 @@ class LiaisonCheck():
 
             self.LiaisonVECTOR.append(self.LiaisonRESULT) 
 
+    def RESET(self):
+
+        for x in self.LiaisonVECTOR:
+            x.liaison_met = 0
+
+        return()
+
     def RETURN(self):
 
         allMET = True

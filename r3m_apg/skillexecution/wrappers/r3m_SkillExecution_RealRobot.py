@@ -316,6 +316,8 @@ class ExecuteSkill_SERVER(Node):
         
         if (ID == 0):
 
+            self.Liaison.RESET()
+
             response.result.message = "RESET recipe is useless in the Real Robot!"
             response.result.success = True
             return(response)

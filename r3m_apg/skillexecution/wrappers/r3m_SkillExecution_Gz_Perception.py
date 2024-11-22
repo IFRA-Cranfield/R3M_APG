@@ -307,6 +307,8 @@ class ExecuteSkill_SERVER(Node):
         ID = request.id
         
         if (ID == 0):
+
+            self.Liaison.RESET()
             
             RES = self.RESET.RESET()
             response.result.id = 0
