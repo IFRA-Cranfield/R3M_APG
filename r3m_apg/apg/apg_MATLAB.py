@@ -11,7 +11,7 @@
 # ========================================================================================= #
 
 # System:
-import os
+import os, sys, yaml
 import time
 
 # ROS2:
@@ -71,29 +71,77 @@ def ExecuteSkill(CLIENT, ID):
 # MatlabAgent:
 class MatlabAgent():
     
-    def __init__(self, UseCase):
+    def __init__(self, AGENT):
 
         super().__init__()
         self.MATLAB = matlab.engine.start_matlab()
         
         self.PATH = os.path.join(get_package_share_directory('r3m_apg'), 'apg', 'agents')
-        self.AGENT = UseCase + ".mat"
+        self.AGENT = self.PATH + "/" + AGENT + ".mat"
         
-    def Execute(self, ID, RobState, EEState, ObjState, ObjectNO):
+        if not os.path.exists(self.AGENT):
+            print("APG agent for -> " + AGENT + " not found.")
+            print("Closing... BYE!")
+            exit()
+        
+        else:
+            print("APG agent for -> " + AGENT + " found and initialised.")
+            print("")
+        
+    def Execute(self, ID, RobState, EEState, Liaison, LiN):
         
         # ASSIGN -> Input values to AGENT:
 
-        if ObjectNO == 1:
-            observation = [ID, RobState, EEState, ObjState[0]]
-        elif ObjectNO == 2:
-            observation = [ID, RobState, EEState, ObjState[0], ObjState[1]]
+        if LiN == 1:
+            observation = [ID, RobState, EEState, Liaison[0]]
+        elif LiN == 2:
+            observation = [ID, RobState, EEState, Liaison[0], Liaison[1]]
         
         observation = np.array(observation)
+        print(observation)
         
         self.MATLAB.addpath(self.PATH)
         var = self.MATLAB.evaluatePolicy(observation, self.AGENT)
         
         return(var)
+
+# ========================================================================================= #           
+# GET OBJECT NUMBER:   
+def GetN(UseCase):
+    
+    APG_PATH = get_package_share_directory("r3m_apg")
+    UC_PATH = APG_PATH + "/apg/usecase"
+    FILES = [f for f in os.listdir(UC_PATH) if os.path.isfile(os.path.join(UC_PATH, f))]
+    
+    FOUND = False
+    for f in FILES:
+        if (UseCase + ".yaml") in f:
+            YAML_PATH = UC_PATH + "/" + f
+            FOUND = True
+
+    if not FOUND:
+        print("UseCase file for -> " + UseCase + " not found.")
+        print("Closing... BYE!")
+        exit()
+        
+    else:
+        
+        with open(YAML_PATH, 'r') as YAML:
+            cYAML = yaml.safe_load(YAML)
+            
+        ObjectN = len(cYAML["ObjectList"])
+        LiaisonN = len(cYAML["Liaison"])
+
+    return(ObjectN, LiaisonN)
+    
+# ========================================================================================= #           
+# EVALUATE INPUT ARGUMENTS:
+def AssignArgument(ARGUMENT):
+    ARGUMENTS = sys.argv
+    for y in ARGUMENTS:
+        if (ARGUMENT + ":=") in y:
+            ARG = y.replace((ARGUMENT + ":="),"")
+            return(ARG)
         
 # ========================================================================================= #
 # ========================================= MAIN ========================================== #
@@ -107,10 +155,19 @@ def main(args=None):
     print("==========================================================")
     print("R3M - AUTOMATIC PROGRAM GENERATION: Execution of APG Agent")
     print("")
+    
+    # Get UseCase:
+    UseCase = AssignArgument("usecase")
+    if UseCase != None:
+        None
+    else:
+        print("")
+        print("ERROR: usecase INPUT ARGUMENT has not been defined. Please try again.")
+        print("Closing... BYE!")
+        exit()
 
-    # INPUT PARAMETERS:
-    ObjectNO = 2
-    UseCase = "CubeStacking"
+    # LiN from UseCase:
+    ObjN, LiN = GetN(UseCase)
 
     # INITIALISE ROS 2 Classes:
     Node_SkillExecution = R3MSkillClient()
@@ -120,31 +177,36 @@ def main(args=None):
     print("Initialising RLA: Executing Recipe N1...")
     skillRESULT = ExecuteSkill(Node_SkillExecution, 1)
     
-    ID = 0
+    ID = 1
     
     RobState = skillRESULT.robstate.step
     EEState = skillRESULT.robstate.endeffector
-    
-    ObjState = []
-    for i in range(ObjectNO):
-        ObjState.append(skillRESULT.product[i].step)
+        
+    LiState = []
+    for i in range(LiN):
+        LiState.append(skillRESULT.liaison[i].liaison_met)
     
     CONTINUE = True
     while CONTINUE:
         
         print("RECIPE EXECUTION: Getting Recipe ID from RLA...")
         
+        print("ID: " + str(ID))
         print("Robot State: " + str(RobState))
         print("End Effector State: " + str(EEState))
 
         print("Object State:")
-        for i in range(ObjectNO):
-            print("- Object N" + str(i+1) + ", " + skillRESULT.product[i].name + " -> " + str(ObjState[i]))
+        for i in range(ObjN):
+            print("- Object N" + str(i+1) + ": " + skillRESULT.product[i].name + " -> " + str(skillRESULT.product[i].step))
+            
+        print("Liaison State:")
+        for i in range(LiN):
+            print("- Liaison N" + str(i+1) + ": " + skillRESULT.liaison[i].name + " -> " + str(skillRESULT.liaison[i].liaison_met))
 
         print("")
         
         # GET -> RECIPE ID from AGENT:
-        RECIPE = APG_Agent.Execute(ID, RobState, EEState, ObjState, ObjectNO)
+        RECIPE = APG_Agent.Execute(ID, RobState, EEState, LiState, LiN)
         RECIPE_ID = int(RECIPE)
         
         print("RECIPE ID obtained! ")
@@ -161,9 +223,9 @@ def main(args=None):
         RobState = skillRESULT.robstate.step
         EEState = skillRESULT.robstate.endeffector
         
-        ObjState = []
-        for i in range(ObjectNO):
-            ObjState.append(skillRESULT.product[i].step)
+        LiState = []
+        for i in range(LiN):
+            LiState.append(skillRESULT.liaison[i].liaison_met)
 
         # Check if -> LIAISON MET + ID=1, then FINISH!
         LI_MET = True

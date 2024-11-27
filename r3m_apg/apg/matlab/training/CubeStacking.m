@@ -5,13 +5,13 @@ close all
 
 mdl='CubeStacking';
 open_system(mdl)
-
+Inf
 obsInfo = rlNumericSpec([5 1],...
     LowerLimit=[0 1 0 0 0]',...
     UpperLimit=[100 15 1 1 1]');
 obsInfo.Name = "Observations";
 
-actInfo = rlFiniteSetSpec([01 02 03 04 05 06 07 12 13 14 15]);
+actInfo = rlFiniteSetSpec([01 02 03 04 05 06 07 12 13 14 15 100]);
 actInfo.Name = "Control Action";
 
 env = rlSimulinkEnv(mdl, [mdl '/RL Agent'],...
@@ -51,7 +51,7 @@ agentOptions.EpsilonGreedyExploration.EpsilonMin = 0.01;
 
 agent = rlDQNAgent(critic,agentOptions);
 
-maxepisodes = 5000;
+maxepisodes = 10000;
 maxsteps = 20;
 trainOpts = rlTrainingOptions(...
     'MaxEpisodes',maxepisodes, ...
@@ -60,7 +60,7 @@ trainOpts = rlTrainingOptions(...
     'Verbose',false, ...
     'Plots','training-progress',...
     'StopTrainingCriteria','AverageReward',...
-    'StopTrainingValue',1700);
+    'StopTrainingValue',21000);
 
 doTraining = true;
 
@@ -88,7 +88,7 @@ cd ..
 
 saveDir = 'savedAgents';
 cd(saveDir)
-load('Agent01.mat','agent')
+load('1stAgent.mat','agent')
 %cd ..\
 
 generatePolicyFunction(agent)
@@ -97,6 +97,6 @@ cfg = coder.gpuConfig('mex');
 cfg.TargetLang = 'C++';
 cfg.DeepLearningConfig = coder.DeepLearningConfig('cudnn');
 
-argstr = '{ones(14,1)}';
+argstr = '{ones(4,1)}';
 
 codegen('-config','cfg','evaluatePolicy','-args',argstr,'-report');
