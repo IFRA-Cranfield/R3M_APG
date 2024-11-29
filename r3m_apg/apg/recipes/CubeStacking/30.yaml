@@ -16,7 +16,7 @@ speed: 0.1
 pose:
   position:
     type: "DYNAMIC"
-    topic: "/BlackCube/ObjectPose"
+    topic: "/BottomCube/ObjectPose"
     transform:
       x: 0.0
       y: 0.0
