@@ -308,7 +308,10 @@ class ExecuteSkill_SERVER(Node):
         
         if (ID == 0):
 
+            # RESET LIAISON:
             self.Liaison.RESET()
+            liRES = self.Liaison.CHECK(self.ObjectList)
+            response.result.liaison = liRES["LiaisonVector"]
             
             RES = self.RESET.RESET()
             response.result.id = 0

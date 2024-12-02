@@ -319,7 +319,10 @@ class ExecuteSkill_SERVER(Node):
             # EXECUTE RECIPE:
             if (ID == 0):
 
+                # RESET LIAISON:
                 self.Liaison.RESET()
+                liRES = self.Liaison.CHECK(self.ObjectList)
+                response.result.liaison = liRES["LiaisonVector"]
 
                 # CHECK if -> i=100, then RESET:
                 if TRAIN:
