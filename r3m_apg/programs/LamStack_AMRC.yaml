@@ -9,7 +9,7 @@ Sequence:
   - Step: 1
     Name: "[IRB1200 AMRC - LamStack]: MoveJ - HomePosition."
     Type: "MoveJ"
-    Speed: 0.05
+    Speed: 0.1
     Delay: 0.0
     Input:
       joint1: 90.0
@@ -23,26 +23,26 @@ Sequence:
     Name: "[IRB1200 AMRC - LamStack]: PTP (RobMove) - PickApproach."
     Type: "RobMove"
     Movement: "PTP"
-    Speed: 0.05
+    Speed: 0.1
     Delay: 0.0
     Input:
-      x: -0.0508
+      x: -0.048
       y: 1.0
       z: 0.2350
       qx: 0.0
       qy: 0.0
-      qz: 0.7071
-      qw: 0.7071
+      qz: 0.707
+      qw: 0.707
 
   - Step: 3
     Name: "[IRB1200 AMRC - LamStack]: MoveL - Pick."
     Type: "MoveL"
-    Speed: 0.01
-    Delay: 0.0
+    Speed: 0.05
+    Delay: 0.5
     Input:
       x: 0.0
       y: 0.0
-      z: -0.075
+      z: -0.092
 
   - Step: 4
     Name: "IRB1200 AMRC - LamStack]: ACTIVATE VACUUM."
@@ -53,7 +53,7 @@ Sequence:
   - Step: 5
     Name: "[IRB1200 AMRC - LamStack]: MoveL - Robot UP with LamSheet."
     Type: "MoveL"
-    Speed: 0.05
+    Speed: 0.1
     Delay: 0.0
     Input:
       x: 0.0
@@ -64,31 +64,26 @@ Sequence:
     Name: "[IRB1200 AMRC - LamStack]: PTP (RobMove) - PlaceApproach."
     Type: "RobMove"
     Movement: "PTP"
-    Speed: 0.05
+    Speed: 0.1
     Delay: 0.0
     Input:
-      x: -0.368
+      x: -0.367
       y: 1.0
       z: 0.50
       qx: 0.0616
       qy: 0.0616
-      qz: 0.7044
-      qw: 0.7044
-
-  - Step: 7
-    Name: "[IRB1200 AMRC - LamStack]: LIN (RobMove) - PlaceApproach."
-    Type: "RobMove"
-    Movement: "LIN"
-    Speed: 0.01
-    Delay: 0.5
-    Input:
-      x: -0.368
-      y: 1.0
-      z: 0.25
-      qx: 0.0
-      qy: 0.0
       qz: 0.707
       qw: 0.707
+
+  - Step: 7
+    Name: "[IRB1200 AMRC - LamStack]: MoveL - Robot to Place Position."
+    Type: "MoveL"
+    Speed: 0.025
+    Delay: 0.5
+    Input:
+      x: 0.0
+      y: 0.0
+      z: -0.26
 
   - Step: 8
     Name: "IRB1200 AMRC - LamStack]: DE-ACTIVATE VACUUM."
@@ -109,7 +104,7 @@ Sequence:
   - Step: 10
     Name: "[IRB1200 AMRC - LamStack]: MoveJ - Back to HomePosition."
     Type: "MoveJ"
-    Speed: 0.05
+    Speed: 0.1
     Delay: 0.0
     Input:
       joint1: 90.0
