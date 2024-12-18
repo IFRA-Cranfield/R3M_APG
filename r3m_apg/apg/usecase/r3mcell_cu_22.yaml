@@ -3,21 +3,29 @@
 # Use-Case Information:
 Information:
   UseCase: "R3M Cell (Cranfield University): Coloured Cube Kitting Use-Case."
-  Name: "r3mcell_cu_12"
+  Name: "r3mcell_cu_22"
 
 # Robot Information:
 Robot:
-  Model: "irb120"
-  Link: "EE_egp64"
+  Model: "ur3"
+  Link: "EE_robotiq_hande"
   EEType: "ParallelGripper"
   Package: "r3mcell_cu_gazebo"
   HomePose:
-    x: 0.577
-    y: 0.525
-    z: 1.228
+    x: -0.112
+    y: 0.299
+    z: 1.009
     qx: 0.0
     qy: 1.0
     qz: 0.0
+    qw: 0.0
+  SafePose:
+    x: 0.0
+    y: 0.35
+    z: 1.54
+    qx: 0.0
+    qy: 0.707
+    qz: 0.707
     qw: 0.0
 
 # Object List:
@@ -27,8 +35,8 @@ ObjectList:
     CADFile: "RedCube"
     Package: "r3mcell_cu_gazebo"
     InitialPose: 
-      x: "{'min': 0.5, 'max': 0.70}"
-      y: "{'min': 0.2, 'max': 0.8}"
+      x: "{'min': -0.16, 'max': 0.16}"
+      y: "{'min': 0.23, 'max': 0.35}"
       z: 0.88
       qx: 0.0
       qy: 0.0
@@ -41,8 +49,8 @@ ObjectList:
     CADFile: "BlueCube"
     Package: "r3mcell_cu_gazebo"
     InitialPose:   
-      x: "{'min': 0.5, 'max': 0.75}"
-      y: "{'min': 0.2, 'max': 0.8}"
+      x: "{'min': -0.16, 'max': 0.16}"
+      y: "{'min': 0.23, 'max': 0.35}"
       z: 0.88
       qx: 0.0
       qy: 0.0
@@ -55,8 +63,8 @@ ObjectList:
     CADFile: "GreenCube"
     Package: "r3mcell_cu_gazebo"
     InitialPose:   
-      x: "{'min': 0.5, 'max': 0.75}"
-      y: "{'min': 0.2, 'max': 0.8}"
+      x: "{'min': -0.16, 'max': 0.16}"
+      y: "{'min': 0.23, 'max': 0.35}"
       z: 0.88
       qx: 0.0
       qy: 0.0
@@ -69,8 +77,8 @@ ObjectList:
     CADFile: "WhiteCube"
     Package: "r3mcell_cu_gazebo"
     InitialPose:   
-      x: "{'min': 0.5, 'max': 0.75}"
-      y: "{'min': 0.2, 'max': 0.8}"
+      x: "{'min': -0.16, 'max': 0.16}"
+      y: "{'min': 0.23, 'max': 0.35}"
       z: 0.88
       qx: 0.0
       qy: 0.0
@@ -88,9 +96,9 @@ Liaison:
       diffMax: 0.01
       position: True
       orientation: False
-      x: 0.028
-      y: 0.077
-      z: 0.878
+      x: 0.258
+      y: 0.317
+      z: 0.862
   - Name: "Blue Cube is placed on the top-right tray slot."
     Parent: "GLOBAL"
     Child: "BlueCube"
@@ -98,9 +106,9 @@ Liaison:
       diffMax: 0.01
       position: True
       orientation: False
-      x: 0.028
-      y: 0.122
-      z: 0.878
+      x: 0.213
+      y: 0.317
+      z: 0.862
   - Name: "Green Cube is placed on the bottom-left tray slot."
     Parent: "GLOBAL"
     Child: "GreenCube"
@@ -108,9 +116,9 @@ Liaison:
       diffMax: 0.01
       position: True
       orientation: False
-      x: 0.072
-      y: 0.077
-      z: 0.878
+      x: 0.258
+      y: 0.362
+      z: 0.862
   - Name: "White Cube is placed on the bottom-right tray slot."
     Parent: "GLOBAL"
     Child: "WhiteCube"
@@ -118,6 +126,6 @@ Liaison:
       diffMax: 0.01
       position: True
       orientation: False
-      x: 0.072
-      y: 0.122
-      z: 0.878
+      x: 0.213
+      y: 0.362
+      z: 0.862

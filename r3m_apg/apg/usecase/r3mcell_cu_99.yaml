@@ -2,19 +2,19 @@
 
 # Use-Case Information:
 Information:
-  UseCase: "R3M Cell (Cranfield University): Battery Disassembly Use-Case."
-  Name: "r3mcell_cu_15"
+  UseCase: "R3M Cell (Cranfield University): R3M Perception Testing set-up."
+  Name: "PerceptionTest"
 
 # Robot Information:
 Robot:
   Model: "irb120"
-  Link: "EE_egp64"
-  EEType: "ParallelGripper"
+  Link: None
+  EEType: None
   Package: "r3mcell_cu_gazebo"
   HomePose:
     x: 0.577
     y: 0.525
-    z: 1.228
+    z: 1.4185
     qx: 0.0
     qy: 1.0
     qz: 0.0

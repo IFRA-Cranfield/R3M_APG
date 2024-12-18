@@ -142,6 +142,11 @@ def main(args=None):
         print("")
         print("")
 
+        if not skillRESULT.success:
+
+            print("ERROR: Sequence execution failed in step number -> " + str(k) + ", recipe number -> " + str(x) + ". Closing program... BYE!")
+            exit()
+
     print("SEQUENCE EXECUTION SUCCESSFULLY FINISHED. BYE!")
 
     # FINISH:
