@@ -3,24 +3,32 @@
 # Use-Case Information:
 Information:
   UseCase: "R3M Cell (Cranfield University): Cylinder Stacking Use-Case."
-  Name: "r3mcell_cu_13"
+  Name: "r3mcell_cu_23"
 
 # Robot Information:
 Robot:
-  Model: "irb120"
-  Link: "EE_egp64"
+  Model: "ur3"
+  Link: "EE_robotiq_hande"
   EEType: "ParallelGripper"
   Package: "r3mcell_cu_gazebo"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
   HomePose:
-    x: 0.45
-    y: 0.525
-    z: 1.228
+    x: -0.112
+    y: 0.299
+    z: 1.009
     qx: 0.0
     qy: 1.0
     qz: 0.0
+    qw: 0.0
+  SafePose:
+    x: 0.0
+    y: 0.35
+    z: 1.54
+    qx: 0.0
+    qy: 0.707
+    qz: 0.707
     qw: 0.0
 
 # Object List:
@@ -30,9 +38,9 @@ ObjectList:
     CADFile: "BaseCylinder"
     Package: "r3mcell_cu_gazebo"
     InitialPose: 
-      x: "{'min': 0.45, 'max': 0.70}"
-      y: "{'min': 0.10, 'max': 0.95}"
-      z: 0.895
+      x: "{'min': -0.12, 'max': 0.12}"
+      y: "{'min': 0.15, 'max': 0.35}"
+      z: 0.89
       qx: 0.0
       qy: 0.0
       qz: 0.0
@@ -44,9 +52,9 @@ ObjectList:
     CADFile: "TopCylinder"
     Package: "r3mcell_cu_gazebo"
     InitialPose:   
-      x: "{'min': 0.45, 'max': 0.75}"
-      y: "{'min': 0.2, 'max': 0.8}"
-      z: 0.865
+      x: "{'min': -0.12, 'max': 0.12}"
+      y: "{'min': 0.15, 'max': 0.35}"
+      z: 0.86
       qx: 0.0
       qy: 0.0
       qz: 0.0
@@ -63,16 +71,16 @@ Liaison:
       diffMax: 0.03
       position: True
       orientation: False
-      x: 0.45
-      y: 1.00
-      z: 0.90
+      x: 0.225
+      y: 0.18
+      z: 0.89
   - Name: "Top Cylinder is placed on top of the Base Cylinder."
-    Parent: "GLOBAL"
+    Parent: "BaseCylinder"
     Child: "TopCylinder"
     Transform:
       diffMax: 0.03
       position: True
       orientation: False
-      x: 0.45
-      y: 1.00
-      z: 0.89
+      x: 0.0
+      y: 0.0
+      z: 0.005
