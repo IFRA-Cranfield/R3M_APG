@@ -1,0 +1,30 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (AMRC): Cube Stacking Use-Case."
+  Recipe: "Pick (safe height): TOP CUBE"
+
+# Recipe ID:
+id: 12
+
+# Recipe TYPE:
+type: "PTP"
+
+# Recipe VALUE:
+speed: 1.0
+pose:
+  position:
+    type: "DYNAMIC"
+    topic: "/TopCube/ObjectPose"
+    transform:
+      x: 0.0
+      y: 0.0
+      z: 0.05
+  orientation:
+    type: "STATIC"
+    pose:
+      qx: 0.707
+      qy: 0.0
+      qz: 0.707
+      qw: 0.0

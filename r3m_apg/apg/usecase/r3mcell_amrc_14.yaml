@@ -3,7 +3,7 @@
 # Use-Case Information:
 Information:
   UseCase: "R3M Cell (AMRC): Lamination Sheet Pick-and-Place use-case."
-  Name: "LamStack-AMRC"
+  Name: "r3mcell_amrc_14"
 
 # Robot Information:
 Robot:

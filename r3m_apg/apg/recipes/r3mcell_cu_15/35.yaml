@@ -2,24 +2,24 @@
 
 # Recipe INFORMATION:
 Information:
-  UseCase: "R3M Cell (AMRC): Lamination Sheet Pick-and-Place use-case."
-  Recipe: "Home Position"
+  UseCase: "R3M Cell (Cranfield University): Battery Disassembly Use-Case."
+  Recipe: "Place: SIDE CASE (R)"
 
 # Recipe ID:
-id: 1
+id: 35
 
 # Recipe TYPE:
-type: "PTP"
+type: "LIN"
 
 # Recipe VALUE:
-speed: 1.0
+speed: 0.1
 pose:
   position:
     type: "STATIC"
     pose:
-      x: 0.40
-      y: 0.0
-      z: 0.784
+      x: 0.46
+      y: 0.125
+      z: 1.00
   orientation:
     type: "STATIC"
     pose:
