@@ -25,7 +25,7 @@ ObjectList:
   - Name: "BottomCube"
     Link: "BottomCube"
     CADFile: "BottomCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_amrc_gazebo"
     InitialPose: 
       x: "{'min': 0.25, 'max': 0.75}"
       y: "{'min': -0.25, 'max': 0.25}"
@@ -39,7 +39,7 @@ ObjectList:
   - Name: "TopCube"
     Link: "TopCube"
     CADFile: "TopCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_amrc_gazebo"
     InitialPose:   
       x: "{'min': 0.25, 'max': 0.75}"
       y: "{'min': -0.25, 'max': 0.25}"

@@ -2,28 +2,28 @@
 
 # Recipe INFORMATION:
 Information:
-  UseCase: "R3M Cell (AMRC): Cube Stacking Use-Case."
-  Recipe: "Home Position"
+  UseCase: "R3M Cell (AMRC): Coloured Cube Kitting Use-Case."
+  Recipe: "Place: WHITE CUBE"
 
 # Recipe ID:
-id: 1
+id: 45
 
 # Recipe TYPE:
-type: "PTP"
+type: "LIN"
 
 # Recipe VALUE:
-speed: 1.0
+speed: 0.1
 pose:
   position:
     type: "STATIC"
     pose:
-      x: 0.0
-      y: 1.6
-      z: 2.015
+      x: 0.272
+      y: -0.377
+      z: 0.175
   orientation:
     type: "STATIC"
     pose:
-      qx: -0.5
-      qy: -0.5
-      qz: -0.5
-      qw: 0.5
+      qx: 0.707
+      qy: 0.0
+      qz: 0.707
+      qw: 0.0

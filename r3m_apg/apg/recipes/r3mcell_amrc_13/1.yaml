@@ -2,7 +2,7 @@
 
 # Recipe INFORMATION:
 Information:
-  UseCase: "R3M Cell (AMRC): Cube Stacking Use-Case."
+  UseCase: "R3M Cell (AMRC): Cylinder Stacking Use-Case."
   Recipe: "Home Position"
 
 # Recipe ID:
@@ -17,13 +17,13 @@ pose:
   position:
     type: "STATIC"
     pose:
-      x: 0.0
-      y: 1.6
-      z: 2.015
+      x: 0.451
+      y: 0.0
+      z: 0.774
   orientation:
     type: "STATIC"
     pose:
-      qx: -0.5
-      qy: -0.5
-      qz: -0.5
-      qw: 0.5
+      qx: 0.707
+      qy: 0.0
+      qz: 0.707
+      qw: 0.0

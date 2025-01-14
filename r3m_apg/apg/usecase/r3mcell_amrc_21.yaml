@@ -2,8 +2,8 @@
 
 # Use-Case Information:
 Information:
-  UseCase: "R3M Cell (AMRC): Battery Disassembly use-case."
-  Name: "BatteryDisassembly"
+  UseCase: "R3M Cell (AMRC): Cube Stacking Use-Case."
+  Name: "r3mcell_amrc_21"
 
 # Robot Information:
 Robot:
@@ -12,30 +12,64 @@ Robot:
   EEType: "ParallelGripper"
   Package: "r3mcell_amrc_gazebo"
   HomePose:
-    x: 1.923
-    y: 0.0
-    z: 2.408
-    qx: 0.0
-    qy: 0.0
-    qz: 1.0
-    qw: 0.0
+    x: 0.0
+    y: 1.6
+    z: 2.015
+    qx: -0.5
+    qy: -0.5
+    qz: -0.5
+    qw: 0.5
 
 # Object List:
 ObjectList:
-- Name: "BD_Battery"
-  Link: "BD_Battery"
-  CADFile: "BD_Battery"
-  Package: "r3mcell_amrc_gazebo"
-  InitialPose: 
-    x: 2.0738
-    y: 0.0665
-    z: 0.223
-    qx: 0.0
-    qy: 0.0
-    qz: 0.0
-    qw: 0.0
-  CurrentPose: None
-  PreviousPose: None
+  - Name: "BottomCube"
+    Link: "BottomCube"
+    CADFile: "BottomCube"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose: 
+      x: "{'min': -0.35, 'max': 0.35}"
+      y: "{'min': 1.65, 'max': 2.35}"
+      z: 0.15
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "TopCube"
+    Link: "TopCube"
+    CADFile: "TopCube"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose:   
+      x: "{'min': -0.35, 'max': 0.35}"
+      y: "{'min': 1.65, 'max': 2.35}"
+      z: 0.15
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
 
 # Liaison:
-Liaison: None
+Liaison:
+  - Name: "Bottom Cube is placed on the desired position on top of the workspace."
+    Parent: "GLOBAL"
+    Child: "BottomCube"
+    Transform:
+      diffMax: 0.01
+      position: True
+      orientation: False
+      x: -0.5
+      y: 2.5
+      z: 0.139
+  - Name: "Top Cube is placed inside the Bottom Cube."
+    Parent: "BottomCube"
+    Child: "TopCube"
+    Transform:
+      diffMax: 0.01
+      position: True
+      orientation: False
+      x: 0.0
+      y: 0.0
+      z: 0.01

@@ -3,23 +3,24 @@
 # Recipe INFORMATION:
 Information:
   UseCase: "R3M Cell (AMRC): Cube Stacking Use-Case."
-  Recipe: "Home Position"
+  Recipe: "Place: TOP CUBE"
 
 # Recipe ID:
-id: 1
+id: 15
 
 # Recipe TYPE:
-type: "PTP"
+type: "LIN"
 
 # Recipe VALUE:
-speed: 1.0
+speed: 0.05
 pose:
   position:
-    type: "STATIC"
-    pose:
+    type: "DYNAMIC"
+    topic: "/BottomCube/ObjectPose"
+    transform:
       x: 0.0
-      y: 1.6
-      z: 2.015
+      y: 0.0
+      z: 0.03
   orientation:
     type: "STATIC"
     pose:

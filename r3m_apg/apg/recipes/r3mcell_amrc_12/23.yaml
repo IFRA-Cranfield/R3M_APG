@@ -1,0 +1,30 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (AMRC): Coloured Cube Kitting Use-Case."
+  Recipe: "Pick: BLUE CUBE"
+
+# Recipe ID:
+id: 23
+
+# Recipe TYPE:
+type: "LIN"
+
+# Recipe VALUE:
+speed: 0.1
+pose:
+  position:
+    type: "DYNAMIC"
+    topic: "/BlueCube/ObjectPose"
+    transform:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+  orientation:
+    type: "STATIC"
+    pose:
+      qx: 0.707
+      qy: 0.0
+      qz: 0.707
+      qw: 0.0
