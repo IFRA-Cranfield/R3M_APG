@@ -11,7 +11,7 @@
 # ========================================================================================= #
 
 # System:
-import os, sys, time, yaml, threading
+import os, sys, time, yaml, threading, random
 
 # ROS2:
 import rclpy
@@ -83,7 +83,26 @@ def GetIC_YAML(NAME):
     RESULT["UseCaseInfo"] = icYAML["Information"]
     RESULT["Robot"] = icYAML["Robot"]
     
+    # ===== OBJECT LIST ===== #
     RESULT["ObjectList"] = icYAML["ObjectList"]
+
+    # Check for RANDOM EXTRA objects -> This is for the objects that can or cannot be spawned (random):
+    if "ObjectExtra" in icYAML:
+
+        OLextra = []
+        li = []
+        
+        for x in icYAML["ObjectExtra"]:
+            if random.choice([True,False]):
+                OLextra.append(x)
+                li.append(x["Name"])
+
+        if len(OLextra) > 0:
+
+            if RESULT["ObjectList"] != None:
+                RESULT["ObjectList"].extend(OLextra)
+            else:
+                RESULT["ObjectList"] == OLextra
 
     if RESULT["ObjectList"] != None:
         
@@ -91,7 +110,24 @@ def GetIC_YAML(NAME):
         for x in RESULT["ObjectList"]:
             ProdStep.append({"Name": x["Name"], "Step": 0})
 
+    # ===== LIAISON ===== #
     RESULT["Liaison"] = icYAML["Liaison"]
+
+    if "LiExtra" in icYAML:
+
+        LIextra = []
+
+        for x in icYAML["LiExtra"]:
+
+            if x["Child"] in li:
+                LIextra.append(x)
+
+        if len(LIextra) > 0:
+
+            if RESULT["Liaison"] != None:
+                RESULT["Liaison"].extend(LIextra)
+            else:
+                RESULT["Liaison"] == LIextra
 
     return(RESULT)
 

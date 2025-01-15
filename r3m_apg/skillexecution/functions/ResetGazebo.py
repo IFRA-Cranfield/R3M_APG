@@ -90,6 +90,8 @@ class GzRESET():
                             self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - /SpawnEntity RESULT: " + str(spawnRES.status_message))
                         break
 
+            self.ENTITY_CLIENT.OPTlist = []
+
     def RESET(self):
         
         # Reset End-Effector:
@@ -178,6 +180,8 @@ class GzRESET():
                         else:
                             self.ENTITY_CLIENT.get_logger().info("[R3M Cell] - /SpawnEntity RESULT: " + str(spawnRES.status_message))
                         break
+
+            self.ENTITY_CLIENT.OPTlist = []
     
         return(True)
 
@@ -198,6 +202,8 @@ class EntityClient(Node):
         # Declare REQUEST variable (of CUSTOM DATA type):
         self.req_SPAWN = SpawnEntity.Request()  
         self.req_DELETE = DeleteEntity.Request()
+
+        self.OPTlist = []
 
     def spawn_REQUEST(self, ELEMENT, INFORMATION):
         
@@ -238,15 +244,37 @@ class EntityClient(Node):
             xacro_file = xacro.process_file(urdf_file_path, mappings={"name": INFORMATION["Name"]})
             
             IP = {}
+            OPT = -1
 
             # Check if RANDOM values are needed:
             for key, value in INFORMATION["InitialPose"].items():
                 
                 if isinstance(value, str):
-                    LIM = ast.literal_eval(value)
-                    VAL = round(random.uniform(LIM["min"],LIM["max"]), 2)
-                    
-                    IP[key] = VAL
+
+                    # CASE 1: We get a random value between MIN and MAX:
+                    if "min" in value:
+                        
+                        LIM = ast.literal_eval(value)
+                        VAL = round(random.uniform(LIM["min"],LIM["max"]), 2)
+                        
+                        IP[key] = VAL
+
+                    # CASE 2: We select a point randomly between a pre-defined set of points:
+                    else:
+
+                        LIST = [float(k) for k in ast.literal_eval(value)]
+                        
+                        if OPT == -1:
+                            
+                            while True:
+                                OPT = random.randint(0, len(LIST) - 1)
+                                if OPT not in self.OPTlist:
+                                    self.OPTlist.append(OPT)
+                                    self.get_logger().info(str(OPT))
+                                    self.get_logger().info(str(self.OPTlist))
+                                    break
+
+                        IP[key] = LIST[OPT]
                     
                 else: 
                     IP[key] = INFORMATION["InitialPose"][key]
