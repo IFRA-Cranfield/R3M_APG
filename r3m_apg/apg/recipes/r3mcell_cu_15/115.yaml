@@ -1,0 +1,29 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (Cranfield University): Battery Disassembly Use-Case."
+  Recipe: "Place: BATTERY1"
+
+# Recipe ID:
+id: 115
+
+# Recipe TYPE:
+type: "LIN"
+
+# Recipe VALUE:
+speed: 1.0
+pose:
+  position:
+    type: "STATIC"
+    pose:
+      x: 0.36
+      y: 0.08
+      z: 0.96
+  orientation:
+    type: "STATIC"
+    pose:
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0

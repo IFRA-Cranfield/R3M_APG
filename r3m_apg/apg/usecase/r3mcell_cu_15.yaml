@@ -64,6 +64,78 @@ ObjectList:
       qw: 0.707
     CurrentPose: None
     PreviousPose: None
+  - Name: "Battery1"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose: 
+      x: "[0.5665, 0.59, 0.6125, 0.6355, 0.5665, 0.59, 0.6125, 0.6355]"
+      y: "[0.475, 0.475, 0.475, 0.475, 0.575, 0.575, 0.575, 0.575]"
+      z: 0.885
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "Battery2"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose: 
+      x: "[0.5665, 0.59, 0.6125, 0.6355, 0.5665, 0.59, 0.6125, 0.6355]"
+      y: "[0.475, 0.475, 0.475, 0.475, 0.575, 0.575, 0.575, 0.575]"
+      z: 0.885
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "Battery3"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose: 
+      x: "[0.5665, 0.59, 0.6125, 0.6355, 0.5665, 0.59, 0.6125, 0.6355]"
+      y: "[0.475, 0.475, 0.475, 0.475, 0.575, 0.575, 0.575, 0.575]"
+      z: 0.885
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+
+ObjectExtra:
+  - Name: "Battery4"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose: 
+      x: "[0.5665, 0.59, 0.6125, 0.6355, 0.5665, 0.59, 0.6125, 0.6355]"
+      y: "[0.475, 0.475, 0.475, 0.475, 0.575, 0.575, 0.575, 0.575]"
+      z: 0.885
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "Battery5"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose: 
+      x: "[0.5665, 0.59, 0.6125, 0.6355, 0.5665, 0.59, 0.6125, 0.6355]"
+      y: "[0.475, 0.475, 0.475, 0.475, 0.575, 0.575, 0.575, 0.575]"
+      z: 0.885
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
 
 # Liaison:
 Liaison:
@@ -97,3 +169,55 @@ Liaison:
       x: 0.45
       y: 0.125
       z: 0.91
+  - Name: "Battery1 is placed on top of Ergobox4."
+    Parent: "GLOBAL"
+    Child: "Battery1"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 0.36
+      y: 0.08
+      z: 0.883
+  - Name: "Battery2 is placed on top of Ergobox4."
+    Parent: "GLOBAL"
+    Child: "Battery2"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 0.40
+      y: 0.08
+      z: 0.883
+  - Name: "Battery3 is placed on top of Ergobox4."
+    Parent: "GLOBAL"
+    Child: "Battery3"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 0.36
+      y: 0.13
+      z: 0.883
+
+LiExtra:
+  - Name: "Battery4 is placed on top of Ergobox4."
+    Parent: "GLOBAL"
+    Child: "Battery4"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 0.40
+      y: 0.13
+      z: 0.883
+  - Name: "Battery5 is placed on top of Ergobox4."
+    Parent: "GLOBAL"
+    Child: "Battery5"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 0.38
+      y: 0.105
+      z: 0.883
