@@ -30,9 +30,9 @@ Robot:
 
 # Object List:
 ObjectList:
-  - Name: "can"
-    Link: "can"
-    CADFile: "can"
+  - Name: "Can"
+    Link: "Can"
+    CADFile: "Can"
     Package: "r3mcell_cu_gazebo"
     InitialPose: 
       x: 0.6
@@ -49,7 +49,7 @@ ObjectList:
 Liaison:
   - Name: "Can is correctly placed inside the slot."
     Parent: "GLOBAL"
-    Child: "can"
+    Child: "Can"
     Transform:
       diffMax: 0.1
       position: True
