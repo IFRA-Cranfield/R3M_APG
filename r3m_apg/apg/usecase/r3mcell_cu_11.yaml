@@ -27,8 +27,8 @@ ObjectList:
     CADFile: "BottomCube"
     Package: "r3mcell_cu_gazebo"
     InitialPose: 
-      x: "{'min': 0.45, 'max': 0.70}"
-      y: "{'min': 0.10, 'max': 0.95}"
+      x: "{'min': 0.5, 'max': 0.65}"
+      y: "{'min': 0.15, 'max': 0.9}"
       z: 0.89
       qx: 0.0
       qy: 0.0
@@ -41,8 +41,8 @@ ObjectList:
     CADFile: "TopCube"
     Package: "r3mcell_cu_gazebo"
     InitialPose:   
-      x: "{'min': 0.4, 'max': 0.75}"
-      y: "{'min': 0.10, 'max': 0.8}"
+      x: "{'min': 0.5, 'max': 0.65}"
+      y: "{'min': 0.15, 'max': 0.9}"
       z: 0.88
       qx: 0.0
       qy: 0.0
@@ -57,7 +57,7 @@ Liaison:
     Parent: "GLOBAL"
     Child: "BottomCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.015
       position: True
       orientation: False
       x: 0.225
@@ -67,7 +67,7 @@ Liaison:
     Parent: "BottomCube"
     Child: "TopCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.015
       position: True
       orientation: False
       x: 0.0
