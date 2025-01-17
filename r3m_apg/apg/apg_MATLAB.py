@@ -177,7 +177,7 @@ def main(args=None):
     print("Initialising RLA: Executing Recipe N1...")
     skillRESULT = ExecuteSkill(Node_SkillExecution, 1)
     
-    ID = 1
+    ID = 0
     
     RobState = skillRESULT.robstate.step
     EEState = skillRESULT.robstate.endeffector
@@ -196,8 +196,9 @@ def main(args=None):
         print("End Effector State: " + str(EEState))
 
         print("Object State:")
-        for i in range(ObjN):
-            print("- Object N" + str(i+1) + ": " + skillRESULT.product[i].name + " -> " + str(skillRESULT.product[i].step))
+        if ID != 100:
+            for i in range(ObjN):
+                print("- Object N" + str(i+1) + ": " + skillRESULT.product[i].name + " -> " + str(skillRESULT.product[i].step))
             
         print("Liaison State:")
         for i in range(LiN):
@@ -227,18 +228,14 @@ def main(args=None):
         for i in range(LiN):
             LiState.append(skillRESULT.liaison[i].liaison_met)
 
-        # Check if -> LIAISON MET + ID=1, then FINISH!
-        LI_MET = True
+        # Print if -> Liaison met!
         for x in skillRESULT.liaison:
-
             if x.liaison_met:
                 print("LIAISON MET! -> " + x.name)
-            else:
-                LI_MET = False
 
         print("")
 
-        if ID == 1 and LI_MET == True:
+        if skillRESULT.finish == 1:
             print("SUCCESS! All liaisons have been met and the Robot has returned to Home Position.")
             print("PROGRAM EXECUTION SUCCESSFULLY FINISHED!")
             print("")
