@@ -27,8 +27,8 @@ ObjectList:
     CADFile: "BottomCube"
     Package: "r3mcell_amrc_gazebo"
     InitialPose: 
-      x: "{'min': 0.25, 'max': 0.75}"
-      y: "{'min': -0.25, 'max': 0.25}"
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
       z: 0.15
       qx: 0.0
       qy: 0.0
@@ -41,8 +41,8 @@ ObjectList:
     CADFile: "TopCube"
     Package: "r3mcell_amrc_gazebo"
     InitialPose:   
-      x: "{'min': 0.25, 'max': 0.75}"
-      y: "{'min': -0.25, 'max': 0.25}"
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
       z: 0.15
       qx: 0.0
       qy: 0.0
@@ -60,14 +60,14 @@ Liaison:
       diffMax: 0.01
       position: True
       orientation: False
-      x: 0.25
-      y: -0.40
+      x: 0.325
+      y: 0.0
       z: 0.139
   - Name: "Top Cube is placed inside the Bottom Cube."
     Parent: "BottomCube"
     Child: "TopCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.05
       position: True
       orientation: False
       x: 0.0

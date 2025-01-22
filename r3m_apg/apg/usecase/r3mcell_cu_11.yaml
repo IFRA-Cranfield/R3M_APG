@@ -67,7 +67,7 @@ Liaison:
     Parent: "BottomCube"
     Child: "TopCube"
     Transform:
-      diffMax: 0.015
+      diffMax: 0.025
       position: True
       orientation: False
       x: 0.0

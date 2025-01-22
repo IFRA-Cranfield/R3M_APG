@@ -27,8 +27,8 @@ ObjectList:
     CADFile: "RedCube"
     Package: "r3mcell_amrc_gazebo"
     InitialPose: 
-      x: "{'min': 0.25, 'max': 0.75}"
-      y: "{'min': -0.25, 'max': 0.25}"
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
       z: 0.15
       qx: 0.0
       qy: 0.0
@@ -41,8 +41,8 @@ ObjectList:
     CADFile: "BlueCube"
     Package: "r3mcell_amrc_gazebo"
     InitialPose: 
-      x: "{'min': 0.25, 'max': 0.75}"
-      y: "{'min': -0.25, 'max': 0.25}"
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
       z: 0.15
       qx: 0.0
       qy: 0.0
@@ -55,8 +55,8 @@ ObjectList:
     CADFile: "GreenCube"
     Package: "r3mcell_amrc_gazebo"
     InitialPose: 
-      x: "{'min': 0.25, 'max': 0.75}"
-      y: "{'min': -0.25, 'max': 0.25}"
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
       z: 0.15
       qx: 0.0
       qy: 0.0
@@ -69,8 +69,8 @@ ObjectList:
     CADFile: "WhiteCube"
     Package: "r3mcell_amrc_gazebo"
     InitialPose: 
-      x: "{'min': 0.25, 'max': 0.75}"
-      y: "{'min': -0.25, 'max': 0.25}"
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
       z: 0.15
       qx: 0.0
       qy: 0.0
@@ -85,39 +85,39 @@ Liaison:
     Parent: "GLOBAL"
     Child: "RedCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.02
       position: True
       orientation: False
-      x: 0.228 
-      y: -0.422
+      x: 0.3 
+      y: -0.02
       z: 0.137
   - Name: "Blue Cube is placed on the top-right tray slot."
     Parent: "GLOBAL"
     Child: "BlueCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.02
       position: True
       orientation: False
-      x: 0.228
-      y: -0.377
+      x: 0.3
+      y: 0.025
       z: 0.137
   - Name: "Green Cube is placed on the bottom-left tray slot."
     Parent: "GLOBAL"
     Child: "GreenCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.02
       position: True
       orientation: False
-      x: 0.272
-      y: -0.422
+      x: 0.345
+      y: -0.02
       z: 0.137
   - Name: "White Cube is placed on the bottom-right tray slot."
     Parent: "GLOBAL"
     Child: "WhiteCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.02
       position: True
       orientation: False
-      x: 0.272
-      y: -0.377
+      x: 0.345
+      y: 0.025
       z: 0.137
