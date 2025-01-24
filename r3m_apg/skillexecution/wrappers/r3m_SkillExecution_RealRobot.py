@@ -53,6 +53,8 @@ sys.path.append(PATH_F)
 from ObjectState import OBJECT
 from ResetGazebo import GzRESET
 from liaison import LiaisonCheck
+from RobotState import ROB_STATE
+
 from perception import R3MPerceptionClient
 
 # Global VAR: 
@@ -267,6 +269,7 @@ class ExecuteSkill_SERVER(Node):
             
         # ===== ROBOT CLASS ===== #
         self.ROBOT = RBT()
+        self.ROBOTSTATE = ROB_STATE()
         
         # ===== END-EFFECTOR CLASS ===== #
         if ROB["EEType"] == "ParallelGripper":
@@ -347,7 +350,7 @@ class ExecuteSkill_SERVER(Node):
             response.result.exectime = 0.0
 
             # RESULT -> Robot + EndEffector:
-            #response.result.robstate.robpose = TBD
+            response.result.robstate.robpose = self.ROBOTSTATE.GetRobotPose()
             response.result.robstate.step = RobStep
             response.result.robstate.endeffector = EEState
             
@@ -483,7 +486,7 @@ class ExecuteSkill_SERVER(Node):
                 response.result.exectime = RES["ExecTime"]
 
                 # RESULT -> Robot + EndEffector:
-                #response.result.robstate.robpose = TBD
+                response.result.robstate.robpose = self.ROBOTSTATE.GetRobotPose()
                 response.result.robstate.step = RobStep
                 response.result.robstate.endeffector = EEState
 
