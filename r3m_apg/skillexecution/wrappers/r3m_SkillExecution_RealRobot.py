@@ -40,6 +40,8 @@ from robot import RBT
 sys.path.append(PATH_endeffector)
 from robotiq_ur import RobotiqGRIPPER
 from schunk_abb import SchunkGRIPPER
+from zimmer_abb import ZimmerGRIPPER
+from vgr_abb import vgrABB
 # END EFFECTOR CLASSES (Gazebo):
 sys.path.append(PATH_endeffector_gz)
 from parallelGripper import parallelGR
@@ -271,12 +273,23 @@ class ExecuteSkill_SERVER(Node):
 
             if ROB["Link"] == "EE_egp64":
                 self.GRIPPER = SchunkGRIPPER()
-            elif ROB["EEType"] == "EE_robotiq_hande":
+            elif ROB["Link"] == "EE_robotiq_hande":
                 self.GRIPPER = RobotiqGRIPPER()
+            elif ROB["Link"] == "EE_gpp5010nc":
+                self.GRIPPER = ZimmerGRIPPER()
+
+            else:
+                self.GRIPPER = None
         
         elif ROB["EEType"] == "VacuumGripper":
             
-            None # No VG tested on robot yet.
+            if ROB["Link"] == "EE_ls_vgr":
+                self.GRIPPER = vgrABB()
+            elif ROB["Link"] == "EE_ls_vgr_amrc":
+                self.GRIPPER = vgrABB()
+
+            else:
+                self.GRIPPER = None
 
         else:
             self.GRIPPER = None
@@ -284,7 +297,7 @@ class ExecuteSkill_SERVER(Node):
         # Launch -> R3M Perception OSD+M6D request:
         if R3MPerception:
 
-            self.CAMERA = ROB["Camera"]["Gazebo"]
+            self.CAMERA = ROB["Camera"]["Cell"]
             
             if self.OLCheck:
                 time.sleep(1.0)
@@ -446,7 +459,19 @@ class ExecuteSkill_SERVER(Node):
                             EEState = 1
                 
                 # VacuumGripper:
-                # No VG tested on RRobot yet.
+                elif (RECIPE["type"] == "VACUUM"):
+                    
+                    if RECIPE["action"] == "ACTIVATE":
+                        RES = self.GRIPPER.ACTIVATE()
+                        
+                        if RES["Success"]:
+                            EEState = 0
+                        
+                    elif RECIPE["action"] == "DEACTIVATE":
+                        RES = self.GRIPPER.DEACTIVATE()
+                        
+                        if RES["Success"]:
+                            EEState = 1
 
                 # ============================================ #
                 # ========== SKILL EXECUTION RESULT ========== #
@@ -491,7 +516,7 @@ class ExecuteSkill_SERVER(Node):
                         P.previouspose.qz = x["PreviousPose"].qz
                         P.previouspose.qw = x["PreviousPose"].qw
 
-                        P.error = 0.0 # Error when retrieving from Gazebo is null.
+                        P.error = 0.0 # Not relevant.
 
                         DIF = CalculateDif_PROD(P.currentpose,P.previouspose)
                         if (DIF == True):
