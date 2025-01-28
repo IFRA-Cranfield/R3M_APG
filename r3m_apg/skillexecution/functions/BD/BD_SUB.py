@@ -1,11 +1,14 @@
-# Import libraries:
+#!/usr/bin/python3
+
+#  Import libraries:
 import rclpy
 from rclpy.node import Node
 from r3m_data.msg import Bd    
 
-import time, threading, sys, os, yaml
+import time, sys
+
 from objectpose_msgs.msg import ObjectPose
-from ament_index_python.packages import get_package_share_directory
+from aux import GetPose
 
 # ===== EVALUATE INPUT ARGUMENTS ===== #         
 def AssignArgument(ARGUMENT):
@@ -32,30 +35,18 @@ class SUBSCRIBER(Node):
         self.PUBList = []
         for i in range(5):
             TopicName = "/Battery" + str(i+1) + "/ObjectPoseEstimation"
-            self.SUBList.append(self.create_publisher(Bd, TopicName, 10))
+            self.PUBList.append(self.create_publisher(ObjectPose, TopicName, 10))
 
         # Declare BATTERIES:
         self.BATTERIES = [0,0,0,0,0]
         self.DETECTED = None
 
     def CALLBACK_FN(self, detBT):
-        self.DETECTED = detBT
-
-    def updateBATTERIES(self):
-
-        T = time.time() + 0.5
-        while time.time() < T:
-            rclpy.spin_once(self, timeout_sec=1.0)
+        
+        self.DETECTED = detBT.batteries
 
         if self.DETECTED == None:
             self.DETECTED = [0,0,0,0,0]
-
-        TH = threading.Thread(target=self.PUBLISH, daemon=True)
-        TH.start()
-
-        return()
-
-    def PUBLISH(self):
 
         # === UPDATE === #
 
@@ -92,7 +83,12 @@ class SUBSCRIBER(Node):
 
             # === PUBLISH === #
             for i in range(5):
+                
                 self.PUBList[i].publish(self.BATTERIES_POSE[i])
+                
+                print("Published ObjectPose: " )
+                print(self.BATTERIES_POSE[i])#
+                print("")
 
         return()
 
@@ -125,7 +121,8 @@ def main(args=None):
     print ("")
 
     print("Detecting batteries and publishing the pose to ROS 2 Topics...")
-    NODE.updateBATTERIES()
+    print("")
+    rclpy.spin_once(NODE)
 
     # Close NODE:
     NODE.destroy_node
@@ -133,44 +130,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
-# ===== CONVERT FROM SLOT NUMBER TO POSE ===== #
-def GetPose(BATTERIES, CELL):
-
-    POSES = []
-    
-    for i, BT in enumerate(BATTERIES):
-
-        POSE = ObjectPose()
-        POSE.objectname = "Battery" + str(i+1)
-        POSE.x, POSE.y, POSE.z, POSE.qx, POSE.qy, POSE.qz, POSE.qw = getPOSEfromYAML(BT,CELL)
-        POSES.append(POSE)
-
-    return(POSES)
-
-def getPOSEfromYAML(BT,CELL):
-
-    if BT == 0:
-        return(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-    
-    else:
-
-        PATH = os.path.join(get_package_share_directory('r3m_apg'), 'apg', 'usecase')
-        
-        if CELL == "AMRC":
-            YAML_PATH = PATH + "/r3mcell_cu_15.yaml"
-        else:
-            YAML_PATH = PATH + "/r3mcell_cu_24.yaml"
-
-        with open(YAML_PATH, 'r') as YAML:
-            icYAML = yaml.safe_load(YAML)
-
-        x = icYAML["BatteryLocation"][str(BT)]["x"]
-        y = icYAML["BatteryLocation"][str(BT)]["y"]
-        z = icYAML["BatteryLocation"][str(BT)]["z"]
-        qx = icYAML["BatteryLocation"][str(BT)]["qx"]
-        qy = icYAML["BatteryLocation"][str(BT)]["qy"]
-        qz = icYAML["BatteryLocation"][str(BT)]["qz"]
-        qw = icYAML["BatteryLocation"][str(BT)]["qw"]
-
-        return(x, y, z, qx, qy, qz, qw)

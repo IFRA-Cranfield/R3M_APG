@@ -51,6 +51,7 @@ install(PROGRAMS
 
   skillexecution/functions/BD/BD_PUB.py
   skillexecution/functions/BD/BD_SUB.py
+  skillexecution/functions/BD/aux.py
 
   apg/apg_MATLAB.py
   apg/apg_SEQUENCE.py
