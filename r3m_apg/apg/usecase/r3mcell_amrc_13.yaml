@@ -2,8 +2,8 @@
 
 # Use-Case Information:
 Information:
-  UseCase: "R3M Cell (AMRC): Cube Stacking Use-Case."
-  Name: "r3mcell_amrc_11"
+  UseCase: "R3M Cell (AMRC): Cylinder Stacking Use-Case."
+  Name: "r3mcell_amrc_13"
 
 # Robot Information:
 Robot:
@@ -25,28 +25,28 @@ Robot:
 
 # Object List:
 ObjectList:
-  - Name: "BottomCube"
-    Link: "BottomCube"
-    CADFile: "BottomCube"
+  - Name: "BaseCylinder"
+    Link: "BaseCylinder"
+    CADFile: "BaseCylinder"
     Package: "r3mcell_amrc_gazebo"
     InitialPose: 
-      x: "{'min': 0.40, 'max': 0.75}"
+      x: "{'min': 0.40, 'max': 0.65}"
       y: "{'min': -0.2, 'max': 0.45}"
-      z: 0.15
+      z: 0.165
       qx: 0.0
       qy: 0.0
       qz: 0.0
       qw: 0.0
     CurrentPose: None
     PreviousPose: None
-  - Name: "TopCube"
-    Link: "TopCube"
-    CADFile: "TopCube"
+  - Name: "TopCylinder"
+    Link: "TopCylinder"
+    CADFile: "TopCylinder"
     Package: "r3mcell_amrc_gazebo"
     InitialPose:   
-      x: "{'min': 0.40, 'max': 0.75}"
+      x: "{'min': 0.40, 'max': 0.65}"
       y: "{'min': -0.2, 'max': 0.45}"
-      z: 0.15
+      z: 0.14
       qx: 0.0
       qy: 0.0
       qz: 0.0
@@ -56,23 +56,23 @@ ObjectList:
 
 # Liaison:
 Liaison:
-  - Name: "Bottom Cube is placed on the desired position on top of the workspace."
+  - Name: "Base Cylinder is placed on top of the fixture."
     Parent: "GLOBAL"
-    Child: "BottomCube"
+    Child: "BaseCylinder"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.03
       position: True
       orientation: False
-      x: 0.325
-      y: 0.0
-      z: 0.139
-  - Name: "Top Cube is placed inside the Bottom Cube."
-    Parent: "BottomCube"
-    Child: "TopCube"
+      x: 0.75
+      y: 0.1
+      z: 0.165
+  - Name: "Top Cylinder is placed on top of the Base Cylinder."
+    Parent: "GLOBAL"
+    Child: "TopCylinder"
     Transform:
       diffMax: 0.05
       position: True
       orientation: False
-      x: 0.0
-      y: 0.0
-      z: 0.01
+      x: 0.75
+      y: 0.1
+      z: 0.169

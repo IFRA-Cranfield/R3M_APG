@@ -1,0 +1,17 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (AMRC): Battery Disassembly Use-Case."
+  Recipe: "GRIPPER: CLOSE"
+
+# Recipe ID:
+id: 6
+
+# Recipe TYPE:
+type: "GRIP"
+
+# Recipe VALUE:
+speed: 1.0
+action: "CLOSE"
+value: 50.0

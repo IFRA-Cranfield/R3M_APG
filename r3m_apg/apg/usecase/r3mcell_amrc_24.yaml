@@ -1,0 +1,480 @@
+# R3M Project - Initial Conditions for the R3M Cell Environment Launch:
+
+# Use-Case Information:
+Information:
+  UseCase: "R3M Cell (AMRC): Battery Disassembly Use-Case."
+  Name: "r3mcell_amrc_24"
+
+# Robot Information:
+Robot:
+  Model: "irb6640"
+  Link: "EE_gpp5010nc"
+  EEType: "ParallelGripper"
+  Package: "r3mcell_cu_gazebo"
+  Camera:
+    Cell: "lenovoFHD"
+    Gazebo: "lenovoFHD_gazebo"
+  HomePose:
+    x: 1.80
+    y: 0.076
+    z: 0.50
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+# Object List:
+ObjectList:
+  - Name: "Battery1"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose: 
+      x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
+      y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"
+      z: 0.29
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "Battery2"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose: 
+      x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
+      y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"
+      z: 0.29
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "Battery3"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose: 
+      x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
+      y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"
+      z: 0.29
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+
+ObjectExtra:
+  - Name: "Battery4"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose: 
+      x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
+      y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"
+      z: 0.29
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "Battery5"
+    Link: "Battery"
+    CADFile: "Battery"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose: 
+      x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
+      y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"
+      z: 0.29
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+
+# Liaison:
+Liaison:
+  - Name: "Battery1 is placed on top of Ergobox."
+    Parent: "GLOBAL"
+    Child: "Battery1"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 1.78
+      y: -0.18
+      z: 0.185
+  - Name: "Battery2 is placed on top of Ergobox."
+    Parent: "GLOBAL"
+    Child: "Battery2"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 1.82
+      y: -0.18
+      z: 0.185
+  - Name: "Battery3 is placed on top of Ergobox."
+    Parent: "GLOBAL"
+    Child: "Battery3"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 1.78
+      y: -0.22
+      z: 0.185
+
+LiExtra:
+  - Name: "Battery4 is placed on top of Ergobox."
+    Parent: "GLOBAL"
+    Child: "Battery4"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 1.82
+      y: -0.22
+      z: 0.185
+  - Name: "Battery5 is placed on top of Ergobox."
+    Parent: "GLOBAL"
+    Child: "Battery5"
+    Transform:
+      diffMax: 0.05
+      position: True
+      orientation: False
+      x: 1.80
+      y: -0.20
+      z: 0.185
+
+BatteryLocation:
+  
+  1:
+    x: 2.236
+    y: 0.046
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  2:
+    x: 2.211
+    y: 0.046
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  3:
+    x: 2.186
+    y: 0.046
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  4:
+    x: 2.161
+    y: 0.046
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  5:
+    x: 2.136
+    y: 0.046
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  6:
+    x: 2.111
+    y: 0.046
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  7:
+    x: 2.086
+    y: 0.046
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  8:
+    x: 2.061
+    y: 0.046
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  9:
+    x: 2.036
+    y: 0.046
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+  
+  10:
+    x: 2.224
+    y: 0.066
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  11: 
+    x: 2.199
+    y: 0.066
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+  
+  12: 
+    x: 2.174
+    y: 0.066
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  13: 
+    x: 2.149
+    y: 0.066
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  14: 
+    x: 2.124
+    y: 0.066
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  15: 
+    x: 2.099
+    y: 0.066
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  16: 
+    x: 2.074
+    y: 0.066
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  17: 
+    x: 2.049
+    y: 0.066
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  18: 
+    x: 2.024
+    y: 0.066
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  19:
+    x: 2.236
+    y: 0.086
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  20:
+    x: 2.211
+    y: 0.086
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  21:
+    x: 2.186
+    y: 0.086
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  22:
+    x: 2.161
+    y: 0.086
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  23:
+    x: 2.136
+    y: 0.086
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  24:
+    x: 2.111
+    y: 0.086
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  25:
+    x: 2.086
+    y: 0.086
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  26:
+    x: 2.061
+    y: 0.086
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  27:
+    x: 2.036
+    y: 0.086
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  28:
+    x: 2.224
+    y: 0.106
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  29: 
+    x: 2.199
+    y: 0.106
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+  
+  30: 
+    x: 2.174
+    y: 0.106
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  31: 
+    x: 2.149
+    y: 0.106
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  32: 
+    x: 2.124
+    y: 0.106
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  33: 
+    x: 2.099
+    y: 0.106
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  34: 
+    x: 2.074
+    y: 0.106
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  35: 
+    x: 2.049
+    y: 0.106
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+  36: 
+    x: 2.024
+    y: 0.106
+    z: 0.245
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0

@@ -2,14 +2,14 @@
 
 # Recipe INFORMATION:
 Information:
-  UseCase: "R3M Cell (Cranfield University): Battery Disassembly Use-Case."
-  Recipe: "Place: BATTERY2"
+  UseCase: "R3M Cell (AMRC): Battery Disassembly Use-Case."
+  Recipe: "Place Approach: BATTERY1"
 
 # Recipe ID:
-id: 125
+id: 114
 
 # Recipe TYPE:
-type: "LIN"
+type: "PTP"
 
 # Recipe VALUE:
 speed: 1.0
@@ -17,13 +17,13 @@ pose:
   position:
     type: "STATIC"
     pose:
-      x: 0.40
-      y: 0.08
-      z: 0.96
+      x: 1.78
+      y: -0.18
+      z: 0.50
   orientation:
     type: "STATIC"
     pose:
-      qx: 0.0
-      qy: 1.0
-      qz: 0.0
-      qw: 0.0
+      qx: -0.5
+      qy: -0.5
+      qz: -0.5
+      qw: 0.5

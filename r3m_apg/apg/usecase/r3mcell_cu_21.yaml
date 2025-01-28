@@ -11,6 +11,9 @@ Robot:
   Link: "EE_robotiq_hande"
   EEType: "ParallelGripper"
   Package: "r3mcell_cu_gazebo"
+  Camera:
+    Cell: "lenovoFHD"
+    Gazebo: "lenovoFHD_gazebo"
   HomePose:
     x: -0.3
     y: -0.11

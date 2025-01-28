@@ -2,11 +2,11 @@
 
 # Recipe INFORMATION:
 Information:
-  UseCase: "R3M Cell (AMRC): Battery Disassembly Use-Case."
-  Recipe: "Home Position"
+  UseCase: "R3M Cell (AMRC): Cylinder Stacking Use-Case."
+  Recipe: "Pick (safe height): TOP CYLINDER"
 
 # Recipe ID:
-id: 1
+id: 12
 
 # Recipe TYPE:
 type: "PTP"
@@ -15,11 +15,12 @@ type: "PTP"
 speed: 1.0
 pose:
   position:
-    type: "STATIC"
-    pose:
-      x: 1.80
-      y: 0.076
-      z: 0.50
+    type: "DYNAMIC"
+    topic: "/TopCylinder/ObjectPose"
+    transform:
+      x: 0.0
+      y: 0.0
+      z: 0.08
   orientation:
     type: "STATIC"
     pose:

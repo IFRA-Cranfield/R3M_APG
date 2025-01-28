@@ -3,10 +3,10 @@
 # Recipe INFORMATION:
 Information:
   UseCase: "R3M Cell (AMRC): Battery Disassembly Use-Case."
-  Recipe: "Home Position"
+  Recipe: "Pick (safe height): BATTERY2"
 
 # Recipe ID:
-id: 1
+id: 122
 
 # Recipe TYPE:
 type: "PTP"
@@ -15,11 +15,12 @@ type: "PTP"
 speed: 1.0
 pose:
   position:
-    type: "STATIC"
-    pose:
-      x: 1.80
-      y: 0.076
-      z: 0.50
+    type: "DYNAMIC"
+    topic: "/Battery2/ObjectPose"
+    transform:
+      x: 0.0
+      y: 0.0
+      z: 0.1
   orientation:
     type: "STATIC"
     pose:

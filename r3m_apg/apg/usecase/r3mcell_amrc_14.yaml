@@ -11,6 +11,9 @@ Robot:
   Link: "EE_ls_vgr_amrc"
   EEType: "VacuumGripper"
   Package: "r3mcell_amrc_gazebo"
+  Camera:
+    Cell: "lenovoFHD"
+    Gazebo: "lenovoFHD_gazebo"
   HomePose:
     x: 0.0
     y: 0.695

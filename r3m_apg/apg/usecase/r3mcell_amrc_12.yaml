@@ -11,6 +11,9 @@ Robot:
   Link: "EE_gpp5010nc"
   EEType: "ParallelGripper"
   Package: "r3mcell_amrc_gazebo"
+  Camera:
+    Cell: "lenovoFHD"
+    Gazebo: "lenovoFHD_gazebo"
   HomePose:
     x: 0.451
     y: 0.0

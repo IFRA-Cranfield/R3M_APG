@@ -11,6 +11,9 @@ Robot:
   Link: None
   EEType: None
   Package: "r3mcell_cu_gazebo"
+  Camera:
+    Cell: "lenovoFHD"
+    Gazebo: "lenovoFHD_gazebo"
   HomePose:
     x: 0.577
     y: 0.525
