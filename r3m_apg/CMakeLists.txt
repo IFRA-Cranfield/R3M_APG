@@ -49,6 +49,9 @@ install(PROGRAMS
   skillexecution/functions/liaison.py
   skillexecution/functions/perception.py
 
+  skillexecution/functions/BD/BD_PUB.py
+  skillexecution/functions/BD/BD_SUB.py
+
   apg/apg_MATLAB.py
   apg/apg_SEQUENCE.py
 
