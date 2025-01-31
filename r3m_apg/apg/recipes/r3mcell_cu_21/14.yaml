@@ -15,12 +15,11 @@ type: "PTP"
 speed: 1.0
 pose:
   position:
-    type: "DYNAMIC"
-    topic: "/BottomCube/ObjectPose"
-    transform:
-      x: 0.0
-      y: 0.0
-      z: 0.10
+    type: "STATIC"
+    pose:
+      x: -0.22
+      y: 0.18
+      z: 0.97
   orientation:
     type: "STATIC"
     pose:

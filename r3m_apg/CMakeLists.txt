@@ -36,11 +36,13 @@ install(
 install(PROGRAMS
 
   skillexecution/r3m_TRAIN.py
-  skillexecution/r3m_EXECUTE.py
+  skillexecution/r3m_SIMULATION.py
+  skillexecution/r3m_ROBOT.py
   
   skillexecution/wrappers/r3m_SkillExecution_Gazebo.py
   skillexecution/wrappers/r3m_SkillExecution_Gz_Perception.py
   skillexecution/wrappers/r3m_SkillExecution_RealRobot.py
+  skillexecution/wrappers/r3m_SkillExecution_RealRobot_BD.py
 
   skillexecution/functions/ObjectState.py
   skillexecution/functions/CalculateRP.py

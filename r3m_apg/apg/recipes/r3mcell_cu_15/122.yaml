@@ -9,7 +9,7 @@ Information:
 id: 122
 
 # Recipe TYPE:
-type: "PTP"
+type: "LIN"
 
 # Recipe VALUE:
 speed: 1.0
@@ -20,7 +20,7 @@ pose:
     transform:
       x: 0.0
       y: 0.0
-      z: 0.04
+      z: 0.1
   orientation:
     type: "STATIC"
     pose:

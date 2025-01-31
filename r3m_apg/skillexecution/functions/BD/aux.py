@@ -125,7 +125,53 @@ def GetSlot(X,Y,CELL):
             return(35)
         elif (35 <= X <= 45) and (-19 <= Y <= -9):
             return(36)
+        
+        else:
+            return(0)
+        
+    elif CELL == "CRANFIELD":
 
+        if (1 <= X <= 11) and (36 <= Y <= 46):
+            return(1)
+        elif (1 <= X <= 11) and (22 <= Y <= 32):
+            return(2)
+        elif (1 <= X <= 11) and (10 <= Y <= 20):
+            return(3)
+        elif (1 <= X <= 11) and (-4 <= Y <= 6):
+            return(4)
+        
+        elif (16 <= X <= 26) and (30 <= Y <= 40):
+            return(5)
+        elif (16 <= X <= 26) and (15 <= Y <= 25):
+            return(6)
+        elif (16 <= X <= 26) and (2 <= Y <= 12):
+            return(7)
+        
+        elif (30 <= X <= 40) and (36 <= Y <= 46):
+            return(8)
+        elif (30 <= X <= 40) and (22 <= Y <= 32):
+            return(9)
+        elif (30 <= X <= 40) and (10 <= Y <= 20):
+            return(10)
+        elif (30 <= X <= 40) and (-4 <= Y <= 6):
+            return(11)
+        
+        elif (44 <= X <= 54) and (30 <= Y <= 40):
+            return(12)
+        elif (44 <= X <= 54) and (15 <= Y <= 25):
+            return(13)
+        elif (44 <= X <= 54) and (2 <= Y <= 12):
+            return(14)
+        
+        elif (58 <= X <= 68) and (36 <= Y <= 46):
+            return(15)
+        elif (58 <= X <= 68) and (22 <= Y <= 32):
+            return(16)
+        elif (58 <= X <= 68) and (10 <= Y <= 20):
+            return(17)
+        elif (58 <= X <= 68) and (-4 <= Y <= 6):
+            return(18)
+        
         else:
             return(0)
 

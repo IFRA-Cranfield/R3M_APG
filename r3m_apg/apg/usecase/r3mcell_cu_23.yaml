@@ -78,7 +78,7 @@ Liaison:
     Parent: "BaseCylinder"
     Child: "TopCylinder"
     Transform:
-      diffMax: 0.03
+      diffMax: 0.05
       position: True
       orientation: False
       x: 0.0

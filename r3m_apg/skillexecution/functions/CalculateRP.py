@@ -39,7 +39,7 @@ def CALCULATE_RobPose(POSE, ObjectList):
     
         if objFOUND_P == False:
 
-            RESULT["Message"] = "Tried to compute POSITION from " +  POSE["orientation"]["topic"] + "ROS 2 Topic but topic was not found."
+            RESULT["Message"] = "Tried to compute POSITION from " +  POSE["position"]["topic"] + "ROS 2 Topic but topic was not found."
             RESULT["Success"] = False
             RESULT["ExecTime"] = -1.0
 

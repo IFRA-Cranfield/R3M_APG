@@ -15,12 +15,11 @@ type: "PTP"
 speed: 1.0
 pose:
   position:
-    type: "DYNAMIC"
-    topic: "/BaseCylinder/ObjectPose"
-    transform:
-      x: 0.0
-      y: 0.0
-      z: 0.1
+    type: "STATIC"
+    pose:
+      x: 0.225
+      y: 0.18
+      z: 1.0
   orientation:
     type: "STATIC"
     pose:

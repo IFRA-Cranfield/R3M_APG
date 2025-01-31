@@ -1,12 +1,18 @@
 #!/usr/bin/python3
 
 # Import libraries (PUBLISHER):
+
+#  Import libraries:
 import rclpy
 from rclpy.node import Node
-from r3m_data.msg import Bd       
+from r3m_data.msg import Bd    
+
+from std_srvs.srv import Empty
+from objectpose_msgs.msg import ObjectPose
+from aux import GetPose   
 
 # Import libraries (YOLO):
-import os, sys
+import os, sys, time
 import cv2
 from ultralytics import YOLO
 
@@ -30,7 +36,7 @@ def AssignArgument(ARGUMENT):
         if (ARGUMENT + ":=") in y:
             ARG = y.replace((ARGUMENT + ":="),"")
             return(ARG)
-
+        
 # =================== MAIN =================== #
 def main(args=None):
 
@@ -86,6 +92,7 @@ def main(args=None):
     print("")
 
     caseFOUND = False
+    btFOUND = False
 
     # RUN -> YOLO PREDICTION:
     while True:
@@ -97,6 +104,7 @@ def main(args=None):
             # PREDICT with YOLO and visualize:
             PREDICTION = YOLOmodel.predict(inputIMG, verbose=False)
             
+            '''
             TITLE_0 = "R3M-APG - BD YOLO DETECTION"
             cv2.imshow(TITLE_0, PREDICTION[0].plot())
 
@@ -104,6 +112,7 @@ def main(args=None):
             if key == ord('e'):
                 cv2.destroyWindow(TITLE_0)
                 break
+            '''
 
             BATTERIES_DETECTED = []
 
@@ -117,11 +126,18 @@ def main(args=None):
                     C = int(box.cls)
                     NAME = YOLOmodel.names[C]
 
-                    # GET -> CASE COORDINATES:
-                    if (NAME == "case") and (box.conf.item() > 0.75) and (caseFOUND == False):
+                    if (NAME == "battery"):
+                        btFOUND = True
 
-                        Xleft_CASE, Ytop_CASE, Xright_CASE, Ybottom_CASE = box.xyxy[0] 
-                        caseFOUND = True
+                    # GET -> CASE COORDINATES:
+                    if (NAME == "case") and (box.conf.item() > 0.75) and (caseFOUND == False) and (btFOUND == True):
+
+                        Xleft_c, Ytop_c, Xright_c, Ybottom_c = box.xyxy[0]
+
+                        if (270 > Xleft_c > 240) and (330 > Ytop_c > 300):
+
+                            Xleft_CASE, Ytop_CASE, Xright_CASE, Ybottom_CASE = box.xyxy[0] 
+                            caseFOUND = True
 
                     # GET -> BATTERY COORDINATES:
                     if (NAME == "battery") and (box.conf.item() > 0.50) and (caseFOUND == True):
@@ -142,6 +158,12 @@ def main(args=None):
                         print(" - Battery is located in SLOT NUMBER -> " + str(BATTERY_POS))
                         print("")
 
+                        # VISUALIZE B.SLOT NUMBER IN RESULT:
+                        B = box.xyxy[0] # Detected object's BOUNDING BOX.
+                        cv2.rectangle(inputIMG, (int(B[0]), int(B[1])), (int(B[2]), int(B[3])), (0,0,0), 2)
+                        LABEL = "BATTERY -> " + str(BATTERY_POS)
+                        cv2.putText(inputIMG, LABEL, (int(B[0]), int(B[1]) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 2)
+
                         if BATTERY_POS not in BATTERIES_DETECTED:
                             BATTERIES_DETECTED.append(BATTERY_POS)
 
@@ -152,6 +174,14 @@ def main(args=None):
             MSG = Bd()
             MSG.batteries = BATTERIES_DETECTED
             NODE.PUB.publish(MSG)
+
+            TITLE_1 = "R3M-APG - BD YOLO DETECTION and SLOT ESTIMATION"
+            cv2.imshow(TITLE_1, inputIMG)
+
+            key = cv2.waitKey(frame_delay)
+            if key == ord('e'):
+                cv2.destroyWindow(TITLE_1)
+                break
 
         else:
             print("Camera connection lost.")

@@ -135,9 +135,11 @@ def main(args=None):
         print("ObjectState: ")
         for i in skillRESULT.product:
             print("   - " + i.name + ": " + str(i.currentpose))
-        print("LiaisonCheck: ")
-        for i in skillRESULT.liaison:
-            print("   - " + i.name + " -> DIFF("+ str(i.diff) +"), DIFFmax("+ str(i.diff_max) +"), COMPLETE? -> " + str(i.liaison_met))
+        
+        if skillRESULT.id == 100:
+            print("LiaisonCheck: ")
+            for i in skillRESULT.liaison:
+                print("   - " + i.name + " -> DIFF("+ str(round(i.diff, 4)) +"), DIFFmax("+ str(round(i.diff_max,4)) +"), COMPLETE? -> " + str(i.liaison_met))
 
         print("")
         print("")

@@ -12,15 +12,14 @@ id: 15
 type: "LIN"
 
 # Recipe VALUE:
-speed: 0.1
+speed: 0.5
 pose:
   position:
-    type: "DYNAMIC"
-    topic: "/BaseCylinder/ObjectPose"
-    transform:
-      x: 0.0
-      y: 0.0
-      z: 0.03
+    type: "STATIC"
+    pose:
+      x: 0.225
+      y: 0.18
+      z: 0.925
   orientation:
     type: "STATIC"
     pose:

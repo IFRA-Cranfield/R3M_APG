@@ -96,7 +96,7 @@ Liaison:
     Parent: "GLOBAL"
     Child: "RedCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.025
       position: True
       orientation: False
       x: -0.238
@@ -106,7 +106,7 @@ Liaison:
     Parent: "GLOBAL"
     Child: "BlueCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.025
       position: True
       orientation: False
       x: -0.193
@@ -116,7 +116,7 @@ Liaison:
     Parent: "GLOBAL"
     Child: "GreenCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.025
       position: True
       orientation: False
       x: -0.238
@@ -126,7 +126,7 @@ Liaison:
     Parent: "GLOBAL"
     Child: "WhiteCube"
     Transform:
-      diffMax: 0.01
+      diffMax: 0.025
       position: True
       orientation: False
       x: -0.193

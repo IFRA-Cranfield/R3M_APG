@@ -12,7 +12,7 @@ id: 13
 type: "LIN"
 
 # Recipe VALUE:
-speed: 0.1
+speed: 0.5
 pose:
   position:
     type: "DYNAMIC"
@@ -20,7 +20,7 @@ pose:
     transform:
       x: 0.0
       y: 0.0
-      z: 0.005
+      z: 0.02
   orientation:
     type: "STATIC"
     pose:
