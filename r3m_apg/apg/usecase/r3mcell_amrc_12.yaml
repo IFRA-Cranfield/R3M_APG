@@ -88,39 +88,39 @@ Liaison:
     Parent: "GLOBAL"
     Child: "RedCube"
     Transform:
-      diffMax: 0.02
+      diffMax: 0.035
       position: True
       orientation: False
-      x: 0.3 
-      y: -0.02
+      x: 0.403
+      y: -0.2
       z: 0.137
   - Name: "Blue Cube is placed on the top-right tray slot."
     Parent: "GLOBAL"
     Child: "BlueCube"
     Transform:
-      diffMax: 0.02
+      diffMax: 0.035
       position: True
       orientation: False
-      x: 0.3
-      y: 0.025
+      x: 0.403
+      y: -0.245
       z: 0.137
   - Name: "Green Cube is placed on the bottom-left tray slot."
     Parent: "GLOBAL"
     Child: "GreenCube"
     Transform:
-      diffMax: 0.02
+      diffMax: 0.035
       position: True
       orientation: False
-      x: 0.345
-      y: -0.02
+      x: 0.448
+      y: -0.2
       z: 0.137
   - Name: "White Cube is placed on the bottom-right tray slot."
     Parent: "GLOBAL"
     Child: "WhiteCube"
     Transform:
-      diffMax: 0.02
+      diffMax: 0.035
       position: True
       orientation: False
-      x: 0.345
-      y: 0.025
+      x: 0.448
+      y: -0.245
       z: 0.137

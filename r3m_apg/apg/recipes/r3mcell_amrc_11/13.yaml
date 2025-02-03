@@ -19,8 +19,8 @@ pose:
     topic: "/TopCube/ObjectPose"
     transform:
       x: 0.0
-      y: 0.0
-      z: 0.0
+      y: 0.006
+      z: 0.005
   orientation:
     type: "STATIC"
     pose:

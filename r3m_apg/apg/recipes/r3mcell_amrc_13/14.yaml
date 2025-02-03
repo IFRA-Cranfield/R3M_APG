@@ -12,7 +12,7 @@ id: 14
 type: "PTP"
 
 # Recipe VALUE:
-speed: 1.0
+speed: 0.5
 pose:
   position:
     type: "STATIC"

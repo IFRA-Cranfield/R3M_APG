@@ -134,10 +134,25 @@ def main(args=None):
 
                         Xleft_c, Ytop_c, Xright_c, Ybottom_c = box.xyxy[0]
 
-                        if (270 > Xleft_c > 240) and (330 > Ytop_c > 300):
+                        if CELLname == "AMRC":
 
-                            Xleft_CASE, Ytop_CASE, Xright_CASE, Ybottom_CASE = box.xyxy[0] 
-                            caseFOUND = True
+                            if (302 > Xleft_c > 298) and (105 > Ytop_c > 98):
+                            
+                                Xleft_CASE, Ytop_CASE, Xright_CASE, Ybottom_CASE = box.xyxy[0] 
+                                caseFOUND = True
+
+                            else:
+
+                                Xleft_CASE, Ytop_CASE, Xright_CASE, Ybottom_CASE = box.xyxy[0] 
+                                print(Xleft_CASE)
+                                print(Ytop_CASE)
+                        
+                        else:
+
+                            if (270 > Xleft_c > 240) and (330 > Ytop_c > 300):
+
+                                Xleft_CASE, Ytop_CASE, Xright_CASE, Ybottom_CASE = box.xyxy[0] 
+                                caseFOUND = True
 
                     # GET -> BATTERY COORDINATES:
                     if (NAME == "battery") and (box.conf.item() > 0.50) and (caseFOUND == True):

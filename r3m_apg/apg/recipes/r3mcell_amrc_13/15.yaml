@@ -12,14 +12,14 @@ id: 15
 type: "LIN"
 
 # Recipe VALUE:
-speed: 1.0
+speed: 0.25
 pose:
   position:
     type: "STATIC"
     pose:
       x: 0.75
       y: 0.1
-      z: 0.18
+      z: 0.185
   orientation:
     type: "STATIC"
     pose:

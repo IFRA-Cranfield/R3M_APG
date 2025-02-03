@@ -3,24 +3,23 @@
 # Recipe INFORMATION:
 Information:
   UseCase: "R3M Cell (AMRC): Battery Disassembly Use-Case."
-  Recipe: "Pick: BATTERY1"
+  Recipe: "TOP CASE - Pick"
 
 # Recipe ID:
-id: 113
+id: 13
 
 # Recipe TYPE:
 type: "LIN"
 
 # Recipe VALUE:
-speed: 0.25
+speed: 0.1
 pose:
   position:
-    type: "DYNAMIC"
-    topic: "/Battery1/ObjectPose"
-    transform:
-      x: 0.0
-      y: 0.0
-      z: 0.0
+    type: "STATIC"
+    pose:
+      x: 2.14
+      y: 0.07
+      z: 0.305
   orientation:
     type: "STATIC"
     pose:

@@ -12,14 +12,14 @@ id: 1
 type: "PTP"
 
 # Recipe VALUE:
-speed: 1.0
+speed: 0.5
 pose:
   position:
     type: "STATIC"
     pose:
-      x: 1.80
-      y: 0.076
-      z: 0.50
+      x: 1.46
+      y: 0.0
+      z: 2.07
   orientation:
     type: "STATIC"
     pose:

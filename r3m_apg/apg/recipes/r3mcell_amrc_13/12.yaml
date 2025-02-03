@@ -12,7 +12,7 @@ id: 12
 type: "PTP"
 
 # Recipe VALUE:
-speed: 1.0
+speed: 0.5
 pose:
   position:
     type: "DYNAMIC"
@@ -20,7 +20,7 @@ pose:
     transform:
       x: 0.0
       y: 0.0
-      z: 0.08
+      z: 0.05
   orientation:
     type: "STATIC"
     pose:

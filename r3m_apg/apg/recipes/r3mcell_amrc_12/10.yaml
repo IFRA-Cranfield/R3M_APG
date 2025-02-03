@@ -2,25 +2,24 @@
 
 # Recipe INFORMATION:
 Information:
-  UseCase: "R3M Cell (AMRC): Battery Disassembly Use-Case."
-  Recipe: "Pick: BATTERY1"
+  UseCase: "R3M Cell (AMRC): Coloured Cube Kitting Use-Case."
+  Recipe: "Home Position - BackUp"
 
 # Recipe ID:
-id: 113
+id: 10
 
 # Recipe TYPE:
 type: "LIN"
 
 # Recipe VALUE:
-speed: 0.25
+speed: 1.0
 pose:
   position:
-    type: "DYNAMIC"
-    topic: "/Battery1/ObjectPose"
-    transform:
-      x: 0.0
-      y: 0.0
-      z: 0.0
+    type: "STATIC"
+    pose:
+      x: 0.45
+      y: 0.1
+      z: 0.40
   orientation:
     type: "STATIC"
     pose:

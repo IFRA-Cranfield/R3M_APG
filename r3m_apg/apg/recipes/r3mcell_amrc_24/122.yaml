@@ -9,7 +9,7 @@ Information:
 id: 122
 
 # Recipe TYPE:
-type: "PTP"
+type: "LIN"
 
 # Recipe VALUE:
 speed: 1.0

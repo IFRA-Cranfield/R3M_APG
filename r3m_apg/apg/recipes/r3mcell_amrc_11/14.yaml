@@ -9,7 +9,7 @@ Information:
 id: 14
 
 # Recipe TYPE:
-type: "PTP"
+type: "LIN"
 
 # Recipe VALUE:
 speed: 1.0
@@ -19,7 +19,7 @@ pose:
     topic: "/BottomCube/ObjectPose"
     transform:
       x: 0.0
-      y: 0.0
+      y: -0.006
       z: 0.10
   orientation:
     type: "STATIC"
