@@ -15,12 +15,11 @@ type: "LIN"
 speed: 1.0
 pose:
   position:
-    type: "DYNAMIC"
-    topic: "/BottomCube/ObjectPose"
-    transform:
-      x: 0.0
-      y: -0.006
-      z: 0.10
+    type: "STATIC"
+    pose:
+      x: 0.75
+      y: 0.1
+      z: 0.25
   orientation:
     type: "STATIC"
     pose:

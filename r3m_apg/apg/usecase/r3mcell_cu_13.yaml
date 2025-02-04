@@ -32,7 +32,7 @@ ObjectList:
     InitialPose: 
       x: "{'min': 0.45, 'max': 0.70}"
       y: "{'min': 0.10, 'max': 0.95}"
-      z: 0.895
+      z: 0.90
       qx: 0.0
       qy: 0.0
       qz: 0.0
@@ -46,7 +46,7 @@ ObjectList:
     InitialPose:   
       x: "{'min': 0.45, 'max': 0.75}"
       y: "{'min': 0.2, 'max': 0.8}"
-      z: 0.865
+      z: 0.90
       qx: 0.0
       qy: 0.0
       qz: 0.0
@@ -70,7 +70,7 @@ Liaison:
     Parent: "GLOBAL"
     Child: "TopCylinder"
     Transform:
-      diffMax: 0.03
+      diffMax: 0.05
       position: True
       orientation: False
       x: 0.45

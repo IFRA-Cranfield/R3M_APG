@@ -11,7 +11,7 @@
 # ========================================================================================= #
 
 # System:
-import sys, subprocess, time, os, psutil
+import sys, subprocess, time, os, psutil, yaml
 
 # ROS2:
 import rclpy
@@ -33,7 +33,7 @@ def LaunchAPG(CONFIG, PERCEPTION):
 
     if PERCEPTION == False:
         CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_Gazebo.py train:=False config:=" + CONFIG
-    if PERCEPTION == "external":
+    if PERCEPTION == "MarkerGrid":
         CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_Gazebo.py train:=False perception:=True config:=" + CONFIG
     if PERCEPTION == "r3m":
         CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_Gz_Perception.py config:=" + CONFIG
@@ -94,7 +94,39 @@ def LaunchR3MPerception():
     print("[R3M Perception LAUNCH] - ERROR: One-Shot Detection and Megapose6D ROS 2 Service Servers not launched.")
     return(False)
 
+# ========================================================================================= #           
+# get CONFIG:
+def getCNF(CONFIG):
 
+    PATH = os.path.join(get_package_share_directory('r3m_apg'), 'apg', 'usecase')
+    YAML_PATH = PATH + "/" + CONFIG + ".yaml"
+
+    with open(YAML_PATH, 'r') as YAML:
+        icYAML = yaml.safe_load(YAML)
+
+    CNF = icYAML["Information"]["Name"]
+
+    return(CNF)
+
+# ========================================================================================= #
+# LAUNCH -> PERCEPTION-MG Node: 
+def LaunchMGPerception(MODEL, PKG, CNF):
+
+    if "r3mcell_cu" in PKG:
+        if "_1" in CNF:
+            CELL = "irb120-cranfield"
+        else:
+            CELL = "ur3-cranfield"
+    
+    else:
+        if "_1" in CNF:
+            CELL = "irb1200-amrc"
+        else:
+            CELL = "irb6640-amrc"
+
+    CMD = "gnome-terminal -- ros2 run ros2_ope PositionEstimation_MarkerGrid.py environment:=gazebo model:=" + MODEL + " cell:=" + CELL + " visualize:=True"
+    print("[R3M Perception -MarkerGrid- NODE LAUNCH]: Executing command -> " + CMD)
+    PROCESS = subprocess.Popen(CMD, shell=True)
             
 # ========================================================================================= #           
 # EVALUATE INPUT ARGUMENTS:
@@ -133,7 +165,7 @@ def main(args=None):
         exit()
     # Get ROS2 Parameter value -> perception:
     PERCEPTION = AssignArgument("perception")
-    if PERCEPTION == "r3m" or PERCEPTION == "external":
+    if PERCEPTION == "r3m" or PERCEPTION == "MarkerGrid":
         None
     elif PERCEPTION == None:
         PERCEPTION = False
@@ -145,6 +177,8 @@ def main(args=None):
 
     try:
         
+        CNF = getCNF(CONFIG)
+        
         # 1. LAUNCH GAZEBO ENVIRONMENT:
         RES1 = GAZEBO_start(PACKAGE,CONFIG)
         if RES1 == False:
@@ -155,12 +189,23 @@ def main(args=None):
         0
         # 2. LAUNCH PERCEPTION:
         if PERCEPTION == "r3m":
+            
             RES2 = LaunchR3MPerception()
             if RES2 == False:
                 print("")
                 print("ERROR: R3M Perception (OSD+M6D Nodes) START failed.")
                 print("Closing... BYE!")
                 exit()
+        
+        elif PERCEPTION == "MarkerGrid":
+            MODEL = AssignArgument("model")
+            if MODEL == None:
+                print("")
+                print("ERROR: model INPUT ARGUMENT has not been correctly defined. Please try again.")
+                print("Closing... BYE!")
+                exit()
+            else:
+                LaunchMGPerception(MODEL, PACKAGE, CONFIG)
             
         # 3. LAUNCH R3M-APG ENVIRONMENT:
         RES3 = LaunchAPG(CONFIG,PERCEPTION)
@@ -185,7 +230,8 @@ def main(args=None):
         
         # Close ROS 2 Nodes:
         os.system("pkill -f r3m_SkillExecution_Gazebo.py")  
-        os.system("pkill -f r3m_SkillExecution_Gz_Perception.py")  
+        os.system("pkill -f r3m_SkillExecution_Gz_Perception.py") 
+        os.system("pkill -f PositionEstimation_MarkerGrid.py")  
         os.system("pkill -f OSD_server.py")  
         os.system("pkill -f M6D_server.py")  
         

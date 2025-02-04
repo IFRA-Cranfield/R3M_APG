@@ -14,4 +14,4 @@ type: "GRIP"
 # Recipe VALUE:
 speed: 1.0
 action: "CLOSE"
-value: 40.0
+value: 25.0
