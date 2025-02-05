@@ -3,23 +3,23 @@
 # Recipe INFORMATION:
 Information:
   UseCase: "R3M Cell (AMRC): Battery Disassembly Use-Case."
-  Recipe: "Finish Position"
+  Recipe: "SIDE CASE (N) - Place Approach"
 
 # Recipe ID:
-id: 99
+id: 24
 
 # Recipe TYPE:
-type: "PTP"
+type: "LIN"
 
 # Recipe VALUE:
-speed: 1.0
+speed: 0.5
 pose:
   position:
     type: "STATIC"
     pose:
-      x: 1.462
-      y: 0.0
-      z: 2.067
+      x: 1.88
+      y: 0.49
+      z: 0.4
   orientation:
     type: "STATIC"
     pose:
