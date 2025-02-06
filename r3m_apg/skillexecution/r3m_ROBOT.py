@@ -83,7 +83,7 @@ def LaunchR3MPerception():
     cli = NODE.create_client(OneShotDet, "/R3MPerception_OSD")
     
     T = time.time()
-    while (time.time() < T + 30.0):
+    while (time.time() < T + 300.0):
         
         if cli.wait_for_service():
             

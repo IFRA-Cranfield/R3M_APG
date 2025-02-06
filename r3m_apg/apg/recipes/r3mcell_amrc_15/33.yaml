@@ -16,15 +16,16 @@ speed: 0.25
 pose:
   position:
     type: "DYNAMIC"
-    topic: "/GreenCube/ObjectPose"
+    topic: "/car_rim/ObjectPose"
     transform:
       x: 0.0
       y: 0.0
       z: 0.01
   orientation:
-    type: "STATIC"
-    pose:
-      qx: 0.707
+    type: "DYNAMIC"
+    topic: "/car_rim/ObjectPose"
+    transform:
+      qx: 0.0
       qy: 0.0
-      qz: 0.707
+      qz: 0.0
       qw: 0.0

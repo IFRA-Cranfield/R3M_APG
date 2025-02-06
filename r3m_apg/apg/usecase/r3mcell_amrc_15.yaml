@@ -12,7 +12,7 @@ Robot:
   EEType: "ParallelGripper"
   Package: "r3mcell_amrc_gazebo"
   Camera:
-    Cell: "lenovoFHD"
+    Cell: "camera_zed_leftL_720"
     Gazebo: "lenovoFHD_gazebo"
   HomePose:
     x: 0.451
