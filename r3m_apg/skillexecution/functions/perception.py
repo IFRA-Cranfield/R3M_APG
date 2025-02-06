@@ -90,6 +90,8 @@ class M6DClient(Node):
         self.req.camera = CAM
         self.req.img = IMG
         
+        self.req.idx = 0
+        
         self.future = self.cli.call_async(self.req)
         
     def EXECUTE_RTI(self, IMG, CAM, INPUT):
@@ -99,6 +101,8 @@ class M6DClient(Node):
         self.req.input = INPUT
         self.req.camera = CAM
         self.req.img = IMG
+        
+        self.req.idx = 0
         
         self.future2 = self.cli2.call_async(self.req)
 
