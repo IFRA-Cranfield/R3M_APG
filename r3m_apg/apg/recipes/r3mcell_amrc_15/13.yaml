@@ -1,0 +1,30 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (AMRC): R3M-Perception Testing Use-Case."
+  Recipe: "Pick: cylinder"
+
+# Recipe ID:
+id: 13
+
+# Recipe TYPE:
+type: "LIN"
+
+# Recipe VALUE:
+speed: 0.25
+pose:
+  position:
+    type: "DYNAMIC"
+    topic: "/cylinder/ObjectPose"
+    transform:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+  orientation:
+    type: "STATIC"
+    pose:
+      qx: 0.707
+      qy: 0.0
+      qz: 0.707
+      qw: 0.0

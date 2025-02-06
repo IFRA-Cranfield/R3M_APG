@@ -1,0 +1,86 @@
+# R3M Project - Initial Conditions for the R3M Cell Environment Launch:
+
+# Use-Case Information:
+Information:
+  UseCase: "R3M Cell (AMRC): R3M-Perception Testing Use-Case."
+  Name: "r3mcell_amrc_15"
+
+# Robot Information:
+Robot:
+  Model: "irb1200"
+  Link: "EE_gpp5010nc"
+  EEType: "ParallelGripper"
+  Package: "r3mcell_amrc_gazebo"
+  Camera:
+    Cell: "lenovoFHD"
+    Gazebo: "lenovoFHD_gazebo"
+  HomePose:
+    x: 0.451
+    y: 0.0
+    z: 0.774
+    qx: 0.707
+    qy: 0.0
+    qz: 0.707
+    qw: 0.0
+
+# Object List:
+ObjectList:
+  - Name: "cylinder"
+    Link: "cylinder"
+    CADFile: "R3MPerceptionOBJ"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose: 
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
+      z: 0.15
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "clamp_big"
+    Link: "clamp_big"
+    CADFile: "R3MPerceptionOBJ"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose:   
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
+      z: 0.15
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "car_rim"
+    Link: "car_rim"
+    CADFile: "R3MPerceptionOBJ"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose:   
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
+      z: 0.15
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "tee_connector"
+    Link: "tee_connector"
+    CADFile: "R3MPerceptionOBJ"
+    Package: "r3mcell_amrc_gazebo"
+    InitialPose:   
+      x: "{'min': 0.40, 'max': 0.75}"
+      y: "{'min': -0.2, 'max': 0.45}"
+      z: 0.15
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+
+# Liaison:
+Liaison: None
