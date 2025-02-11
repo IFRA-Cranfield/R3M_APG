@@ -99,12 +99,12 @@ Sequence:
   - Step: 9
     Name: "[IRB1200 AMRC - LamStack]: MoveL - Robot UP without LamSheet."
     Type: "MoveL"
-    Speed: 0.1
+    Speed: 0.25
     Delay: 0.0
     Input:
       x: 0.0
       y: 0.0
-      z: 0.35
+      z: 0.30
 
   - Step: 10
     Name: "[IRB1200 AMRC - LamStack]: MoveJ - Back to HomePosition."

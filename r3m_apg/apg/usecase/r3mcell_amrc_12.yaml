@@ -91,8 +91,8 @@ Liaison:
       diffMax: 0.035
       position: True
       orientation: False
-      x: 0.403
-      y: -0.2
+      x: 0.4249
+      y: -0.255
       z: 0.137
   - Name: "Blue Cube is placed on the top-right tray slot."
     Parent: "GLOBAL"
@@ -101,8 +101,8 @@ Liaison:
       diffMax: 0.035
       position: True
       orientation: False
-      x: 0.403
-      y: -0.245
+      x: 0.4259
+      y: -0.210
       z: 0.137
   - Name: "Green Cube is placed on the bottom-left tray slot."
     Parent: "GLOBAL"
@@ -111,8 +111,8 @@ Liaison:
       diffMax: 0.035
       position: True
       orientation: False
-      x: 0.448
-      y: -0.2
+      x: 0.4698
+      y: -0.208
       z: 0.137
   - Name: "White Cube is placed on the bottom-right tray slot."
     Parent: "GLOBAL"
@@ -122,5 +122,5 @@ Liaison:
       position: True
       orientation: False
       x: 0.448
-      y: -0.245
+      y: -0.253
       z: 0.137
