@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
+  
   <name>r3m_apg</name>
   <version>0.0.0</version>
-  <description>IFRA-Cranfield (Cranfield University, UK). Package: R3M Cell (Humble) - Execution</description>
+  <description>IFRA-Cranfield (Cranfield University, UK). Package: R3M-APG (Humble) - Execution</description>
   <maintainer email="Mikel.Bueno-Viso@cranfield.ac.uk">mikel</maintainer>
   <license>TODO: License declaration</license>
 
