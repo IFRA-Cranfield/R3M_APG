@@ -78,7 +78,7 @@ def main(args=None):
     frame_delay = 1
 
     # Load custom YOLO MODEL:
-    DIR = os.path.join(os.path.expanduser('~'), 'dev_ws', 'src', 'ros2_ObjectPoseEstimation', 'ros2_ope',  'yolo', 'models')
+    DIR = os.path.join(os.path.expanduser('~'), 'dev_ws', 'src', 'r3m_ObjectPoseEstimation', 'r3m_ope',  'yolo', 'models')
     if CELLname == "AMRC":
         modelPATH = DIR + "/BatteryDisassembly_AMRC.pt"
     else: 

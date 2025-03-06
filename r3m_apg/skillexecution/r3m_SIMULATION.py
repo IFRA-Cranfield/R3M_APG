@@ -124,7 +124,7 @@ def LaunchMGPerception(MODEL, PKG, CNF):
         else:
             CELL = "irb6640-amrc"
 
-    CMD = "gnome-terminal -- ros2 run ros2_ope PositionEstimation_MarkerGrid.py environment:=gazebo model:=" + MODEL + " cell:=" + CELL + " visualize:=True"
+    CMD = "gnome-terminal -- ros2 run r3m_ope PositionEstimation_MarkerGrid.py environment:=gazebo model:=" + MODEL + " cell:=" + CELL + " visualize:=True"
     print("[R3M Perception -MarkerGrid- NODE LAUNCH]: Executing command -> " + CMD)
     PROCESS = subprocess.Popen(CMD, shell=True)
             
