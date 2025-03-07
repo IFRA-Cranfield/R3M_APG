@@ -12,11 +12,11 @@ Installation steps can be found at: https://github.com/IFRA-Cranfield/ros2_SimRe
 
 __REQUIRED: Download and install the R3M_Cell Repository__
 
-R3M-APG has been developed, implemented and tested for the R3M-Cell ROS 2 Environment. Therefore, the R3M-UK/R3M-Cell GitHub repository must be downloaded and installed for R3M-APG to work:
+R3M-APG has been developed, implemented and tested for the R3M-Cell ROS 2 Environment. Therefore, the IFRA-Cranfield/R3M-Cell GitHub repository must be downloaded and installed for R3M-APG to work:
 
 ```sh
 cd ~/dev_ws/src
-git clone https://github.com/R3M-UK/R3M_Cell
+git clone https://github.com/IFRA-Cranfield/R3M_Cell
 cd ~/dev_ws
 colcon build
 ```   
@@ -33,7 +33,7 @@ __Download and install R3M_APG__
 
 ```sh
 cd ~/dev_ws/src
-git clone https://github.com/R3M-UK/R3M_APG
+git clone https://github.com/IFRA-Cranfield/R3M_APG
 cd ~/dev_ws
 colcon build
 ```   

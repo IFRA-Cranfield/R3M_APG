@@ -49,7 +49,7 @@
 
 # ======= CITE OUR WORK ======= #
 # You can cite our work with the following statement:
-# R3M-APG (2025) Reconfigurable Robotics for Responsive Manufacture. URL: https://github.com/R3M-UK/R3M_APG.
+# R3M-APG (2025) Reconfigurable Robotics for Responsive Manufacture. URL: https://github.com/IFRA-Cranfield/R3M_APG.
 
 -->
 
@@ -199,7 +199,7 @@ Conference Papers:
 <p>
   You can cite our work with the following statement:
   <br />
-  R3M-APG (2025) Reconfigurable Robotics for Responsive Manufacture. URL: https://github.com/R3M-UK/R3M_APG.
+  R3M-APG (2025) Reconfigurable Robotics for Responsive Manufacture. URL: https://github.com/IFRA-Cranfield/R3M_APG.
 </p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
