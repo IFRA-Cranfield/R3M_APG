@@ -600,10 +600,10 @@ def main(args=None):
         print("ERROR: config INPUT ARGUMENT has not been defined. Please try again.")
         print("Closing... BYE!")
         exit()
-
+    
     global R3MPerception
     R3MPerception = AssignArgument("perception")
-    if R3MPerception == "r3m" or R3MPerception == "R3M":
+    if R3MPerception == "True" or R3MPerception == "true":
         R3MPerception = True
     else:
         R3MPerception = False

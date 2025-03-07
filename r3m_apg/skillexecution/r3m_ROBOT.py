@@ -34,7 +34,7 @@ def LaunchAPG(CONFIG, PERCEPTION, CELL):
     if PERCEPTION == "MarkerGrid":
         CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_RealRobot.py config:=" + CONFIG
     elif PERCEPTION == "r3m":
-        CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_RealRobot.py perception:=R3M config:=" + CONFIG
+        CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_RealRobot.py perception:=True config:=" + CONFIG
     elif PERCEPTION == "BD":
         CMD = "gnome-terminal -- ros2 run r3m_apg r3m_SkillExecution_RealRobot_BD.py config:=" + CONFIG + " cell:=" + CELL
 
