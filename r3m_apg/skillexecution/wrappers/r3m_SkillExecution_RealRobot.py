@@ -244,10 +244,12 @@ class ExecuteSkill_SERVER(Node):
         
         # CHECK if Object and Liaison arrays are not NULL:
         self.OLCheck = False
-        if OL != "None":
+        if OL != None:
             self.OLCheck = True
+        else:
+            self.ObjectList = []
         self.LICheck = False
-        if LI != "None":
+        if LI != None:
             self.LICheck = True
 
         # INITIALISE -> CLASSES needed for the Skill Execution:
