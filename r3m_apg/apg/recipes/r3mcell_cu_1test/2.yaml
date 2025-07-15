@@ -1,0 +1,29 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (AMRC): R3M Testing."
+  Recipe: "PTP - POS1-POS2"
+
+# Recipe ID:
+id: 2
+
+# Recipe TYPE:
+type: "LIN"
+
+# Recipe VALUE:
+speed: 0.1
+pose:
+  position:
+    type: "STATIC"
+    pose:
+      x: 0.477
+      y: 0.725
+      z: 1.168
+  orientation:
+    type: "STATIC"
+    pose:
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
