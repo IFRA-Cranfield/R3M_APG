@@ -1,0 +1,29 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (Cranfield University): Coloured Cube Kitting Use-Case."
+  Recipe: "Pick (safe height): GREEN CUBE"
+
+# Recipe ID:
+id: 32
+
+# Recipe TYPE:
+type: "PTP"
+
+# Recipe VALUE:
+speed: 1.0
+pose:
+  position:
+    type: "STATIC"
+    pose:
+      x: 0.05
+      y: 0.25
+      z: 0.95
+  orientation:
+    type: "STATIC"
+    pose:
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0

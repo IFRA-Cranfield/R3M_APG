@@ -1,0 +1,17 @@
+# R3M Project - Recipe for Automatic Program Generation.
+
+# Recipe INFORMATION:
+Information:
+  UseCase: "R3M Cell (Cranfield University): Coloured Cube Kitting Use-Case."
+  Recipe: "GRIPPER: OPEN"
+
+# Recipe ID:
+id: 7
+
+# Recipe TYPE:
+type: "GRIP"
+
+# Recipe VALUE:
+speed: 1.0
+action: "OPEN"
+value: 0.0

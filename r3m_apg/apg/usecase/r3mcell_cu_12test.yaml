@@ -1,0 +1,126 @@
+# R3M Project - Initial Conditions for the R3M Cell Environment Launch:
+
+# Use-Case Information:
+Information:
+  UseCase: "R3M Cell (Cranfield University): Coloured Cube Kitting Use-Case."
+  Name: "r3mcell_cu_12test"
+
+# Robot Information:
+Robot:
+  Model: "irb120"
+  Link: "EE_egp64"
+  EEType: "ParallelGripper"
+  Package: "r3mcell_cu_gazebo"
+  Camera:
+    Cell: "lenovoFHD"
+    Gazebo: "lenovoFHD_gazebo"
+  HomePose:
+    x: 0.577
+    y: 0.525
+    z: 1.228
+    qx: 0.0
+    qy: 1.0
+    qz: 0.0
+    qw: 0.0
+
+# Object List:
+ObjectList:
+  - Name: "RedCube"
+    Link: "RedCube"
+    CADFile: "RedCube"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose: 
+      x: 0.60
+      y: 0.20
+      z: 0.88
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "BlueCube"
+    Link: "BlueCube"
+    CADFile: "BlueCube"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose:   
+      x: 0.60
+      y: 0.40
+      z: 0.88
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "GreenCube"
+    Link: "GreenCube"
+    CADFile: "GreenCube"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose:   
+      x: 0.60
+      y: 0.60
+      z: 0.88
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+  - Name: "WhiteCube"
+    Link: "WhiteCube"
+    CADFile: "WhiteCube"
+    Package: "r3mcell_cu_gazebo"
+    InitialPose:   
+      x: 0.60
+      y: 0.80
+      z: 0.88
+      qx: 0.0
+      qy: 0.0
+      qz: 0.0
+      qw: 0.0
+    CurrentPose: None
+    PreviousPose: None
+
+# Liaison:
+Liaison:
+  - Name: "Red Cube is placed on the top-left tray slot."
+    Parent: "GLOBAL"
+    Child: "RedCube"
+    Transform:
+      diffMax: 0.025
+      position: True
+      orientation: False
+      x: 0.228
+      y: 0.077
+      z: 0.878
+  - Name: "Blue Cube is placed on the top-right tray slot."
+    Parent: "GLOBAL"
+    Child: "BlueCube"
+    Transform:
+      diffMax: 0.025
+      position: True
+      orientation: False
+      x: 0.228
+      y: 0.122
+      z: 0.878
+  - Name: "Green Cube is placed on the bottom-left tray slot."
+    Parent: "GLOBAL"
+    Child: "GreenCube"
+    Transform:
+      diffMax: 0.025
+      position: True
+      orientation: False
+      x: 0.272
+      y: 0.077
+      z: 0.878
+  - Name: "White Cube is placed on the bottom-right tray slot."
+    Parent: "GLOBAL"
+    Child: "WhiteCube"
+    Transform:
+      diffMax: 0.025
+      position: True
+      orientation: False
+      x: 0.272
+      y: 0.122
+      z: 0.878
