@@ -238,6 +238,7 @@ class ExecuteSkill_SERVER(Node):
     def __init__(self, INFO, ROB, OL, LI):
 
         global R3MPerception
+        global BypassPerception
         
         # Robot -> {Model - Link - EEType - Package - InitialPose - HomePose}
         # ObjectList -> [{Name - Link - CADFile - Package - InitialPose - CurrentPose - PreviousPose}, ..]
@@ -266,6 +267,12 @@ class ExecuteSkill_SERVER(Node):
         else:
             self.OBJ = None
         
+        # Bypass Perception:
+        if BypassPerception:
+            self.OLCheck = False
+            self.LICheck = False
+            self.ObjectList = []
+
         if self.OLCheck:
             self.OBJECTS = OBJECT(OL, R3MPerception=True) # Either from R3MPerception or an external detection model, ROS 2 Topic is always /ObjectPoseEstimation.
             
@@ -605,9 +612,13 @@ def main(args=None):
         exit()
     
     global R3MPerception
+    global BypassPerception
     R3MPerception = AssignArgument("perception")
     if R3MPerception == "True" or R3MPerception == "true":
         R3MPerception = True
+    elif R3MPerception == "bypass":
+        BypassPerception = True
+        R3MPerception = False
     else:
         R3MPerception = False
 
@@ -632,7 +643,7 @@ def main(args=None):
             rclpy.shutdown()
 
     else:
-        r3mNode = rclpy.create_node('R3M_RecipeExecution_Node')
+        r3mNode = rclpy.create_node('R3M_RecipeExecution_Node')and BypassPerception == False
         r3mNode.get_logger().info("[R3M Cell] - UseCase file not existing for the ROBOT CONFIGURATION selected. Closing r3m_RecipeExecution node.")
         
         # Clean up
