@@ -309,7 +309,8 @@ class ExecuteSkill_SERVER(Node):
                 self.PERCEPTION.EXECUTE_PERCEPTION(self.OBJ, self.CAMERA)
             
         # Wait for -> {R3M Perception M6D-RTI} or to the external algorithm to start publishing Object Poses:
-        self.OBJECTS.CheckObjectPose() # This is a blocking function that waits until M6D publishes to /ObjectPose/R3MPerception ROS 2 Topic.
+        if self.OLCheck:
+            self.OBJECTS.CheckObjectPose() # This is a blocking function that waits until M6D publishes to /ObjectPose/R3MPerception ROS 2 Topic.
 
         # Initialise VARIABLES using the information from the INPUT PARAMETERS:
         self.RecipeFolder = INFO["Name"]       # FOLDER to get the recipes from!
@@ -440,7 +441,7 @@ class ExecuteSkill_SERVER(Node):
 
                     RES = CALCULATE_RobPose(RECIPE["pose"], self.ObjectList)
                     if RES["Success"]:
-                        RES = self.ROBOT.RobMove_EXECUTE(RECIPE["type"], RECIPE["speed"]*0.25, RES["Pose"])
+                        RES = self.ROBOT.RobMove_EXECUTE(RECIPE["type"], RECIPE["speed"], RES["Pose"])
 
                     # If movement is successful:
                     if RES["Success"]:
