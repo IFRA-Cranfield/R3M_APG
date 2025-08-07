@@ -18,7 +18,7 @@ pose:
     type: "STATIC"
     pose:
       x: 0.60
-      y: 0.60
+      y: 0.50
       z: 0.95
   orientation:
     type: "STATIC"
