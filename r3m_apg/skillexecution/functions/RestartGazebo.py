@@ -54,8 +54,7 @@ def GAZEBO_start(PKG, CNF):
     SUBNode = LaunchSUB()
     global GzLAUNCH_COMPLETE
 
-    PKG_ = PKG.replace("_gazebo", "")
-    CMD = "gnome-terminal -- ros2 launch ros2srrc_launch moveit2.launch.py package:=" + PKG_ + " config:=" + CNF
+    CMD = "gnome-terminal -- ros2 launch ros2srrc_launch moveit2.launch.py package:=" + PKG + " config:=" + CNF
     
     print("")
     print("[GAZEBO START]: Executing command -> " + CMD)

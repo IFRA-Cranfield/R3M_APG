@@ -10,7 +10,7 @@ Robot:
   Model: "irb120"
   Link: "EE_egp64"
   EEType: "ParallelGripper"
-  Package: "r3mcell_cu_gazebo"
+  Package: "r3mcell_cu"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -29,7 +29,7 @@ ObjectList:
   - Name: "Battery1"
     Link: "Battery"
     CADFile: "Battery"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose: 
       x: "[0.6165, 0.64, 0.6625, 0.6855, 0.6165, 0.64, 0.6625, 0.6855]"
       y: "[0.475, 0.475, 0.475, 0.475, 0.575, 0.575, 0.575, 0.575]"
@@ -43,7 +43,7 @@ ObjectList:
   - Name: "Battery2"
     Link: "Battery"
     CADFile: "Battery"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose: 
       x: "[0.6165, 0.64, 0.6625, 0.6855, 0.6165, 0.64, 0.6625, 0.6855]"
       y: "[0.475, 0.475, 0.475, 0.475, 0.575, 0.575, 0.575, 0.575]"
@@ -57,7 +57,7 @@ ObjectList:
   - Name: "Battery3"
     Link: "Battery"
     CADFile: "Battery"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose: 
       x: "[0.6165, 0.64, 0.6625, 0.6855, 0.6165, 0.64, 0.6625, 0.6855]"
       y: "[0.475, 0.475, 0.475, 0.475, 0.575, 0.575, 0.575, 0.575]"

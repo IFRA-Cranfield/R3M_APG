@@ -10,7 +10,7 @@ Robot:
   Model: "ur3"
   Link: "EE_robotiq_hande"
   EEType: "ParallelGripper"
-  Package: "r3mcell_cu_gazebo"
+  Package: "r3mcell_cu"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -36,7 +36,7 @@ ObjectList:
   - Name: "RedCube"
     Link: "RedCube"
     CADFile: "RedCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose: 
       x: -0.05
       y: 0.25
@@ -50,7 +50,7 @@ ObjectList:
   - Name: "BlueCube"
     Link: "BlueCube"
     CADFile: "BlueCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose:   
       x: -0.05
       y: 0.30
@@ -64,7 +64,7 @@ ObjectList:
   - Name: "GreenCube"
     Link: "GreenCube"
     CADFile: "GreenCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose:   
       x: 0.05
       y: 0.25
@@ -78,7 +78,7 @@ ObjectList:
   - Name: "WhiteCube"
     Link: "WhiteCube"
     CADFile: "WhiteCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose:   
       x: 0.05
       y: 0.30

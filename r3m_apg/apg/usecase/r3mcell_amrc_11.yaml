@@ -10,7 +10,7 @@ Robot:
   Model: "irb1200"
   Link: "EE_gpp5010nc"
   EEType: "ParallelGripper"
-  Package: "r3mcell_amrc_gazebo"
+  Package: "r3mcell_amrc"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -28,7 +28,7 @@ ObjectList:
   - Name: "BottomCube"
     Link: "BottomCube"
     CADFile: "BottomCube"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"
@@ -42,7 +42,7 @@ ObjectList:
   - Name: "TopCube"
     Link: "TopCube"
     CADFile: "TopCube"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose:   
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"

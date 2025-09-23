@@ -10,7 +10,7 @@ Robot:
   Model: "irb1200"
   Link: None
   EEType: None
-  Package: "r3mcell_amrc_gazebo"
+  Package: "r3mcell_amrc"
   Camera:
     Cell: None
     Gazebo: None

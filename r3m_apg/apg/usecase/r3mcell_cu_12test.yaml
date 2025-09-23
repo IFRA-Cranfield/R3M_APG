@@ -10,7 +10,7 @@ Robot:
   Model: "irb120"
   Link: "EE_egp64"
   EEType: "ParallelGripper"
-  Package: "r3mcell_cu_gazebo"
+  Package: "r3mcell_cu"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -28,7 +28,7 @@ ObjectList:
   - Name: "RedCube"
     Link: "RedCube"
     CADFile: "RedCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose: 
       x: 0.60
       y: 0.20
@@ -42,7 +42,7 @@ ObjectList:
   - Name: "BlueCube"
     Link: "BlueCube"
     CADFile: "BlueCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose:   
       x: 0.60
       y: 0.40
@@ -56,7 +56,7 @@ ObjectList:
   - Name: "GreenCube"
     Link: "GreenCube"
     CADFile: "GreenCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose:   
       x: 0.60
       y: 0.60
@@ -70,7 +70,7 @@ ObjectList:
   - Name: "WhiteCube"
     Link: "WhiteCube"
     CADFile: "WhiteCube"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose:   
       x: 0.60
       y: 0.80

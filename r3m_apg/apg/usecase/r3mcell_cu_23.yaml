@@ -10,7 +10,7 @@ Robot:
   Model: "ur3"
   Link: "EE_robotiq_hande"
   EEType: "ParallelGripper"
-  Package: "r3mcell_cu_gazebo"
+  Package: "r3mcell_cu"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -36,7 +36,7 @@ ObjectList:
   - Name: "BaseCylinder"
     Link: "BaseCylinder"
     CADFile: "BaseCylinder"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose: 
       x: "{'min': -0.12, 'max': 0.12}"
       y: "{'min': 0.15, 'max': 0.35}"
@@ -50,7 +50,7 @@ ObjectList:
   - Name: "TopCylinder"
     Link: "TopCylinder"
     CADFile: "TopCylinder"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose:   
       x: "{'min': -0.12, 'max': 0.12}"
       y: "{'min': 0.15, 'max': 0.35}"

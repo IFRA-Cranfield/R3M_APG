@@ -10,7 +10,7 @@ Robot:
   Model: "irb120"
   Link: "EE_egp64"
   EEType: "ParallelGripper"
-  Package: "r3mcell_cu_gazebo"
+  Package: "r3mcell_cu"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -28,7 +28,7 @@ ObjectList:
   - Name: "BaseCylinder"
     Link: "BaseCylinder"
     CADFile: "BaseCylinder"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose: 
       x: 0.60
       y: 0.45
@@ -42,7 +42,7 @@ ObjectList:
   - Name: "TopCylinder"
     Link: "TopCylinder"
     CADFile: "TopCylinder"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose:   
       x: 0.60
       y: 0.65

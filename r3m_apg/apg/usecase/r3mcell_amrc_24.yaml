@@ -10,7 +10,7 @@ Robot:
   Model: "irb6640"
   Link: "EE_gpp5010nc"
   EEType: "ParallelGripper"
-  Package: "r3mcell_cu_gazebo"
+  Package: "r3mcell_cu"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -28,7 +28,7 @@ ObjectList:
   - Name: "Battery1"
     Link: "Battery"
     CADFile: "Battery"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
       y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"
@@ -42,7 +42,7 @@ ObjectList:
   - Name: "Battery2"
     Link: "Battery"
     CADFile: "Battery"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
       y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"
@@ -56,7 +56,7 @@ ObjectList:
   - Name: "Battery3"
     Link: "Battery"
     CADFile: "Battery"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
       y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"
@@ -72,7 +72,7 @@ ObjectExtra:
   - Name: "Battery4"
     Link: "Battery"
     CADFile: "Battery"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
       y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"
@@ -86,7 +86,7 @@ ObjectExtra:
   - Name: "Battery5"
     Link: "Battery"
     CADFile: "Battery"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "[2.236, 2.199, 2.161, 2.124, 2.086, 2.049, 2.024]"
       y: "[0.046, 0.106, 0.046, 0.106, 0.046, 0.106, 0.066]"

@@ -10,7 +10,7 @@ Robot:
   Model: "irb1200"
   Link: "EE_gpp5010nc"
   EEType: "ParallelGripper"
-  Package: "r3mcell_amrc_gazebo"
+  Package: "r3mcell_amrc"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -28,7 +28,7 @@ ObjectList:
   - Name: "RedCube"
     Link: "RedCube"
     CADFile: "RedCube"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"
@@ -42,7 +42,7 @@ ObjectList:
   - Name: "BlueCube"
     Link: "BlueCube"
     CADFile: "BlueCube"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"
@@ -56,7 +56,7 @@ ObjectList:
   - Name: "GreenCube"
     Link: "GreenCube"
     CADFile: "GreenCube"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"
@@ -70,7 +70,7 @@ ObjectList:
   - Name: "WhiteCube"
     Link: "WhiteCube"
     CADFile: "WhiteCube"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"

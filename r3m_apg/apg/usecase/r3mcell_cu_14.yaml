@@ -10,7 +10,7 @@ Robot:
   Model: "irb120"
   Link: "EE_egp64"
   EEType: "ParallelGripper"
-  Package: "r3mcell_cu_gazebo"
+  Package: "r3mcell_cu"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -36,7 +36,7 @@ ObjectList:
   - Name: "Can"
     Link: "Can"
     CADFile: "Can"
-    Package: "r3mcell_cu_gazebo"
+    Package: "r3mcell_cu"
     InitialPose: 
       x: 0.6
       y: 0.8

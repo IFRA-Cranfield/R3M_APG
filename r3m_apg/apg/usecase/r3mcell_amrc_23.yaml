@@ -10,7 +10,7 @@ Robot:
   Model: "irb6640"
   Link: "EE_gpp5010nc"
   EEType: "ParallelGripper"
-  Package: "r3mcell_amrc_gazebo"
+  Package: "r3mcell_amrc"
   Camera:
     Cell: "lenovoFHD"
     Gazebo: "lenovoFHD_gazebo"
@@ -28,7 +28,7 @@ ObjectList:
   - Name: "BaseCylinder"
     Link: "BaseCylinder"
     CADFile: "BaseCylinder"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "{'min': -0.35, 'max': 0.35}"
       y: "{'min': 1.65, 'max': 2.35}"
@@ -42,7 +42,7 @@ ObjectList:
   - Name: "TopCylinder"
     Link: "TopCylinder"
     CADFile: "TopCylinder"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose:   
       x: "{'min': -0.35, 'max': 0.35}"
       y: "{'min': 1.65, 'max': 2.35}"

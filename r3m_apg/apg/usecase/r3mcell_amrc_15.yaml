@@ -10,7 +10,7 @@ Robot:
   Model: "irb1200"
   Link: "EE_gpp5010nc"
   EEType: "ParallelGripper"
-  Package: "r3mcell_amrc_gazebo"
+  Package: "r3mcell_amrc"
   Camera:
     Cell: "camera_zed_leftL_720"
     Gazebo: "lenovoFHD_gazebo"
@@ -28,7 +28,7 @@ ObjectList:
   - Name: "cylinder"
     Link: "cylinder"
     CADFile: "R3MPerceptionOBJ"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose: 
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"
@@ -42,7 +42,7 @@ ObjectList:
   - Name: "clamp_big"
     Link: "clamp_big"
     CADFile: "R3MPerceptionOBJ"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose:   
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"
@@ -56,7 +56,7 @@ ObjectList:
   - Name: "car_rim"
     Link: "car_rim"
     CADFile: "R3MPerceptionOBJ"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose:   
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"
@@ -70,7 +70,7 @@ ObjectList:
   - Name: "tee_connector"
     Link: "tee_connector"
     CADFile: "R3MPerceptionOBJ"
-    Package: "r3mcell_amrc_gazebo"
+    Package: "r3mcell_amrc"
     InitialPose:   
       x: "{'min': 0.40, 'max': 0.75}"
       y: "{'min': -0.2, 'max': 0.45}"
