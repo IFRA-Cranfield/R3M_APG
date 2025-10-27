@@ -124,7 +124,13 @@ The R3M Project is an EPSRC-funded UK research initiative (EP/V051180/1) focused
 
 ### R3M-APG Repository
 
-Aa
+The R3M-APG repository contains all the components required to execute, manage, and integrate the Automatic Program Generation (APG) module within the R3M Platform. It forms the core of the autonomous decision-making layer of the R3M architecture, enabling the generation and execution of robotic programs through reinforcement learning (RL) agents and skill-based orchestration. This repository bridges the gap between data-driven task generation and the real or simulated robotic environments of the R3M system.
+
+The repository is structured around two main ROS 2 packages. The r3m_data package defines the ROS 2 communication mechanisms that enable all APG-related operations, including the .msg and .srv interfaces used across Topics and Services to manage data flow and task execution within the R3M framework. The r3m_apg package, on the other hand, includes the core functionality of the APG module: R3M use-case definitions, skill recipes for different manufacturing tasks, and MATLAB wrappers for integrating the RL-based APG agents during both training and execution phases.
+
+At the heart of r3m_apg lies the R3M Orchestrator, a central module responsible for managing the execution environment and coordinating between different system layers. It oversees skill and program execution, RL agent training, and environment management across simulation and real-robot scenarios. The orchestrator also handles perception-driven task execution, ensuring adaptive and context-aware program generation.
+
+By consolidating these elements, the R3M-APG repository provides a robust and scalable foundation for autonomous program generation within the R3M architecture. It enables seamless integration between learning-based decision-making, robotic control, and the communication backbone of the platform—supporting the project’s overarching goal of achieving reconfigurable, intelligent, and fully autonomous manufacturing systems.
 
 ### ros2_SimRealRobotControl Repository
 
@@ -143,8 +149,10 @@ Link to ros2_SimRealRobotControl: https://github.com/IFRA-Cranfield/ros2_SimReal
 
 For detailed information on installation, usage, and requirements, please refer to the following documentation files available in this repository:
 
-- [Installation.md](TBD): Instructions for setting up and installing the required dependencies.
-- TBD
+- [Installation.md](https://github.com/IFRA-Cranfield/R3M_APG/blob/humble/instructions/Installation.md): Instructions for setting up and installing the required dependencies.
+- [Guidance.md](https://github.com/IFRA-Cranfield/R3M_APG/blob/humble/instructions/Guidance.md): Instructions to replicate the execution of a program for a R3M Use-Case scenario, using both static pre-defined recipe sequence execution and a Matlab-based RL-trained agent execution (Gazebo Simulation).
+- [APG Folder](https://github.com/IFRA-Cranfield/R3M_APG/tree/humble/r3m_apg/apg), README file: This folder contains the main components that execute and manage the APG-based program execution. The R3M Use-Case information and R3M Skill Recipes are stored here.
+- [SkillExecution Folder](https://github.com/IFRA-Cranfield/R3M_APG/tree/humble/r3m_apg/skillexecution), README file: This folder contains the Source Code for the R3M Orchestrator (Execution/Training & Simulation/RealCell).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -314,13 +322,11 @@ Conference Papers:
   AMRC-SHEFFIELD:
   <br />
   <br />
-  Dr. Gaugham Ragunathan - Postdoctoral Researcher (AMRC)
+  Dr. Gautham Ragunathan - Postdoctoral Researcher (AMRC)
   <br />
   E-mail: g.ragunathan@amrc.co.uk 
   <br />
   LinkedIn: https://www.linkedin.com/in/gauthamragunathan/
-  <br />
-  Profile: --
   <br />
   <br />
   Dr. Lloyd Tinkler - Senior Technical Fellow, Electrical Materials (AMRC)

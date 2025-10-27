@@ -21,14 +21,6 @@ cd ~/dev_ws
 colcon build
 ```   
 
-__Download and install the R3M_Perception Repository__
-
-TBD.
-
-__Download and install the R3M_OPE Repository__
-
-TBD.
-
 __Download and install R3M_APG__
 
 ```sh

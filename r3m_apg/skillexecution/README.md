@@ -76,6 +76,7 @@ ros2 run r3m_apg r3m_SIMULATION.py package:="" config:="" perception:=""
 # config refers to the R3M Use-Case (e.g., "r3mcell_cu_13").
 
 # perception:=r3m to launch the R3M Perception node (One-Shot Detection + Megapose6D) or perception:=MarkerGrid to launch the IFRA-Cranfield/ObjectPoseEstimation ROS 2 node.
+# Remove the perception argument to retrieve object poses directly from Gazebo (IFRA-Cranfield/ObjectPose).
 ```
 
 This command launches the whole R3M Environment (CELL + APG) for the Real Robot:
