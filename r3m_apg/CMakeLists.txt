@@ -29,7 +29,6 @@ install(
   DIRECTORY 
     skillexecution
     apg
-    programs
   DESTINATION 
     share/${PROJECT_NAME}
 )
