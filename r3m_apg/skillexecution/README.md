@@ -2,7 +2,7 @@
 
 ## Automated Program Generation (APG) - Skill Execution
 
-The /SkillExecution folder in the R3M-APG repository contains the scripts required to launch and manage the Automated Program Generation (APG) environment, which is responsible for executing robot tasks within the R3M-Cell. This environment enables the robot to perform various tasks by following predefined use-cases, each composed of a sequence of recipes. A recipe represents a structured set of robot skills, which are individual actions or movements required to complete a task. These robot skills are defined in the ros2_SimRealRobotControl package and are executed sequentially to achieve the desired process.
+The /SkillExecution folder in the R3M-APG repository contains the scripts required to launch and manage the Automated Program Generation (APG) environment, which is responsible for executing robot tasks within the R3M-Cell. This environment enables the robot to perform various tasks by following predefined use-cases, each composed of a sequence of recipes. A recipe represents a structured set of robot skills, which are individual actions or movements required to complete a task. These robot skills are defined in the ros2srrc package and are executed sequentially to achieve the desired process.
 
 The execution of recipes is managed through a ROS 2 service called /r3m_SkillExecution, which acts as the interface between the APG environment and the robot. When a recipe is triggered, the corresponding robot skills are executed based on predefined parameters, ensuring that each step is carried out correctly within the robotic cell. This structured execution allows for flexibility in handling different use-cases while maintaining a standardized method for skill execution.
 

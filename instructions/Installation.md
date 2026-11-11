@@ -4,11 +4,11 @@
 
 The steps below must be followed in order to properly set-up a ROS 2 Humble machine which is needed for the usage of the ROS 2 Packages in the _R3M-APG_ repository. It is recommended to install Ubuntu 22.04 Desktop on your PC for an optimal performance, but a VM could be used for simple simulations and executions.
 
-__REQUIRED: Install the ros2_SimRealRobotControl GitHub Repository__
+__REQUIRED: Install the ros2srrc GitHub Repository__
 
-The ROS 2 packages developed in R3M-APG are based on IFRA-Cranfield's [ros2_SimRealRobotControl](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl) GitHub Repository. Therefore, ros2_SimRealRobotControl must be installed in order to set-up R3M-APG in any Ubuntu 22.04 + ROS 2 Humble machine.
+The ROS 2 packages developed in R3M-APG are based on IFRA-Cranfield's [ros2srrc](https://github.com/IFRA-Cranfield/ros2srrc) GitHub Repository. Therefore, ros2srrc must be installed in order to set-up R3M-APG in any Ubuntu 22.04 + ROS 2 Humble machine.
 
-Installation steps can be found at: https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble/instructions/Installation.md
+Installation steps can be found at: https://github.com/IFRA-Cranfield/ros2srrc/blob/humble/instructions/Installation.md
 
 __REQUIRED: Download and install the R3M_Cell Repository__
 
